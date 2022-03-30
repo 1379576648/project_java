@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.GoodspriceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Goodsprice">
+        <id column="GOODSPRICE_ID" property="goodspriceId" />
+        <result column="GOODSPRICE_RETAIL" property="goodspriceRetail" />
+        <result column="COMMODITY_ID" property="commodityId" />
+        <result column="GOODSPRICE_WHOLESALE" property="goodspriceWholesale" />
+        <result column="GOODSPRICE_MINPRICE" property="goodspriceMinprice" />
+        <result column="GOODSPRICE_PURCHASE" property="goodspricePurchase" />
+        <result column="GOODSPRICE_COST" property="goodspriceCost" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        GOODSPRICE_ID, GOODSPRICE_RETAIL, COMMODITY_ID, GOODSPRICE_WHOLESALE, GOODSPRICE_MINPRICE, GOODSPRICE_PURCHASE, GOODSPRICE_COST, DELETED
+    </sql>
+
+</mapper>

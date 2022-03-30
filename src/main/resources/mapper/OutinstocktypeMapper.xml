@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.OutinstocktypeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Outinstocktype">
+        <id column="OUTINSTOCKTYPE_ID" property="outinstocktypeId" />
+        <result column="OUTINSTOCKTYPE_NAME" property="outinstocktypeName" />
+        <result column="ISOUTIN" property="isoutin" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        OUTINSTOCKTYPE_ID, OUTINSTOCKTYPE_NAME, ISOUTIN, DELETED
+    </sql>
+
+</mapper>

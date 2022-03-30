@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.StockMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Stock">
+        <id column="STOCK_ID" property="stockId" />
+        <result column="STOCK_NAME" property="stockName" />
+        <result column="STOCK_SITE" property="stockSite" />
+        <result column="STOCK_STATE" property="stockState" />
+        <result column="STOCK_REMARK" property="stockRemark" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        STOCK_ID, STOCK_NAME, STOCK_SITE, STOCK_STATE, STOCK_REMARK, DELETED
+    </sql>
+
+</mapper>

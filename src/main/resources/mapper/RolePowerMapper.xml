@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.RolePowerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.RolePower">
+        <id column="ROLEPOWER_ID" property="rolepowerId" />
+        <result column="POWER_ID" property="powerId" />
+        <result column="ROLE_ID" property="roleId" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROLEPOWER_ID, POWER_ID, ROLE_ID, DELETED
+    </sql>
+
+</mapper>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.ReturndetailsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Returndetails">
+        <id column="RETURNDETAILS_ID" property="returndetailsId" />
+        <result column="RETURNGOODS_ID" property="returngoodsId" />
+        <result column="PURCHASEDETAILS_ID" property="purchasedetailsId" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RETURNDETAILS_ID, RETURNGOODS_ID, PURCHASEDETAILS_ID, DELETED
+    </sql>
+
+</mapper>

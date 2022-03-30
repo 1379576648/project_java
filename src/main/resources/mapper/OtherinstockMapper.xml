@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.OtherinstockMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Otherinstock">
+        <id column="OTHERINSTOCK_ID" property="otherinstockId" />
+        <result column="BILL_ID" property="billId" />
+        <result column="STOCK_ID" property="stockId" />
+        <result column="OUTINSTOCKTYPE_ID" property="outinstocktypeId" />
+        <result column="STAFF_ID" property="staffId" />
+        <result column="TIME" property="time" />
+        <result column="REMARK" property="remark" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        OTHERINSTOCK_ID, BILL_ID, STOCK_ID, OUTINSTOCKTYPE_ID, STAFF_ID, TIME, REMARK, DELETED
+    </sql>
+
+</mapper>

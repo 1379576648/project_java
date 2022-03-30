@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.CopeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Cope">
+        <id column="COPE_ID" property="copeId" />
+        <result column="SUPPLIER_ID" property="supplierId" />
+        <result column="COPE_MONEY" property="copeMoney" />
+        <result column="COPE_RECEIPTS" property="copeReceipts" />
+        <result column="COUPON" property="coupon" />
+        <result column="PURCHASE_ID" property="purchaseId" />
+        <result column="AGREGATE" property="agregate" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        COPE_ID, SUPPLIER_ID, COPE_MONEY, COPE_RECEIPTS, COUPON, PURCHASE_ID, AGREGATE, DELETED
+    </sql>
+
+</mapper>

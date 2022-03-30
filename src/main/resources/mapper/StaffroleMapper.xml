@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.StaffroleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Staffrole">
+        <id column="STAFFROLE_ID" property="staffroleId" />
+        <result column="STAFF_ID" property="staffId" />
+        <result column="ROLE_ID" property="roleId" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        STAFFROLE_ID, STAFF_ID, ROLE_ID, DELETED
+    </sql>
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.PowerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Power">
+        <id column="POWER_ID" property="powerId" />
+        <result column="POWER_NAME" property="powerName" />
+        <result column="POWER_PID" property="powerPid" />
+        <result column="POWER_PERMS" property="powerPerms" />
+        <result column="POWER_URL" property="powerUrl" />
+        <result column="POWER_COMPONENT" property="powerComponent" />
+        <result column="POWER_TYPE" property="powerType" />
+        <result column="POWER_ICON" property="powerIcon" />
+        <result column="POWER_ORDERNUM" property="powerOrdernum" />
+        <result column="POWER_CREATED" property="powerCreated" />
+        <result column="POWER_UPDATED" property="powerUpdated" />
+        <result column="POWER_STATE" property="powerState" />
+        <result column="POWER_DESCRIBE" property="powerDescribe" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        POWER_ID, POWER_NAME, POWER_PID, POWER_PERMS, POWER_URL, POWER_COMPONENT, POWER_TYPE, POWER_ICON, POWER_ORDERNUM, POWER_CREATED, POWER_UPDATED, POWER_STATE, DELETED
+    </sql>
+
+</mapper>

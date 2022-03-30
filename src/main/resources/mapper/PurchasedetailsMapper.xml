@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.PurchasedetailsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Purchasedetails">
+        <id column="PURCHASEDETAILS_ID" property="purchasedetailsId" />
+        <result column="PURL_ID" property="purlId" />
+        <result column="COMM_ID" property="commId" />
+        <result column="PURCHASEDETAILS_NUMBER" property="purchasedetailsNumber" />
+        <result column="PURCHASEDETAILS_PRICE" property="purchasedetailsPrice" />
+        <result column="PURCHASEDETAILS_STATE" property="purchasedetailsState" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PURCHASEDETAILS_ID, PURL_ID, COMM_ID, PURCHASEDETAILS_NUMBER, PURCHASEDETAILS_PRICE, PURCHASEDETAILS_STATE, DELETED
+    </sql>
+
+</mapper>

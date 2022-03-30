@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.ReturnsaleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Returnsale">
+        <id column="RETURNSALE_ID" property="returnsaleId" />
+        <result column="SALE_ID" property="saleId" />
+        <result column="RETURNSALE_STATE" property="returnsaleState" />
+        <result column="RETURNSALE_REASON" property="returnsaleReason" />
+        <result column="RETURNSALE_MONEY" property="returnsaleMoney" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RETURNSALE_ID, SALE_ID, RETURNSALE_STATE, RETURNSALE_REASON, RETURNSALE_MONEY, DELETED
+    </sql>
+
+</mapper>

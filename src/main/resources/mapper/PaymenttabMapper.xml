@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trkj.project_java.mapper.PaymenttabMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.trkj.project_java.entity.Paymenttab">
+        <id column="PAYMENTTAB_ID" property="paymenttabId" />
+        <result column="PAYMENTTAB_TIME" property="paymenttabTime" />
+        <result column="COPE_ID" property="copeId" />
+        <result column="MONEY" property="money" />
+        <result column="STAFF_ID" property="staffId" />
+        <result column="SETTLEMENT" property="settlement" />
+        <result column="REMARKS" property="remarks" />
+        <result column="DELETED" property="deleted" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PAYMENTTAB_ID, PAYMENTTAB_TIME, COPE_ID, MONEY, STAFF_ID, SETTLEMENT, REMARKS, DELETED
+    </sql>
+
+</mapper>
