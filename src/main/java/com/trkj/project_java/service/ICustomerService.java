@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- *  客户表服务类
+ *  服务类
  * </p>
  *
  * @author 沈杨卓
@@ -19,4 +19,16 @@ public interface ICustomerService extends IService<Customer> {
      * @return
      */
     Integer addCustomer(Customer customer);
+    //添加客户
+    int insertCustomer(Customer customer);
+
+    //分页查询客户
+    IPage<Customer> selelctCustomerPage(Page<Customer> page);
+
+    //修改客户
+    int upateCustomer(Customer customer);
+
+    //删除客户
+    int deleteCustomerId(Long id);
+
 }
