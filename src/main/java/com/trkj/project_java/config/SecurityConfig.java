@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
 //                对于登录接口 允许匿名访问"/power/**",
         .antMatchers("/login/login","/supplier/**","/alipay/**").anonymous()
+        .antMatchers("/login/login","/**").anonymous()
 //                除上面以外的所有请求全部需要鉴权认证
         .anyRequest().authenticated();
 
