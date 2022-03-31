@@ -34,11 +34,6 @@ public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> i
     @Override
     public List<Supplier> selectSupplier(Supplier supplier) {
         QueryWrapper<Supplier> queryWrapper = new QueryWrapper<Supplier>();
-        if(supplier.getSupplierName()!=null && supplier.getSupplierPhone()!=null && supplier.getSupplierAddress()!=null){
-            queryWrapper.like("SUPPLIER_NAME",supplier.getSupplierName());
-            queryWrapper.like("SUPPLIER_PHONE",supplier.getSupplierPhone());
-            queryWrapper.like("SUPPLIER_ADDRESS",supplier.getSupplierAddress());
-        }
         return supplierMapper.selectList(queryWrapper);
     }
 
@@ -61,6 +56,11 @@ public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> i
     public IPage<Supplier> selectSupplierPage(Supplier supplier) {
         Page<Supplier> page = new Page<>(supplier.getCurrentPage(),supplier.getPageSize());
         QueryWrapper<Supplier> queryWrapper = new QueryWrapper<>();
+        if(supplier.getSupplierName()!=null && supplier.getSupplierPhone()!=null && supplier.getSupplierAddress()!=null){
+            queryWrapper.like("SUPPLIER_NAME",supplier.getSupplierName());
+            queryWrapper.like("SUPPLIER_PHONE",supplier.getSupplierPhone());
+            queryWrapper.like("SUPPLIER_ADDRESS",supplier.getSupplierAddress());
+        }
         return supplierMapper.selectPage(page,queryWrapper);
     }
 }
