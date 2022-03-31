@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 沈杨卓
@@ -22,37 +22,34 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Supplier对象", description="")
-@KeySequence(value = "supplier_seq")
-public class Supplier implements Serializable {
+@ApiModel(value="Stock对象", description="")
+@KeySequence(value = "stock_seq")
+public class Stockvo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "SUPPLIER_ID",type = IdType.INPUT)
-    private Integer supplierId;
+    @TableId(value = "STOCK_ID",type = IdType.INPUT)
+    private Integer stockId;
 
-    @TableField("SUPPLIER_NAME")
-    private String supplierName;
+    @TableField("STOCK_NAME")
+    private String stockName;
 
-    @TableField("SUPPLIER_PHONE")
-    private String supplierPhone;
+    @TableField("STOCK_SITE")
+    private String stockSite;
 
-    @TableField("SUPPLIER_ADDRESS")
-    private String supplierAddress;
+    @TableField("STOCK_STATE")
+    private Integer stockState;
 
-    @TableField("SUPPLIER_REMARK")
-    private String supplierRemark;
+    @TableField("STOCK_REMARK")
+    private String stockRemark;
 
     @TableField("DELETED")
     private Integer deleted;
 
-    @ApiModelProperty(value = "当前页")
-    @TableField(exist = false)
-    private Integer currentPage;
+    @TableField("STOCK_DEFAULT")
+    private Integer stockDefault;
 
-    @ApiModelProperty(value = "页大小")
-    @TableField(exist = false)
-    private Integer pageSize;
-
+    private int currentPage;
+    private int pageSize;
 
 }
