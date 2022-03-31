@@ -1,20 +1,19 @@
 package com.trkj.project_java.mapper;
 
-import com.trkj.project_java.entity.Sale;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.trkj.project_java.entity.Balance;
+import com.trkj.project_java.pojovo.SaleVo;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
- *  销售表Mapper 接口
+ *  Mapper 接口
  * </p>
  *
  * @author 沈杨卓
  * @since 2022-03-30
  */
 @Mapper
-public interface SaleMapper extends BaseMapper<Sale> {
+public interface SaleVoMapper extends BaseMapper<SaleVo> {
 
-//    @Select("")
 }
