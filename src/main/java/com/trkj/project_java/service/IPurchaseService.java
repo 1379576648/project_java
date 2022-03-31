@@ -1,7 +1,10 @@
 package com.trkj.project_java.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.trkj.project_java.entity.Purchase;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
