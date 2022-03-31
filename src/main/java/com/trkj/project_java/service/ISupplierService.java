@@ -18,6 +18,7 @@ public interface ISupplierService extends IService<Supplier> {
 
     /**
      * 查询供应商
+     * @param supplier
      * @return
      */
     List<Supplier> selectSupplier(Supplier supplier);
