@@ -17,4 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity> implements ICommodityService {
 
+    @Override
+    public int appcommod(Commodity commodity) {
+        return 0;
+    }
 }

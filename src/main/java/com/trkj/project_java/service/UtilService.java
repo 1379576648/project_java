@@ -7,4 +7,10 @@ public interface UtilService {
      * @return
      */
     String obtainSerialNumber();
+
+    /**
+     * 获取供应商编号
+     * @return
+     */
+    String obtainSupplierNumber();
 }

@@ -3,8 +3,11 @@ package com.trkj.project_java.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.trkj.project_java.entity.Cope;
 import com.trkj.project_java.entity.Supplier;
+import com.trkj.project_java.mapper.CopeMapper;
 import com.trkj.project_java.mapper.SupplierMapper;
+import com.trkj.project_java.pojovo.CopeVo;
 import com.trkj.project_java.service.ISupplierService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,9 @@ public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> i
 
     @Autowired
     private SupplierMapper supplierMapper;
+
+    @Autowired
+    private CopeMapper copeMapper;
 
     /**
      * 查询供应商
@@ -62,5 +68,24 @@ public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> i
             queryWrapper.like("SUPPLIER_ADDRESS",supplier.getSupplierAddress());
         }
         return supplierMapper.selectPage(page,queryWrapper);
+    }
+
+    /**
+     * 根据供应商名称查询出欠款信息
+     * @return
+     */
+    @Override
+    public List<CopeVo> selectSupplierAll(CopeVo copeVo) {
+
+        QueryWrapper<CopeVo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("SUPPLIER_NAME",copeVo.getSupplierName());
+        List<CopeVo> copeList = supplierMapper.selectSupplierAll(copeVo,queryWrapper);
+        if(copeList.size()!=0){
+            copeList.get(0).setAgregateTotal(0);
+            for (int i = 0; i < copeList.size(); i++) {
+                copeList.get(0).setAgregateTotal(copeList.get(0).getAgregateTotal()+copeList.get(i).getAgregate());
+            }
+        }
+        return copeList;
     }
 }
