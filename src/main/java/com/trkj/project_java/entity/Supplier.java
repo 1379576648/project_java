@@ -40,6 +40,9 @@ public class Supplier implements Serializable {
     @TableField("SUPPLIER_ADDRESS")
     private String supplierAddress;
 
+    @TableField("SUPPLIER_REMARK")
+    private String supplierRemark;
+
     @TableField("DELETED")
     private Integer deleted;
 
