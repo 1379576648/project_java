@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * 客户表
  * </p>
  *
  * @author 沈杨卓
@@ -30,6 +30,9 @@ public class Customer implements Serializable {
 
     @TableId(value = "CUSTOMER_ID",type = IdType.INPUT)
     private Integer customerId;
+
+    @TableField("CUSTOMER_SERIAL")
+    private String customerSerial;
 
     @TableField("CUSTOMER_NAME")
     private String customerName;

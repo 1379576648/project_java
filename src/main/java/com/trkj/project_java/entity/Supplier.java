@@ -40,8 +40,19 @@ public class Supplier implements Serializable {
     @TableField("SUPPLIER_ADDRESS")
     private String supplierAddress;
 
+    @TableField("SUPPLIER_REMARK")
+    private String supplierRemark;
+
     @TableField("DELETED")
     private Integer deleted;
+
+    @ApiModelProperty(value = "当前页")
+    @TableField(exist = false)
+    private Integer currentPage;
+
+    @ApiModelProperty(value = "页大小")
+    @TableField(exist = false)
+    private Integer pageSize;
 
 
 }

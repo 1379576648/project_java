@@ -1,13 +1,21 @@
 package com.trkj.project_java.controller;
 
 
+import com.trkj.project_java.config.Result;
+import com.trkj.project_java.entity.Stock;
+import com.trkj.project_java.service.ISaleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+
 /**
  * <p>
- *  前端控制器
+ *  前端控制器：销售单
  * </p>
  *
  * @author 沈杨卓
@@ -17,4 +25,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/sale")
 public class SaleController {
 
+    @Autowired
+    private ISaleService service;
+
+    /**
+     * 查询所有客户信息
+     */
+    @GetMapping("/listkh")
+    public Result querylistk(){
+        return Result.success(service.querylist());
+    }
+
+    /**
+     * 查询当前启用仓库
+     */
+    @GetMapping("/listck")
+    public Result querylistck(Stock stock){
+        return Result.success(service.findbylistck(stock));
+    }
 }
