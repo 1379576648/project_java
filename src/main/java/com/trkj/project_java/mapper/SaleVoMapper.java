@@ -1,7 +1,8 @@
 package com.trkj.project_java.mapper;
 
-import com.trkj.project_java.entity.Stock;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.trkj.project_java.entity.Balance;
+import com.trkj.project_java.pojovo.SaleVo;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -13,6 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @since 2022-03-30
  */
 @Mapper
-public interface StockMapper extends BaseMapper<Stock> {
+public interface SaleVoMapper extends BaseMapper<SaleVo> {
 
 }
