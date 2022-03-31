@@ -4,7 +4,10 @@ import com.trkj.project_java.entity.Category;
 import com.trkj.project_java.mapper.CategoryMapper;
 import com.trkj.project_java.service.ICategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +19,28 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements ICategoryService {
+    @Autowired
+    private  CategoryMapper categoryMapper;
+    @Override
+    public int insertCategory(Category category) {    //添加商品分类
 
+        return categoryMapper.insert(category);
+    }
+
+    @Override
+    public int updateCategory(Category category) {   //修改商品分类
+        return categoryMapper.updateById(category);
+    }
+
+    @Override
+    public List<Category> selectCategory() {   //查询商品分类
+
+        return categoryMapper.selectList(null);
+    }
+
+    @Override
+    public int delectCategory(int id) {    //删除商品分类
+
+        return categoryMapper.deleteById(id);
+    }
 }
