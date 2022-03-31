@@ -1,9 +1,12 @@
 package com.trkj.project_java.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.trkj.project_java.entity.Commodity;
 import com.trkj.project_java.mapper.CommodityMapper;
 import com.trkj.project_java.service.ICommodityService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,5 +19,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity> implements ICommodityService {
+    @Autowired
+    private CommodityMapper commodityMapper;
 
+    @Override
+    public IPage<Commodity> findePage(Page<Commodity> page) {
+        return commodityMapper.selectPage(page,null);
+    }
 }
