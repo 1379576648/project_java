@@ -1,9 +1,13 @@
 package com.trkj.project_java.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.trkj.project_java.entity.Outinstocktype;
+import com.trkj.project_java.service.IOutinstocktypeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +20,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/outinstocktype")
 public class OutinstocktypeController {
+    @Autowired
+    private IOutinstocktypeService iOutinstocktypeService;
 
+    //    查询状态为1的所有内容
+    @GetMapping("/selectType")
+    public IPage<Outinstocktype> selectType(@RequestParam("page") int page,@RequestParam("size") int size){
+        return iOutinstocktypeService.selectType(page, size);
+    }
+
+//    查询状态为0的所有内容
+    @GetMapping("/selectTypeck")
+    public IPage<Outinstocktype> selectTypeck(@RequestParam("page") int page,@RequestParam("size") int size){
+        return iOutinstocktypeService.selectTypeck(page, size);
+    }
+//    添加
+    @PostMapping("/insertType")
+    public int insertType(@RequestBody Outinstocktype outinstocktype){
+        return iOutinstocktypeService.insertType(outinstocktype);
+    }
+//    修改
+    @PostMapping("/updateType")
+    public int updateType(@RequestBody Outinstocktype outinstocktype){
+        return iOutinstocktypeService.updateType(outinstocktype);
+    }
+//    删除
+    @PostMapping("/deleteType")
+    public int deleteType(@RequestBody Outinstocktype outinstocktype){
+        return iOutinstocktypeService.deleteType(outinstocktype);
+    }
 }
