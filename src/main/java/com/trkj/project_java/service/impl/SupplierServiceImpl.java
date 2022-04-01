@@ -89,20 +89,22 @@ public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> i
 
     @Override
     public IPage<Supplier> selectSupplierByLike(Supplier supplier) {
+        System.out.println("selectSupplierByLike:   "+supplier);
         Page<Supplier> page = new Page<>(supplier.getCurrentPage(),supplier.getPageSize());
         QueryWrapper<Supplier> queryWrapper = new QueryWrapper<>();
         if (supplier.getSupplierId() !=null){
-            queryWrapper.like("SUPPLIER_ID",supplier.getSupplierId());
+            queryWrapper.like("s.SUPPLIER_ID",supplier.getSupplierId());
         }
         if(supplier.getSupplierName()!=null){
-            queryWrapper.like("SUPPLIER_NAME",supplier.getSupplierName());
+            queryWrapper.like("s.SUPPLIER_NAME",supplier.getSupplierName());
         }
         if (supplier.getSupplierPhone()!=null){
-            queryWrapper.like("SUPPLIER_PHONE",supplier.getSupplierPhone());
+            queryWrapper.like("s.SUPPLIER_PHONE",supplier.getSupplierPhone());
         }
         if (supplier.getSupplierAddress()!=null){
-            queryWrapper.like("SUPPLIER_ADDRESS",supplier.getSupplierAddress());
+            queryWrapper.like("s.SUPPLIER_ADDRESS",supplier.getSupplierAddress());
         }
+        System.out.println("-------------"+supplierMapper.SupplierByLike(page,queryWrapper));
         return supplierMapper.SupplierByLike(page,queryWrapper);
     }
 }
