@@ -54,4 +54,18 @@ public class PaymenttabServiceImpl extends ServiceImpl<PaymenttabMapper, Payment
         queryWrapper.eq("p.PAYMENTTAB_ID",paymentVo.getPaymenttabId());
         return paymenttabMapper.selectPaymentById(paymentVo,queryWrapper);
     }
+
+    /**
+     * 作废
+     * @param id
+     * @return
+     */
+    @Override
+    public String deletePayment(Integer id) {
+        String s = "成功";
+        if (paymenttabMapper.deleteById(id)<=0){
+            return "删除失败";
+        }
+        return s;
+    }
 }

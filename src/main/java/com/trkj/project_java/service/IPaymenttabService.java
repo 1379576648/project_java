@@ -31,4 +31,11 @@ public interface IPaymenttabService extends IService<Paymenttab> {
      */
     List<PaymentVo> selectPaymentById(PaymentVo paymentVo);
 
+    /**
+     * 作废
+     * @param id
+     * @return
+     */
+    String deletePayment(Integer id);
+
 }

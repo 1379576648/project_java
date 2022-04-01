@@ -3,12 +3,9 @@ package com.trkj.project_java.controller;
 
 import com.trkj.project_java.pojovo.PaymentVo;
 import com.trkj.project_java.service.IPaymenttabService;
+import com.trkj.project_java.vo.AjaxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +53,21 @@ public class PaymenttabController {
         map.put("msg","查询成功");
         map.put("info",iPaymenttabService.selectPaymentById(paymentVo));
         return map;
+    }
+
+    /**
+     * 作废
+     * @param id
+     * @return
+     */
+    @DeleteMapping("deletePayment/{id}")
+    public AjaxResponse deletePayment(@PathVariable("id") Integer id) {
+        Map<String, Object> map = new HashMap<>(2);
+        //状态码
+        map.put("state", 200);
+        //返回结果
+        map.put("info", iPaymenttabService.deletePayment(id));
+        return AjaxResponse.success(map);
     }
 
 
