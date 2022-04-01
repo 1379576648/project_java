@@ -1,12 +1,11 @@
 package com.trkj.project_java.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.KeySequence;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -33,6 +32,9 @@ public class Customer implements Serializable {
     @TableId(value = "CUSTOMER_ID",type = IdType.INPUT)
     private Integer customerId;
 
+    @TableField("CUSTOMER_SERIAL")
+    private String customerSerial;
+
     @TableField("CUSTOMER_NAME")
     private String customerName;
 
@@ -51,11 +53,11 @@ public class Customer implements Serializable {
     @TableField("DELETED")
     private Integer deleted;
 
-    @TableField("CREATED_TIME")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(fill = FieldFill.INSERT)
     private Date createdTime;
 
-    @TableField("UPDATED_TIME")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updatedTime;
-
-
 }

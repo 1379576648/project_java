@@ -8,13 +8,21 @@ import com.trkj.project_java.entity.Customer;
 import com.trkj.project_java.entity.Sale;
 import com.trkj.project_java.service.ICustomerService;
 import lombok.extern.slf4j.Slf4j;
+import com.trkj.project_java.vo.AjaxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -32,6 +40,9 @@ public class CustomerController {
 
     @Autowired
     private ICustomerService customerService;
+
+    @Autowired
+    private ICustomerService icustomerService;
 
     //添加客户
     @PostMapping("/insertCustomer")
@@ -74,6 +85,23 @@ public class CustomerController {
     public Result selectDeptName(){
         List<Map> list=customerService.selectStockName();
         return Result.success(list);
+    /**
+     * 添加客户
+     *
+     * @param customer
+     * @return
+     */
+    @PostMapping("/addCustomer")
+    private AjaxResponse addCustomer(@RequestBody Customer customer) {
+        Map<String, Object> map = new HashMap<>(2);
+        try {
+            map.put("state", 200);
+            map.put("info", iCustomerService.addCustomer(customer));
+        } catch (Exception e) {
+            map.put("state", 400);
+            map.put("info", e.getMessage());
+        }
+        return AjaxResponse.success(map);
     }
 
     //查询销售
