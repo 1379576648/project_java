@@ -2,10 +2,12 @@ package com.trkj.project_java.controller;
 
 
 import com.trkj.project_java.config.Result;
+import com.trkj.project_java.entity.Stock;
 import com.trkj.project_java.service.ISaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -32,5 +34,13 @@ public class SaleController {
     @GetMapping("/listkh")
     public Result querylistk(){
         return Result.success(service.querylist());
+    }
+
+    /**
+     * 查询当前启用仓库
+     */
+    @GetMapping("/listck")
+    public Result querylistck(Stock stock){
+        return Result.success(service.findbylistck(stock));
     }
 }

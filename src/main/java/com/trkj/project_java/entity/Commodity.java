@@ -28,26 +28,41 @@ public class Commodity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    //商品编号
     @TableId(value = "COMMODITY_ID",type = IdType.INPUT)
     private Integer commodityId;
 
+    //商品名字
     @TableField("COMMODITY_NAME")
     private String commodityName;
 
+    //单位
     @TableField("COMMODITY_COMPANY")
     private String commodityCompany;
 
+    //规格
     @TableField("COMMODITY_SPECIFICATIONS")
     private String commoditySpecifications;
 
+    //批发价
     @TableField("TRADE_PRICE")
     private Integer tradePrice;
 
+    //商品分类
     @TableField("CATEGORY_ID")
     private Integer categoryId;
 
+    //零售价
     @TableField("RETAIL_PRICE")
     private Integer retailPrice;
+
+    //最低库存
+    @TableField("MINNUMBER")
+    private Integer minNumber ;
+
+    //最高库存
+    @TableField("MAXNUMBER ")
+    private Integer maxNumber ;
 
     @TableField("DELETED")
     private Integer deleted;
