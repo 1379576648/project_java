@@ -13,4 +13,10 @@ public interface UtilService {
      * @return
      */
     String obtainSupplierNumber();
+
+    /**
+     * 获取付款编号
+     * @return
+     */
+    String obtainCopeNumber();
 }
