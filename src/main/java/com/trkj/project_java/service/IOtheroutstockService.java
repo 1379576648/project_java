@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.trkj.project_java.entity.Otheroutstock;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.trkj.project_java.entity.Otheroutstockdetails;
+import com.trkj.project_java.pojovo.GoodsRepertoryVo;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public interface IOtheroutstockService extends IService<Otheroutstock> {
     List<Map> selectAllStaff();
 
     // 查询商品库存 (按仓库id，商品分类，商品名称，分页)
-//    IPage<>
+    IPage<GoodsRepertoryVo> selectGoodsRepertoryPage(Page page,int stockId,List<Integer> categoryId,String commodityName);
 
     // 新增其他出库单
     int insertOtheroutstock(Otheroutstock otheroutstock, List<Otheroutstockdetails> otheroutstockdetails);
