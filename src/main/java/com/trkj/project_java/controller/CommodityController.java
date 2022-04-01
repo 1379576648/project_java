@@ -25,7 +25,13 @@ public class CommodityController {
     @Autowired
     public ICommodityService iCommodityService;
 
+    @PostMapping ("/addcom")
     public String add (@RequestBody Commodity commodity){
+
+        if( iCommodityService.cx(commodity.getCommodityName()).size()>0 ){
+            return "商品名称重复";
+        }
+
         if (iCommodityService.appcommod(commodity) >=1){
             System.out.println("成功");
             return "成功";

@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -21,12 +23,20 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity> implements ICommodityService {
+
     @Autowired
     private CommodityMapper commodityMapper;
 
     @Override
     public int appcommod(Commodity commodity) {
-        return 0;
+        return commodityMapper.insert(commodity);
+    }
+
+    @Override
+    public List<Commodity> cx(String goodsName) {
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.eq("COMMODITY_NAME",goodsName);
+        return commodityMapper.selectList(wrapper);
     }
 
     @Override

@@ -1,31 +1,20 @@
-package com.trkj.project_java.entity;
+package com.trkj.project_java.pojovo;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import java.io.Serializable;
 import java.util.Date;
-
-/**
- * <p>
- * 
- * </p>
- *
- * @author 沈杨卓
- * @since 2022-03-30
- */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Supplier对象", description="")
-@KeySequence(value = "supplier_seq")
-public class Supplier implements Serializable {
-
+public class CopeVo {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "SUPPLIER_ID",type = IdType.INPUT)
@@ -46,15 +35,6 @@ public class Supplier implements Serializable {
     @TableField("DELETED")
     private Integer deleted;
 
-    @TableField("category_id")
-    private String categoryId;
-
-    @TableField("category_name")
-    private String categoryName;
-
-    @TableField("cope_money")
-    private Long copeMoney;
-
     @TableField("SUPPLIER_SERIAL")
     private String supplierSerial;
 
@@ -74,5 +54,24 @@ public class Supplier implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updatedTime;
 
+    @TableField(value = "COPE_ID")
+    private Integer copeId;
 
+    @TableField("COPE_MONEY")
+    private Integer copeMoney;
+
+    @TableField("COPE_RECEIPTS")
+    private Integer copeReceipts;
+
+    @TableField("COUPON")
+    private Integer coupon;
+
+    @TableField("PURCHASE_ID")
+    private Integer purchaseId;
+
+    @TableField("AGREGATE")
+    private Integer agregate;
+
+    @TableField(exist = false)
+    private Integer agregateTotal;
 }
