@@ -44,4 +44,6 @@ public interface ISupplierService extends IService<Supplier> {
      */
     List<CopeVo> selectSupplierAll(CopeVo copeVo);
 
+    IPage<Supplier> selectSupplierByLike (Supplier supplier);
+
 }

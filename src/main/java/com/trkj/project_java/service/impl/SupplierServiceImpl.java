@@ -3,18 +3,16 @@ package com.trkj.project_java.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.trkj.project_java.entity.Cope;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trkj.project_java.entity.Supplier;
 import com.trkj.project_java.mapper.CopeMapper;
 import com.trkj.project_java.mapper.SupplierMapper;
 import com.trkj.project_java.pojovo.CopeVo;
 import com.trkj.project_java.service.ISupplierService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Queue;
 
 /**
  * <p>
@@ -87,5 +85,24 @@ public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> i
             }
         }
         return copeList;
+    }
+
+    @Override
+    public IPage<Supplier> selectSupplierByLike(Supplier supplier) {
+        Page<Supplier> page = new Page<>(supplier.getCurrentPage(),supplier.getPageSize());
+        QueryWrapper<Supplier> queryWrapper = new QueryWrapper<>();
+        if (supplier.getSupplierId() !=null){
+            queryWrapper.like("SUPPLIER_ID",supplier.getSupplierId());
+        }
+        if(supplier.getSupplierName()!=null){
+            queryWrapper.like("SUPPLIER_NAME",supplier.getSupplierName());
+        }
+        if (supplier.getSupplierPhone()!=null){
+            queryWrapper.like("SUPPLIER_PHONE",supplier.getSupplierPhone());
+        }
+        if (supplier.getSupplierAddress()!=null){
+            queryWrapper.like("SUPPLIER_ADDRESS",supplier.getSupplierAddress());
+        }
+        return supplierMapper.SupplierByLike(page,queryWrapper);
     }
 }
