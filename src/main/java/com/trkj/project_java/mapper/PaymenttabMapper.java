@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -15,7 +16,6 @@ import java.util.List;
  * @author 沈杨卓
  * @since 2022-03-30
  */
-@Mapper
 public interface PaymenttabMapper extends BaseMapper<Paymenttab> {
     public String selectDJBH(@Param("id") int payId);
 
