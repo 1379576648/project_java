@@ -42,7 +42,6 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         return commodityMapper.selectList(wrapper);
     }
 
-
     @Override
     @Transactional
     public IPage<Commodity> selectPage(Page<Commodity> page,String name) {
@@ -74,5 +73,11 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         QueryWrapper<Commodity> wrapper = new QueryWrapper<>();
         wrapper.like("COMMODITY_NAME",commodityName);
         return commodityMapper.selectName(wrapper);
+    }
+
+    @Override
+    @Transactional
+    public int deleteById(int id) {
+        return commodityMapper.deleteById(id);
     }
 }

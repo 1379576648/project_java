@@ -8,6 +8,8 @@ import com.trkj.project_java.service.ICommodityService;
 import com.trkj.project_java.vo.AjaxResponse;
 import org.aspectj.weaver.loadtime.Aj;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -69,6 +71,13 @@ public class CommodityController {
     @GetMapping("/selectName/{commodityName}")
     public Commodity selectName(@PathVariable("commodityName") String commodityName){
         return iCommodityService.selectName(commodityName);
+    }
+    /*
+    * 删除商品表
+    * */
+    @DeleteMapping("/delete/{id}")
+    public int deleteById(@PathVariable("id") int id){
+        return iCommodityService.deleteById(id);
     }
 
 

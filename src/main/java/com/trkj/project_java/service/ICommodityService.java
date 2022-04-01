@@ -32,4 +32,6 @@ public interface ICommodityService extends IService<Commodity> {
      int updata(Commodity commodity);
      //模糊查询
      Commodity selectName(String commodityName);
+     //根据id删除商品
+     int deleteById(int id);
 }
