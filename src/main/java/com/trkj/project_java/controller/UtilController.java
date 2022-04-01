@@ -53,4 +53,21 @@ public class UtilController {
         return AjaxResponse.success(map);
     }
 
+    /**
+     * 获取供应商流水号
+     * @return
+     */
+    @GetMapping("/obtainSupplierNumber")
+    public AjaxResponse obtainSupplierNumber() {
+        Map<String, Object> map = new HashMap<>(2);
+        try {
+            map.put("state", 200);
+            map.put("info", utilService.obtainSupplierNumber());
+        } catch (Exception e) {
+            map.put("state", 400);
+            map.put("info", e.getMessage());
+        }
+        return AjaxResponse.success(map);
+    }
+
 }

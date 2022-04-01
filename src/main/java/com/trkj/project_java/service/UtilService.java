@@ -13,4 +13,10 @@ public interface UtilService {
      * @return
      */
     String obtainCollectionSerialNumber();
+
+    /**
+     * 获取供应商编号
+     * @return
+     */
+    String obtainSupplierNumber();
 }

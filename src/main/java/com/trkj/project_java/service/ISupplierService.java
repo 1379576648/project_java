@@ -3,6 +3,7 @@ package com.trkj.project_java.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.trkj.project_java.entity.Supplier;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.trkj.project_java.pojovo.CopeVo;
 
 import java.util.List;
 
@@ -36,5 +37,11 @@ public interface ISupplierService extends IService<Supplier> {
      * @return
      */
     IPage<Supplier> selectSupplierPage(Supplier supplier);
+
+    /**
+     * 根据供应商名称查询出欠款信息
+     * @return
+     */
+    List<CopeVo> selectSupplierAll(CopeVo copeVo);
 
 }
