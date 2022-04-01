@@ -79,7 +79,7 @@ public class SupplierController {
         return map;
     }
     /**
-     * 分页查询供应商
+     * 根据条件分页查询供应商
      * @param supplier
      * @return
      */

@@ -1,6 +1,11 @@
 package com.trkj.project_java.controller;
 
 
+import com.trkj.project_java.config.Result;
+import com.trkj.project_java.service.IStaffService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import com.trkj.project_java.entity.Staff;
 import com.trkj.project_java.service.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +26,7 @@ import java.util.Map;
  * @author 沈杨卓
  * @since 2022-03-30
  */
+@Slf4j
 @RestController
 @RequestMapping("/staff")
 public class StaffController {
@@ -45,4 +51,8 @@ public class StaffController {
 
 
 
+ @GetMapping("/sselectStaff")
+    public Result sselectStaff(){
+     return Result.success(iStaffService.selectStaff());
+ }
 }
