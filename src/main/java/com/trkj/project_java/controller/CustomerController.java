@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  * <p>
@@ -42,7 +42,7 @@ public class CustomerController {
     private ICustomerService customerService;
 
     @Autowired
-    private ICustomerService icustomerService;
+    private ICustomerService iCustomerService;
 
     //添加客户
     @PostMapping("/insertCustomer")
@@ -82,9 +82,10 @@ public class CustomerController {
 
     //查询仓库名称
     @GetMapping("/selectDeptName")
-    public Result selectDeptName(){
-        List<Map> list=customerService.selectStockName();
+    public Result selectDeptName() {
+        List<Map> list = customerService.selectStockName();
         return Result.success(list);
+    }
     /**
      * 添加客户
      *
