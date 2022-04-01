@@ -53,7 +53,7 @@ public class CommodityController {
     /*
     * 根据id查询商品表
     * */
-    @GetMapping("/selectById/{id}")
+    @GetMapping("/selectById/{id}") 
     public Commodity selectById(@PathVariable("id") int id){
         return iCommodityService.selectId(id);
     }
