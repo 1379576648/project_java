@@ -2,6 +2,7 @@ package com.trkj.project_java.controller;
 
 
 import com.trkj.project_java.entity.Supplier;
+import com.trkj.project_java.pojovo.CopeVo;
 import com.trkj.project_java.service.ISupplierService;
 import com.trkj.project_java.vo.AjaxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,21 @@ public class SupplierController {
         map.put("state",200);
         map.put("msg","查询成功");
         map.put("info",iSupplierService.selectSupplierByLike(supplier));
+        return map;
+    }
+
+    /**
+     * 根据供应商查询欠款信息
+     * @param copeVo
+     * @return
+     */
+    @PostMapping("selectSupplierAll")
+    public Map<String,Object> selectSupplierAll(@RequestBody CopeVo copeVo){
+        Map<String,Object> map = new HashMap<>(3);
+        //返回的数据
+        map.put("state",200);
+        map.put("msg","查询成功");
+        map.put("info",iSupplierService.selectSupplierAll(copeVo));
         return map;
     }
 
