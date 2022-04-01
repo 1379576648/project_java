@@ -1,5 +1,6 @@
 package com.trkj.project_java.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.trkj.project_java.entity.Category;
 import com.trkj.project_java.mapper.CategoryMapper;
 import com.trkj.project_java.service.ICategoryService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -42,5 +44,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     public int delectCategory(int id) {    //删除商品分类
 
         return categoryMapper.deleteById(id);
+    }
+
+    @Override
+    public List<Map<Object, Object>> classify() {
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.select("CATEGORY_ID","CATEGORY_NAME");
+        return categoryMapper.selectMaps(wrapper);
     }
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -40,6 +41,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         wrapper.eq("COMMODITY_NAME",goodsName);
         return commodityMapper.selectList(wrapper);
     }
+
 
     @Override
     @Transactional
