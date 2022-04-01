@@ -4,10 +4,11 @@ package com.trkj.project_java.controller;
 import com.trkj.project_java.entity.Commodity;
 import com.trkj.project_java.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -34,8 +35,9 @@ public class CommodityController {
         return "失败";
     }
 
-
-
-
+    @GetMapping("/selectCommodity")
+    List<Commodity> selectCommodity(){
+        return iCommodityService.selectCommodity();
+    }
 
 }

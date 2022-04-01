@@ -67,5 +67,7 @@ public class Commodity implements Serializable {
     @TableField("DELETED")
     private Integer deleted;
 
+    @TableField(exist = false)
+    private String categoryName;
 
 }
