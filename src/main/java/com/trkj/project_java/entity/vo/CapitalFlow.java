@@ -25,6 +25,6 @@ public class CapitalFlow {
 
     private double currentBalance=0; //当前余额
 
-    private Integer staffId; //经手人
+    private String staffId; //经手人
 
 }

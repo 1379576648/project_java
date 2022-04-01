@@ -51,6 +51,9 @@ public class Tab implements Serializable {
     @TableField("REMARKS")
     private String remarks;
 
+    @TableField("TAB_BALANCE")
+    private Integer tabBalance;
+
     @TableField("DELETED")
     private Integer deleted;
 
