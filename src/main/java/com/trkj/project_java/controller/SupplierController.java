@@ -90,7 +90,7 @@ public class SupplierController {
         //返回的数据
         map.put("state",200);
         map.put("msg","查询成功");
-        map.put("info",iSupplierService.selectSupplierByLike(supplier));
+//        map.put("info",iSupplierService.selectSupplierByLike(supplier));
         return map;
     }
 
