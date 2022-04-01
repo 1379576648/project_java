@@ -3,6 +3,9 @@ package com.trkj.project_java.service;
 import com.trkj.project_java.entity.Category;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -12,5 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-03-30
  */
 public interface ICategoryService extends IService<Category> {
+    int insertCategory(Category category);  //添加商品分类
+    int updateCategory(Category category);  //修改商品分类
+    List<Category> selectCategory();      //查询商品分类
+    int delectCategory(int id);  //删除商品分类
 
+    //查询所有商品分类
+    List<Map<Object,Object>> classify ();
 }

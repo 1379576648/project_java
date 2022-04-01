@@ -1,7 +1,5 @@
 package com.trkj.project_java.entity;
 
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -15,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 沈杨卓
@@ -24,41 +22,34 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Sale对象", description="")
-@KeySequence(value = "sale_seq")
-public class Sale implements Serializable {
+@ApiModel(value="Stock对象", description="")
+@KeySequence(value = "stock_seq")
+public class Stockvo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "SALE_ID",type = IdType.INPUT)
-    private Integer saleId;
-
-    @TableField("STAFF_ID")
-    private Integer staffId;
-
-    @TableField("CUSTOMER_ID")
-    private Integer customerId;
-
-    @TableField("STOCK_ID")
+    @TableId(value = "STOCK_ID",type = IdType.INPUT)
     private Integer stockId;
 
-    @TableField("BILL_ID")
-    private String billId;
+    @TableField("STOCK_NAME")
+    private String stockName;
 
-    @TableField("SALE_TIME")
-    private Date saleTime;
+    @TableField("STOCK_SITE")
+    private String stockSite;
 
-    @TableField("SALE_MONEY")
-    private Integer saleMoney;
+    @TableField("STOCK_STATE")
+    private Integer stockState;
 
-    @TableField("SALE_REMARKS")
-    private String saleRemarks;
-
-    @TableField("SALE_STATE")
-    private Integer saleState;
+    @TableField("STOCK_REMARK")
+    private String stockRemark;
 
     @TableField("DELETED")
     private Integer deleted;
 
+    @TableField("STOCK_DEFAULT")
+    private Integer stockDefault;
+
+    private int currentPage;
+    private int pageSize;
 
 }
