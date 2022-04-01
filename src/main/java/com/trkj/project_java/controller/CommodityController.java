@@ -24,8 +24,9 @@ public class CommodityController {
     @PostMapping ("/addcom")
     public String add (@RequestBody Commodity commodity){
 
-        if( iCommodityService.cx(commodity.getCommodityName()).size()>0 )
+        if( iCommodityService.cx(commodity.getCommodityName()).size()>0 ){
             return "商品名称重复";
+        }
 
         if (iCommodityService.appcommod(commodity) >=1){
             System.out.println("成功");

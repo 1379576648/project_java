@@ -26,7 +26,7 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
 
     @Override
     public int appcommod(Commodity commodity) {
-        return 0;
+        return commodityMapper.insert(commodity);
     }
 
     @Override
