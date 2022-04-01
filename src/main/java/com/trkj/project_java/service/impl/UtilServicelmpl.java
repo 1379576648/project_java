@@ -2,7 +2,9 @@ package com.trkj.project_java.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.trkj.project_java.entity.Customer;
+import com.trkj.project_java.entity.Receivable;
 import com.trkj.project_java.mapper.CustomerMapper;
+import com.trkj.project_java.mapper.ReceivableMapper;
 import com.trkj.project_java.service.UtilService;
 import com.trkj.project_java.utils.DateUtils;
 import com.trkj.project_java.utils.SerialNumberUtils;
@@ -18,8 +20,12 @@ public class UtilServicelmpl implements UtilService {
 
     @Autowired
     private CustomerMapper customerMapper;
+    @Autowired
+    private ReceivableMapper receiptMapper;
+
 
     private final static String PRE_CODE = "YH";
+    private final static String PRE_RECEIVABLE = "SK";
 
     @Override
     public String obtainSerialNumber() {
@@ -42,6 +48,30 @@ public class UtilServicelmpl implements UtilService {
             Integer substring = Integer.valueOf(customer1.getCustomerSerial().substring(10));
             String Two = SerialNumberUtils.getSerialNumberOne(substring);
             return PRE_CODE + Two;
+        }
+    }
+
+    @Override
+    public String obtainCollectionSerialNumber() {
+        // 拿当天日期去查询当天的应收欠款流水号
+        QueryWrapper<Receivable> customerQueryWrapper = new QueryWrapper<>();
+        val dateByString = DateUtils.getDateByString();
+        customerQueryWrapper.apply("to_char(created_time,'yyyy-MM-dd') like {0}", dateByString);
+        List<Receivable> customer = receiptMapper.selectList(customerQueryWrapper);
+        // 如果等于0,当天没有数据,则调用生成第一条的方法
+        if (customer.size() == 0) {
+            String One = SerialNumberUtils.getSerialNumber();
+            return PRE_RECEIVABLE + One;
+        } else {
+            //如果不等于0，当天有数据，则调用加一的方法
+            // 查询最近的一条数据
+            QueryWrapper<Receivable> receivableQueryWrapper = new QueryWrapper<>();
+            receivableQueryWrapper.eq("rownum", 1);
+            final var customer1 = receiptMapper.selectRecentlyReceivable(receivableQueryWrapper);
+            // 拿最新一条数据截取 KH202203310001
+            Integer substring = Integer.valueOf(customer1.getReceivableSerial().substring(10));
+            String Two = SerialNumberUtils.getSerialNumberOne(substring);
+            return PRE_RECEIVABLE + Two;
         }
     }
 }

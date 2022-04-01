@@ -7,4 +7,10 @@ public interface UtilService {
      * @return
      */
     String obtainSerialNumber();
+
+    /**
+     * 获取客户流水号
+     * @return
+     */
+    String obtainCollectionSerialNumber();
 }
