@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 客户表
+ * 
  * </p>
  *
  * @author 沈杨卓
