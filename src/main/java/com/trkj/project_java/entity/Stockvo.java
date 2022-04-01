@@ -13,7 +13,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 沈杨卓
@@ -24,7 +24,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @ApiModel(value="Stock对象", description="")
 @KeySequence(value = "stock_seq")
-public class Stock implements Serializable {
+public class Stockvo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -49,5 +49,7 @@ public class Stock implements Serializable {
     @TableField("STOCK_DEFAULT")
     private Integer stockDefault;
 
+    private int currentPage;
+    private int pageSize;
 
 }

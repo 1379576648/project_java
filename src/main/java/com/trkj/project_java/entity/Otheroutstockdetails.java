@@ -37,11 +37,18 @@ public class Otheroutstockdetails implements Serializable {
     @TableField("COMMODITY_ID")
     private Integer commodityId;
 
+    @TableField("GOODS_NUMBER")
+    private Integer goodsNumber;
+
     @TableField("REMARKS")
     private String remarks;
 
     @TableField("DELETED")
     private Integer deleted;
+
+    // 商品表
+    @TableField(exist = false)
+    private Commodity commodity;
 
 
 }
