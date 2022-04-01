@@ -40,7 +40,6 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     }
 
     @Override
-    @Transactional
     public IPage<Commodity> selectPage(Page<Commodity> page,String name) {
         QueryWrapper<Commodity> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("COMMODITY_NAME",name);
@@ -49,7 +48,6 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
 
     //更具id 查询商品表
     @Override
-    @Transactional
     public Commodity selectId(int id) {
         return commodityMapper.selectById(id);
     }
@@ -70,5 +68,11 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
         QueryWrapper<Commodity> wrapper = new QueryWrapper<>();
         wrapper.like("COMMODITY_NAME",commodityName);
         return commodityMapper.selectName(wrapper);
+    }
+
+    @Override
+    @Transactional
+    public int deleteById(int id) {
+        return commodityMapper.deleteById(id);
     }
 }
