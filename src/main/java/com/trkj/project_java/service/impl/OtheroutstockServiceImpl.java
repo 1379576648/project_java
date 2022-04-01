@@ -8,6 +8,7 @@ import com.trkj.project_java.entity.Otheroutstock;
 import com.trkj.project_java.entity.Otheroutstockdetails;
 import com.trkj.project_java.entity.Repertory;
 import com.trkj.project_java.mapper.*;
+import com.trkj.project_java.pojovo.GoodsRepertoryVo;
 import com.trkj.project_java.service.IOtheroutstockService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +58,9 @@ public class OtheroutstockServiceImpl extends ServiceImpl<OtheroutstockMapper, O
     @Autowired
     private CommodityMapper commodityMapper;
 
+    // 商品库存 vo
+    @Autowired
+    private GoodsRepertoryVoMapper goodsRepertoryVoMapper;
 
     // 查询所有仓库
     @Override
@@ -82,6 +86,24 @@ public class OtheroutstockServiceImpl extends ServiceImpl<OtheroutstockMapper, O
         wrapper.select("STAFF_ID", "STAFF_NAME");
         wrapper.eq("STAFF_STATE", 0); // 类型为出库的
         return staffMapper.selectMaps(wrapper);
+    }
+
+    // 查询商品库存 (按仓库id，商品分类，商品名称，分页)
+    @Override
+    public IPage<GoodsRepertoryVo> selectGoodsRepertoryPage(Page page, int stockId, List<Integer> categoryId, String commodityName) {
+
+        QueryWrapper wrapper = new QueryWrapper<>();
+        wrapper.eq("STOCK_ID",stockId);// 仓库id
+
+        if( categoryId.size() > 0 ){
+            wrapper.in("CATEGORY_ID",categoryId);// 商品分类id
+        }
+
+        if( commodityName!=null && commodityName!="" ){
+            wrapper.in("CATEGORY_NAME",commodityName);// 商品名称
+        }
+
+        return goodsRepertoryVoMapper.selectGoodsRepertoryPage(page,wrapper);
     }
 
     // 新增其他出库单
@@ -137,9 +159,11 @@ public class OtheroutstockServiceImpl extends ServiceImpl<OtheroutstockMapper, O
     @Override
     public IPage<Otheroutstock> selectOtheroutstockPage(Page page, String parameter) {
         QueryWrapper wrapper = new QueryWrapper<>();
-        wrapper.like("BILL_ID",parameter);// 单据编号
-        wrapper.like("STAFF_NAME",parameter);// 经手人name
-        wrapper.like("REMARK",parameter);// 备注
+        wrapper.like("a.BILL_ID",parameter);// 单据编号
+        wrapper.or();
+        wrapper.like("b.STAFF_NAME",parameter);// 经手人name
+        wrapper.or();
+        wrapper.like("a.REMARK",parameter);// 备注
 //        return otheroutstockMapper.selectOtheroutstockPage(page,wrapper);
         IPage<Otheroutstock> otheroutstockIPage = otheroutstockMapper.selectOtheroutstockPage(page,wrapper);
 
