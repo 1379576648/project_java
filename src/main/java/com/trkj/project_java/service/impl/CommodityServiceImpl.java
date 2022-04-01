@@ -27,8 +27,13 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
 
     @Override
     public List<Commodity> cx(String goodsName) {
-        QueryWrapper wrapper = new QueryWrapper();
-        wrapper.eq("COMMODITY_NAME",goodsName);
-        return commodityMapper.selectList(wrapper);
+        return null;
     }
+
+//    @Override
+//    public List<Commodity> cx(String goodsName) {
+//        QueryWrapper wrapper = new QueryWrapper();
+//        wrapper.eq("COMMODITY_NAME",goodsName);
+//        return commodityMapper.selectList(wrapper);
+//    }
 }
