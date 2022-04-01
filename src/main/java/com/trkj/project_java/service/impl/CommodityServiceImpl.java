@@ -22,7 +22,7 @@ import java.util.List;
 public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity> implements ICommodityService {
 
     @Autowired
-    public CommodityMapper commodityMapper;
+    private CommodityMapper commodityMapper;
 
     @Override
     public int appcommod(Commodity commodity) {
