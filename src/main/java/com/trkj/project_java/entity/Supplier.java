@@ -2,14 +2,15 @@ package com.trkj.project_java.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.KeySequence;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -40,8 +41,14 @@ public class Supplier implements Serializable {
     @TableField("SUPPLIER_ADDRESS")
     private String supplierAddress;
 
-    @TableField("SUPPLIER_REMARK")
-    private String supplierRemark;
+    @TableField(value = "category_id")
+    private Integer categoryId;
+
+    @TableField("category_name")
+    private String categoryName;
+
+//    @TableField("SUPPLIER_REMARK")
+//    private String supplierRemark;
 
     @TableField("DELETED")
     private Integer deleted;

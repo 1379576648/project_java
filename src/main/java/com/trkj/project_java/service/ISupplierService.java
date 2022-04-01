@@ -36,4 +36,9 @@ public interface ISupplierService extends IService<Supplier> {
      */
     IPage<Supplier> selectSupplierPage(Supplier supplier);
 
+    /**
+     * 根据条件查询供应商
+     */
+    IPage<Supplier> selectSupplierByLike(Supplier supplier);
+
 }

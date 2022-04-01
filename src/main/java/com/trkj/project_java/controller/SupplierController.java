@@ -24,7 +24,7 @@ import java.util.Map;
  * @since 2022-03-30
  */
 @RestController
-@RequestMapping("/supplier")
+@RequestMapping("supplier")
 public class SupplierController {
 
     @Autowired
@@ -68,13 +68,28 @@ public class SupplierController {
      * @param supplier
      * @return
      */
-    @PostMapping("selectSupplierPage")
+    @PostMapping("/selectSupplierPage")
     public Map<String,Object> selectSupplierPage(@RequestBody Supplier supplier){
         Map<String,Object> map = new HashMap<>(3);
         //返回的数据
         map.put("state",200);
         map.put("msg","查询成功");
         map.put("info",iSupplierService.selectSupplierPage(supplier));
+        return map;
+    }
+    /**
+     * 分页查询供应商
+     * @param supplier
+     * @return
+     */
+    @PostMapping("/selectSupplierByLike")
+    public Map<String,Object> selectSupplierByLike(@RequestBody Supplier supplier){
+
+        Map<String,Object> map = new HashMap<>(3);
+        //返回的数据
+        map.put("state",200);
+        map.put("msg","查询成功");
+        map.put("info",iSupplierService.selectSupplierByLike(supplier));
         return map;
     }
 
