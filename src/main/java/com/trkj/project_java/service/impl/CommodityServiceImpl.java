@@ -27,11 +27,13 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     @Autowired
     private CommodityMapper commodityMapper;
 
+    //添加
     @Override
     public int appcommod(Commodity commodity) {
         return commodityMapper.insert(commodity);
     }
 
+    //查询
     @Override
     public List<Commodity> cx(String goodsName) {
         QueryWrapper wrapper = new QueryWrapper();
