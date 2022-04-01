@@ -3,6 +3,7 @@ package com.trkj.project_java.controller;
 
 import com.trkj.project_java.config.Result;
 import com.trkj.project_java.service.IStockService;
+import com.trkj.project_java.service.IStockvoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
