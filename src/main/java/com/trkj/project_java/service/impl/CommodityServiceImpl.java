@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Map;
 
+import java.util.*;
+
 /**
  * <p>
  *  服务实现类
@@ -26,7 +28,7 @@ import java.util.Map;
 public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity> implements ICommodityService {
 
     @Autowired
-    private CommodityMapper commodityMapper;
+    public CommodityMapper commodityMapper;
 
     //添加
     @Override
@@ -79,5 +81,14 @@ public class CommodityServiceImpl extends ServiceImpl<CommodityMapper, Commodity
     @Transactional
     public int deleteById(int id) {
         return commodityMapper.deleteById(id);
+    }
+
+    // 查询所有商品 lyt
+    @Override
+    public List<Commodity> selectCommodity() {
+        QueryWrapper<Commodity> wrapper = new QueryWrapper<Commodity>();
+        //逻辑删除 未删除
+        wrapper.eq("s.DELETED", 0);
+        return commodityMapper.selectCommodity(wrapper);
     }
 }

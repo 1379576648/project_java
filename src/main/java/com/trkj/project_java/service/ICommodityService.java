@@ -34,4 +34,9 @@ public interface ICommodityService extends IService<Commodity> {
      Commodity selectName(String commodityName);
      //根据id删除商品
      int deleteById(int id);
+
+     // 查询所有商品 lyt
+     List<Commodity> selectCommodity();
+
+
 }

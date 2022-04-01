@@ -8,6 +8,11 @@ import com.trkj.project_java.service.ICommodityService;
 import com.trkj.project_java.vo.AjaxResponse;
 import org.aspectj.weaver.loadtime.Aj;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.security.core.parameters.P;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -80,5 +85,10 @@ public class CommodityController {
         return iCommodityService.deleteById(id);
     }
 
+    // 查询所有商品
+    @GetMapping("/selectCommodity")
+    List<Commodity> selectCommodity(){
+        return iCommodityService.selectCommodity();
+    }
 
 }
