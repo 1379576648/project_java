@@ -46,13 +46,13 @@ public class Supplier implements Serializable {
     @TableField("DELETED")
     private Integer deleted;
 
-    @TableField("category_id")
+    @TableField(exist = false)
     private String categoryId;
 
-    @TableField("category_name")
+    @TableField(exist = false)
     private String categoryName;
 
-    @TableField("cope_money")
+    @TableField(exist = false)
     private Long copeMoney;
 
     @TableField("SUPPLIER_SERIAL")

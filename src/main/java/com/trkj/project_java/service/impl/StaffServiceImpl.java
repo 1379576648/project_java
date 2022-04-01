@@ -20,9 +20,8 @@ import java.util.List;
  */
 @Service
 public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements IStaffService {
-
-    @Autowired
-    private StaffMapper staffMapper;
+@Autowired
+private  StaffMapper staffMapper;
 
     /**
      * 查询所有用户名称
