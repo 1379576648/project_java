@@ -1,9 +1,7 @@
 package com.trkj.project_java.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.KeySequence;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -65,6 +63,7 @@ public class Commodity implements Serializable {
     private Integer maxNumber ;
 
     @TableField("DELETED")
+    @TableLogic
     private Integer deleted;
 
     @TableField(exist = false)

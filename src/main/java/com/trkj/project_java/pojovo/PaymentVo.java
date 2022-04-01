@@ -1,32 +1,20 @@
-package com.trkj.project_java.entity;
+package com.trkj.project_java.pojovo;
 
-import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author 沈杨卓
- * @since 2022-03-30
- */
+import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Cope对象", description="")
-@KeySequence(value = "cope_seq")
-public class Cope implements Serializable {
-
+public class PaymentVo {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "COPE_ID",type = IdType.INPUT)
@@ -64,21 +52,58 @@ public class Cope implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updatedTime;
 
+    @TableId(value = "PAYMENTTAB_ID",type = IdType.INPUT)
+    private Integer paymenttabId;
+
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
-    @TableField(exist = false)
+    @TableField("PAYMENTTAB_TIME")
     private Date paymenttabTime;
 
-    @TableField(exist = false)
+
+    @TableField("MONEY")
     private Integer money;
 
-    @TableField(exist = false)
+    @TableField("STAFF_ID")
     private Integer staffId;
 
-    @TableField(exist = false)
+    @TableField("SETTLEMENT")
     private String settlement;
 
-    @TableField(exist = false)
+    @TableField("REMARKS")
     private String remarks;
 
+
+    @TableField("STAFF_NAME")
+    private String staffName;
+
+    @TableField("STAFF_PASS")
+    private String staffPass;
+
+    @TableField("STAFF_STATE")
+    private Integer staffState;
+
+
+    @TableField("SUPPLIER_NAME")
+    private String supplierName;
+
+    @TableField("SUPPLIER_PHONE")
+    private String supplierPhone;
+
+    @TableField("SUPPLIER_ADDRESS")
+    private String supplierAddress;
+
+    @TableField("SUPPLIER_REMARK")
+    private String supplierRemark;
+
+    @TableField("SUPPLIER_SERIAL")
+    private String supplierSerial;
+
+    @ApiModelProperty(value = "当前页")
+    @TableField(exist = false)
+    private Integer currentPage;
+
+    @ApiModelProperty(value = "页大小")
+    @TableField(exist = false)
+    private Integer pageSize;
 
 }
