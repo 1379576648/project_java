@@ -63,4 +63,17 @@ public class Receivable implements Serializable {
     @TableField("UPDATED_TIME")
     private Date updatedTime;
 
+    @TableField(exist = false)
+    private Integer staffId;
+
+    @TableField(exist = false)
+    private String settlement;
+
+    @TableField(exist = false)
+    private Date tabTime;
+
+    @TableField(exist = false)
+    private String remarks;
+
+
 }

@@ -21,4 +21,5 @@ public interface ReceivableMapper extends BaseMapper<Receivable> {
 
     @Select("select * from (select * from receivable order by created_time desc) ${ew.customSqlSegment}")
     Receivable selectRecentlyReceivable(@Param(Constants.WRAPPER) QueryWrapper<Receivable> receivableQueryWrapper);
+
 }
