@@ -46,5 +46,19 @@ public class Stock implements Serializable {
     @TableField("DELETED")
     private Integer deleted;
 
+    @TableField("STOCK_DEFAULT")
+    private Integer stockDefault;
+
+    //仓库总数量
+    @TableField(exist = false)
+    private Double quantity;
+    //仓库总成本价
+    @TableField(exist = false)
+    private Double money;
+
+    //仓库总成额
+    @TableField(exist = false)
+    private Double rental;
+
 
 }

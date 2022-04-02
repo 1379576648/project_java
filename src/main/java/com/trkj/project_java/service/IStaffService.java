@@ -7,6 +7,8 @@ import com.trkj.project_java.entity.Staff;
 
 import java.util.Map;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -61,4 +63,10 @@ public interface IStaffService extends IService<Staff> {
      * 返回值：
      */
     Result resetpassword(int id);
+    /**
+     * 查询所有用户名称
+     * @return
+     */
+    List<Staff> selectStaff();
+
 }

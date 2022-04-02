@@ -1,5 +1,6 @@
 package com.trkj.project_java.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -16,11 +17,15 @@ import com.trkj.project_java.mapper.StaffMapper;
 import com.trkj.project_java.mapper.StaffroleMapper;
 import com.trkj.project_java.service.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.transaction.Transactional;
 import java.util.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -33,6 +38,8 @@ import java.util.*;
 @Transactional
 @Service
 public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements IStaffService {
+@Autowired
+private  StaffMapper staffMapper;
 
     @Autowired
     private StaffMapper mapper;
@@ -180,5 +187,14 @@ public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements
             return Result.error("-1","好像出问题了呢");
         }
 
+    }
+    /**
+     * 查询所有用户名称
+     * @return
+     */
+    @Override
+    public List<Staff> selectStaff() {
+        QueryWrapper<Staff> queryWrapper = new QueryWrapper<Staff>();
+        return staffMapper.selectList(queryWrapper);
     }
 }

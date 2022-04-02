@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.trkj.project_java.entity.Staff;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -13,6 +14,7 @@ import org.apache.ibatis.annotations.Update;
  * @author 沈杨卓
  * @since 2022-03-30
  */
+@Mapper
 public interface StaffMapper extends BaseMapper<Staff> {
 
     /**
