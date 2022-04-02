@@ -18,4 +18,9 @@ public interface ICategoryService extends IService<Category> {
     int updateCategory(Category category);  //修改商品分类
     List<Category> selectCategory();      //查询商品分类
     int delectCategory(int id);  //删除商品分类
+    /**
+     * 查询所有分类数据-xho
+     * @return
+     */
+    List<Category> selectAllCategory();
 }

@@ -1,5 +1,6 @@
 package com.trkj.project_java.service.impl;
 
+import com.trkj.project_java.config.Result;
 import com.trkj.project_java.entity.Category;
 import com.trkj.project_java.mapper.CategoryMapper;
 import com.trkj.project_java.service.ICategoryService;
@@ -7,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,5 +44,27 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
     public int delectCategory(int id) {    //删除商品分类
 
         return categoryMapper.deleteById(id);
+    }
+
+    /**
+     * 查询所有分类数据-xho
+     * @return
+     */
+    @Override
+    public List<Category> selectAllCategory() {
+        List<Category> categories = categoryMapper.selectList(null);
+        List<Category> categoryList=new ArrayList<>();
+        categories.forEach(item->{
+            categories.forEach(e->{
+                if (item.getCategoryId()==e.getCategoryPid()){
+                    item.getCategorys().add(e);
+
+                }
+            });
+            if (item.getCategoryPid()==0) {
+                categoryList.add(item);
+            }
+        });
+        return categoryList;
     }
 }

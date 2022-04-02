@@ -1,6 +1,7 @@
 package com.trkj.project_java.controller;
 
 
+import com.trkj.project_java.config.Result;
 import com.trkj.project_java.entity.Stock;
 import com.trkj.project_java.entity.Stockvo;
 import com.trkj.project_java.service.IStockService;
@@ -37,8 +38,7 @@ public class StockController {
         return AjaxResponse.success(iStockvoService.selectStockPage(stockvo));
     }
 
-    @Autowired
-    private IStockService iStockService;
+
 
     /**
      * 查询所有的仓库-xho
@@ -61,6 +61,16 @@ public class StockController {
             return "出现错误";
         }
     }
+
+    /**
+     * 分组查询仓库数据-xho
+     */
+    @GetMapping("/selectStockData/{stockId}")
+    public Result selectStockData(@PathVariable("stockId") Integer stockId){
+        return Result.success(iStockService.selectStockData(stockId));
+    }
+
+
 
     @PostMapping("/deleteStock")
     public AjaxResponse deleteStock(@RequestBody ArrayList<Integer> id) {

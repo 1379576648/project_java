@@ -1,15 +1,14 @@
 package com.trkj.project_java.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import com.trkj.project_java.entity.Stock;
-import com.trkj.project_java.entity.Stockvo;
+
 import com.trkj.project_java.mapper.StockMapper;
 import com.trkj.project_java.service.IStockService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,8 +37,24 @@ public class StockServiceImpl implements IStockService {
         queryWrapper.eq("DELETED",0);
         return stockMapper.selectList(queryWrapper);
     }
-@Autowired
-private  StockMapper stockMapper;
+
+    /**
+     * 分组查询仓库数据-xho
+     */
+    @Override
+    public Stock selectStockData(Integer stockId) {
+
+
+        Stock stock=stockMapper.selectStockData(new QueryWrapper<Stock>().eq("t1.STOCK_ID",stockId));
+        Double rental =stock.getMoney()*stock.getQuantity();
+        stock.setRental(rental);
+        System.out.println(stock+"-------------------------==============");
+        return stock;
+    }
+
+
+
+
     @Override
     public int addStock(Stock stock) {
         return stockMapper.insert(stock);
