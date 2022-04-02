@@ -4,6 +4,7 @@ import com.trkj.project_java.entity.Category;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -18,4 +19,12 @@ public interface ICategoryService extends IService<Category> {
     int updateCategory(Category category);  //修改商品分类
     List<Category> selectCategory();      //查询商品分类
     int delectCategory(int id);  //删除商品分类
+    /**
+     * 查询所有分类数据-xho
+     * @return
+     */
+    List<Category> selectAllCategory();
+
+    //查询所有商品分类
+    List<Map<Object,Object>> classify ();
 }
