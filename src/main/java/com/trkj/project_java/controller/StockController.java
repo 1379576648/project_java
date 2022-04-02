@@ -2,10 +2,16 @@ package com.trkj.project_java.controller;
 
 
 import com.trkj.project_java.config.Result;
+import com.trkj.project_java.config.Result;
+import com.trkj.project_java.service.IStockService;
+import com.trkj.project_java.service.IStockvoService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import com.trkj.project_java.entity.Stock;
 import com.trkj.project_java.entity.Stockvo;
 import com.trkj.project_java.service.IStockService;
-import com.trkj.project_java.service.IStockvoService;
 import com.trkj.project_java.vo.AjaxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +31,18 @@ import java.util.ArrayList;
  * @author 沈杨卓
  * @since 2022-03-30
  */
+@Slf4j
 @RestController
 @RequestMapping("/stock")
 public class StockController {
+@Autowired
+    private IStockService iStockService;
+@GetMapping("/selectStock")
+    public Result selectStock(){
+    return  Result.success(iStockService.selectStock());
+}
     @Autowired
     private IStockvoService iStockvoService;
-    @Autowired
-    private IStockService iStockService;
 
     @PostMapping("/selectStock")
     public AjaxResponse selectStock(@RequestBody Stockvo stockvo) {
@@ -61,6 +72,8 @@ public class StockController {
             return "出现错误";
         }
     }
+
+
 
     /**
      * 分组查询仓库数据-xho

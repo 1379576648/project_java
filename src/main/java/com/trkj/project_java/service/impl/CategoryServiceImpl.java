@@ -1,6 +1,7 @@
 package com.trkj.project_java.service.impl;
 
 import com.trkj.project_java.config.Result;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.trkj.project_java.entity.Category;
 import com.trkj.project_java.mapper.CategoryMapper;
 import com.trkj.project_java.service.ICategoryService;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -66,5 +68,12 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
             }
         });
         return categoryList;
+    }
+
+    @Override
+    public List<Map<Object, Object>> classify() {
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.select("CATEGORY_ID","CATEGORY_NAME");
+        return categoryMapper.selectMaps(wrapper);
     }
 }

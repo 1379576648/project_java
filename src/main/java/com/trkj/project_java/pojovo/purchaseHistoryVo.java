@@ -1,31 +1,32 @@
 package com.trkj.project_java.pojovo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
-
 @Data
-public class ReturnGoodsVo {
+public class purchaseHistoryVo {
+    //采购id
+    @TableField("PURCHASE_ID")
+    private  int purchaseId;
+
     //仓库名字
     @TableField("STOCK_NAME")
     private String stockName;
 
-    //经手人
-    @TableField("STAFF_NAME")
-    private String staffName;
-
-    //退货表编号
-    @TableField("RETURNGOODS_ID")
-    private int returnGoodsId;
-
     //业务日期
     @TableField("PURCHASE_TIME")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date purchaseTime;
 
     //单据编号
     @TableField("BILL_ID")
     private String billId;
+
+    //经办人
+    @TableField("STAFF_NAME")
+    private String  staffName;
 
     //供应商
     @TableField("SUPPLIER_NAME")
@@ -47,18 +48,11 @@ public class ReturnGoodsVo {
     @TableField("PURCHASEDETAILS_TOTAL")
     private int purchaseDetailsTotal;
 
-    //退货原因
-    @TableField("RETURNGOODS_REASON")
-    private String returnGoodsReason;
-
-    //状态
-    @TableField("RETURNGOODS_STATE")
-    private int returnGoodsState;
+    //状态（已入库，未入库）
+    @TableField("PURCHASE_STATE")
+    private int purchaseState;
 
     //备注
     @TableField("PURCHASE_REMARKS")
     private String purchaseRemarks;
-
-
-
 }

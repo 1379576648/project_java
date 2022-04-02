@@ -4,6 +4,7 @@ import com.trkj.project_java.entity.Category;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -23,4 +24,7 @@ public interface ICategoryService extends IService<Category> {
      * @return
      */
     List<Category> selectAllCategory();
+
+    //查询所有商品分类
+    List<Map<Object,Object>> classify ();
 }

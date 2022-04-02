@@ -70,4 +70,9 @@ public class CategoryController {
     public Result delectCategory(@PathVariable("id") int id){    //删除商品分类
         return Result.success(iCategoryService.delectCategory(id));
     }
+
+    @GetMapping("/cla")
+    public List<Map<Object, Object>> cla(){
+        return iCategoryService.classify();
+    }
 }

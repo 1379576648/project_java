@@ -9,6 +9,8 @@ import com.trkj.project_java.service.IStockService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,6 +56,14 @@ public class StockServiceImpl implements IStockService {
 
 
 
+
+public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements IStockService {
+@Autowired
+ private StockMapper stockMapper;
+    @Override
+    public List<Stock> selectStock() {
+        return stockMapper.selectList(null);
+    }
 
     @Override
     public int addStock(Stock stock) {

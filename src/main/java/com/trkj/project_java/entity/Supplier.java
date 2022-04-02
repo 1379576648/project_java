@@ -1,16 +1,15 @@
 package com.trkj.project_java.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -46,6 +45,15 @@ public class Supplier implements Serializable {
 
     @TableField("DELETED")
     private Integer deleted;
+
+    @TableField(exist = false)
+    private String categoryId;
+
+    @TableField(exist = false)
+    private String categoryName;
+
+    @TableField(exist = false)
+    private Long copeMoney;
 
     @TableField("SUPPLIER_SERIAL")
     private String supplierSerial;

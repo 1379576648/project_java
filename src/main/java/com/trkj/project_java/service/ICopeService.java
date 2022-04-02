@@ -13,4 +13,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ICopeService extends IService<Cope> {
 
+    /**
+     * 添加应付欠款
+     * @param cope
+     * @return
+     */
+    String insertCope(Cope cope);
+
 }
