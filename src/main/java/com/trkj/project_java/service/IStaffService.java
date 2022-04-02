@@ -21,4 +21,10 @@ public interface IStaffService extends IService<Staff> {
      * @return
      */
     List<Staff> selectAllStaff();
+    /**
+     * 查询所有用户名称
+     * @return
+     */
+    List<Staff> selectStaff();
+
 }

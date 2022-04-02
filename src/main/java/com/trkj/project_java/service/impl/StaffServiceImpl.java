@@ -20,9 +20,18 @@ import java.util.List;
  */
 @Service
 public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements IStaffService {
+@Autowired
+private  StaffMapper staffMapper;
 
-    @Autowired
-    private StaffMapper staffMapper;
+    /**
+     * 查询所有用户名称
+     * @return
+     */
+    @Override
+    public List<Staff> selectStaff() {
+        QueryWrapper<Staff> queryWrapper = new QueryWrapper<Staff>();
+        return staffMapper.selectList(queryWrapper);
+    }
 
     /**
      * 查询所有用户
