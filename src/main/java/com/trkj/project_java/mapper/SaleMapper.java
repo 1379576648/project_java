@@ -1,5 +1,6 @@
 package com.trkj.project_java.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.trkj.project_java.entity.Sale;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,6 +16,4 @@ import org.apache.ibatis.annotations.Select;
  */
 @Mapper
 public interface SaleMapper extends BaseMapper<Sale> {
-
-//    @Select("")
 }

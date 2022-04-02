@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.Date;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -31,9 +33,6 @@ public class Customer implements Serializable {
     @TableId(value = "CUSTOMER_ID",type = IdType.INPUT)
     private Integer customerId;
 
-    @TableField("CUSTOMER_SERIAL")
-    private String customerSerial;
-
     @TableField("CUSTOMER_NAME")
     private String customerName;
 
@@ -48,6 +47,12 @@ public class Customer implements Serializable {
 
     @TableField("CUSTOMER_STATE")
     private Integer customerState;
+
+    @TableField("UPDATED_TIME")
+    private Date updatedTime;
+
+    @TableField("CREATED_TIME")
+    private Date createdTime;
 
     @TableField("DELETED")
     private Integer deleted;

@@ -43,7 +43,7 @@ public class Sale implements Serializable {
     private Integer stockId;
 
     @TableField("BILL_ID")
-    private Integer billId;
+    private String billId;
 
     @TableField("SALE_TIME")
     private Date saleTime;
