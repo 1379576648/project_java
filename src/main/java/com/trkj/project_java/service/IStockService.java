@@ -20,7 +20,7 @@ public interface IStockService  {
     int addStock(Stock stock);
     int deleteStock(Integer id);
     int updateStock(Stock stock);
-
+    List<Stock> selectStock();
     /**
      * 查询所有的仓库-xho
      */

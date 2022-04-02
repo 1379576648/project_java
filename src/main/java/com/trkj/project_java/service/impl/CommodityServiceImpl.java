@@ -1,9 +1,7 @@
 package com.trkj.project_java.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.trkj.project_java.config.Result;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.trkj.project_java.entity.Commodity;
@@ -12,19 +10,12 @@ import com.trkj.project_java.mapper.CommodityMapper;
 import com.trkj.project_java.mapper.GoodspriceMapper;
 import com.trkj.project_java.service.ICommodityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Objects;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
-import java.util.Map;
 
-import java.util.*;
 
 /**
  * <p>
@@ -44,8 +35,6 @@ public class CommodityServiceImpl  implements ICommodityService {
     @Autowired
     private GoodspriceMapper goodspriceMapper;
 
-    @Autowired
-    public CommodityMapper commodityMapper;
 
     //添加
     @Override

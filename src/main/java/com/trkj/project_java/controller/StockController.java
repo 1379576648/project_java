@@ -35,9 +35,11 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/stock")
 public class StockController {
-@Autowired
+
+    @Autowired
     private IStockService iStockService;
-@GetMapping("/selectStock")
+
+    @GetMapping("/selectStock")
     public Result selectStock(){
     return  Result.success(iStockService.selectStock());
 }

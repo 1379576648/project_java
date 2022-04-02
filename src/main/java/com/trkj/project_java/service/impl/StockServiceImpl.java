@@ -46,7 +46,6 @@ public class StockServiceImpl implements IStockService {
     @Override
     public Stock selectStockData(Integer stockId) {
 
-
         Stock stock=stockMapper.selectStockData(new QueryWrapper<Stock>().eq("t1.STOCK_ID",stockId));
         Double rental =stock.getMoney()*stock.getQuantity();
         stock.setRental(rental);
@@ -55,11 +54,6 @@ public class StockServiceImpl implements IStockService {
     }
 
 
-
-
-public class StockServiceImpl extends ServiceImpl<StockMapper, Stock> implements IStockService {
-@Autowired
- private StockMapper stockMapper;
     @Override
     public List<Stock> selectStock() {
         return stockMapper.selectList(null);
