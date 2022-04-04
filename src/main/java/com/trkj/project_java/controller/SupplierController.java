@@ -83,16 +83,16 @@ public class SupplierController {
      * @param supplier
      * @return
      */
-//    @PostMapping("/selectSupplierByLike")
-////    public Map<String,Object> selectSupplierByLike(@RequestBody Supplier supplier){
-////
-////        Map<String,Object> map = new HashMap<>(3);
-////        //返回的数据
-////        map.put("state",200);
-////        map.put("msg","查询成功");
-////        map.put("info",iSupplierService.selectSupplierByLike(supplier));
-////        return map;
-////    }
+    @PostMapping("/selectSupplierByLike")
+    public Map<String,Object> selectSupplierByLike(@RequestBody Supplier supplier){
+
+        Map<String,Object> map = new HashMap<>(3);
+        //返回的数据
+        map.put("state",200);
+        map.put("msg","查询成功");
+        map.put("info",iSupplierService.selectSupplierByLike(supplier));
+        return map;
+    }
 
     /**
      * 根据供应商查询欠款信息
