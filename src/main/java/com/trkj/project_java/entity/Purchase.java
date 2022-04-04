@@ -36,6 +36,9 @@ public class Purchase implements Serializable {
     @TableField("SUPPLIER_ID")
     private Integer supplierId;
 
+    @TableField("STAFF_ID")
+    private int staffId;
+
     @TableField("STOCK_ID")
     private Integer stockId;
 
