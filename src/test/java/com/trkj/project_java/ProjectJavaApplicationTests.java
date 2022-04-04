@@ -1,3 +1,4 @@
+/*
 package com.trkj.project_java;
 
 import com.trkj.project_java.entity.Purchase;
@@ -6,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Calendar;
 
@@ -31,5 +34,11 @@ private PurchaseMapper purchaseMapper;
        int a=purchaseMapper.updateById(purchase1);
         System.out.println(a);
     }
+    public static void main(String[] args) {
+        PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+        String encode = passwordEncoder.encode("123456");
 
+        System.out.println(encode+"\n"+passwordEncoder.matches("123456",encode));
+    }
 }
+*/
