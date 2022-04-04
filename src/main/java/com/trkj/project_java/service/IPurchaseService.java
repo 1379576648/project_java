@@ -5,6 +5,7 @@ import com.trkj.project_java.entity.Purchase;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.trkj.project_java.pojovo.purchaseHistoryVo;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ import java.util.List;
  * @since 2022-03-30
  */
 public interface IPurchaseService extends IService<Purchase> {
-
+   int tovoid(Purchase purchase);
 }
