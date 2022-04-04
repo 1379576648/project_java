@@ -3,15 +3,16 @@ package com.trkj.project_java.controller;
 
 import com.trkj.project_java.config.Result;
 import com.trkj.project_java.entity.Category;
-import com.trkj.project_java.mapper.CategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.trkj.project_java.service.ICategoryService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Map;
 
 
@@ -67,6 +68,7 @@ public class CategoryController {
     public Result selectCategory(){   //查询商品分类
         return Result.success(iCategoryService.selectCategory());
     }
+
     @PostMapping("/delectCategory/{id}")
     public Result delectCategory(@PathVariable("id") int id){    //删除商品分类
         return Result.success(iCategoryService.delectCategory(id));

@@ -10,7 +10,6 @@ import com.trkj.project_java.pojovo.purchaseHistoryVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 /**
  * <p>
@@ -22,8 +21,5 @@ import org.apache.ibatis.annotations.Update;
  */
 @Mapper
 public interface PurchaseMapper extends BaseMapper<Purchase> {
-     @Update(
-             "update purchase set deleted=2 where purchase_id=#{id}"
-     )
-    int tovoid(int id);
+
 }
