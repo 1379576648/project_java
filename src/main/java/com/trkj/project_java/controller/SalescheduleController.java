@@ -1,7 +1,10 @@
 package com.trkj.project_java.controller;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.trkj.project_java.pojovo.Saleschedule2Vo;
 import com.trkj.project_java.pojovo.SalescheduleVo;
+import com.trkj.project_java.service.ISalescheduleService;
 import com.trkj.project_java.service.ISalescheduleVoService;
 import com.trkj.project_java.vo.AjaxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,8 @@ public class SalescheduleController {
 
     @Autowired
     private ISalescheduleVoService iSalescheduleVoService;
+    @Autowired
+    private ISalescheduleService iSalescheduleService;
 
     @PostMapping("/selectPageSale")
     public Map<String, Object> selectPageSale(@RequestBody SalescheduleVo salescheduleVo){
@@ -64,5 +69,12 @@ public class SalescheduleController {
         map.put("state",200);
         map.put("succeed",iSalescheduleVoService.invalid(salescheduleVo));
         return map;
+    }
+
+    //销售明细
+    @PostMapping("/saleschedule3/{currentPage}/{pageSize}")
+    public AjaxResponse saleschedule3(@PathVariable("currentPage") int currentPage, @PathVariable("pagesSize") int pageSize){
+        Page<Saleschedule2Vo> page = new Page<>(currentPage, pageSize);
+        return AjaxResponse.success(iSalescheduleService.Salechedule2Page(page));
     }
 }
