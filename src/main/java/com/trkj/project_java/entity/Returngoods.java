@@ -40,6 +40,9 @@ public class Returngoods implements Serializable {
     @TableField("RETURNGOODS_MONEY")
     private Integer returngoodsMoney;
 
+    @TableField("RETURNGOODS_STATE")
+    private int returngoodsState;
+
     @TableField("DELETED")
     private Integer deleted;
 
