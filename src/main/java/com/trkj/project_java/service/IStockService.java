@@ -14,9 +14,19 @@ import java.util.List;
  * @author 沈杨卓
  * @since 2022-03-30
  */
-public interface IStockService extends IService<Stock> {
-  List<Stock> selectStock();
+
+
+public interface IStockService  {
     int addStock(Stock stock);
     int deleteStock(Integer id);
     int updateStock(Stock stock);
+    List<Stock> selectStock();
+    /**
+     * 查询所有的仓库-xho
+     */
+    List<Stock> selectStocks();
+    /**
+     * 分组查询仓库数据-xho
+     */
+    Stock selectStockData(Integer stockId);
 }
