@@ -40,7 +40,7 @@ public interface SupplierMapper extends BaseMapper<Supplier> {
     @Select("SELECT s.SUPPLIER_ID,s.SUPPLIER_NAME,s.SUPPLIER_PHONE,s.SUPPLIER_REMARK,s.SUPPLIER_ADDRESS,s.supplier_serial,c.COPE_ID,c.COPE_MONEY,c.COPE_RECEIPTS,c.AGREGATE FROM COPE c INNER JOIN SUPPLIER s on s.SUPPLIER_ID=c.SUPPLIER_ID ${ew.customSqlSegment}")
     List<CopeVo> selectSupplierAll(CopeVo copeVo,@Param(Constants.WRAPPER) QueryWrapper<CopeVo> queryWrapper);
 
-    @Select("select s.*,sc.category_id,sc.category_name,c.cope_money from supplier s left join supplier_category on s.category_id=sc.category_id left join cope c on c.supplier_id=s.supplier_id ${ew.customSqlSegment}")
+    @Select("select s.*,sc.category_name,c.cope_money from supplier s left join supplier_category sc on s.category_id=sc.category_id left join cope c on c.supplier_id=s.supplier_id ${ew.customSqlSegment}")
     IPage<Supplier> SupplierByLike(Page<Supplier> supplierPage,@Param(Constants.WRAPPER) QueryWrapper<Supplier> supplierQueryWrapper);
 
 }

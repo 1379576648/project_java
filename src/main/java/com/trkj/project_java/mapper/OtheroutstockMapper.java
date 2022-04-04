@@ -20,7 +20,7 @@ import org.apache.ibatis.annotations.Select;
 public interface OtheroutstockMapper extends BaseMapper<Otheroutstock> {
 
     // 按条件 分页查询历史出库
-    @Select("select * from otheroutStock a left join staff b on a.staff_id=b.staff_id ${ew.customSqlSegment} ")
+    @Select("select * from otheroutStock a left join staff b on a.staff_id=b.staff_id left join stock c on a.stock_id=c.stock_id left join outinstocktype d on a.outinstocktype_id=d.outinstocktype_id ${ew.customSqlSegment} ")
     IPage<Otheroutstock> selectOtheroutstockPage(Page page, @Param(Constants.WRAPPER) QueryWrapper queryWrapper);
 
 }
