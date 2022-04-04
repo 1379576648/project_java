@@ -1,8 +1,10 @@
 package com.trkj.project_java.controller;
 
 
+import com.trkj.project_java.utils.JwtUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -16,9 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/power")
 public class PowerController {
-    
     @GetMapping("/hello")
     public String hello(){
-        return "hello Spring Boot\n";
+        String jwt=JwtUtil.createJWT("1");
+        return "hello Spring Boot\n"+jwt;
     }
 }

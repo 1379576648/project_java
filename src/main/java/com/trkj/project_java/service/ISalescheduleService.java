@@ -1,28 +1,16 @@
 package com.trkj.project_java.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.trkj.project_java.entity.Saleschedule;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.trkj.project_java.mapper.SalescheduleMapper;
-import com.trkj.project_java.pojovo.Saleschedule2Vo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  销售明细
+ *  服务类
  * </p>
  *
  * @author 沈杨卓
  * @since 2022-03-30
  */
-public interface ISalescheduleService {
-
-    //查询明细
-    IPage<Saleschedule2Vo>Salechedule2Page(Page<Saleschedule2Vo> page);
-
-
-
+public interface ISalescheduleService extends IService<Saleschedule> {
 
 }

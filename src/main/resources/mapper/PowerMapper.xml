@@ -24,34 +24,5 @@
     <sql id="Base_Column_List">
         POWER_ID, POWER_NAME, POWER_PID, POWER_PERMS, POWER_URL, POWER_COMPONENT, POWER_TYPE, POWER_ICON, POWER_ORDERNUM, POWER_CREATED, POWER_UPDATED, POWER_STATE, DELETED
     </sql>
-    <select id="findByStaffId" resultType="com.trkj.project_java.entity.Power">
-        select DISTINCT p.* from role_power rp
-                                               LEFT JOIN power p ON rp.POWER_ID=p.POWER_ID
-                                               LEFT JOIN role r ON rp.role_id=r.role_id
-                                               LEFT JOIN staffRole sr ON sr.ROlE_ID=r.ROLE_ID
-        WHERE
-            STAFF_ID=#{id}
-          AND	rp.DELETED=0
-          AND sr.DELETED=0
-          AND r.ROLE_STATE=0
-          AND	r.DELETED=0
-          AND	p.POWER_STATE=0
-          AND	p.DELETED=0
-          ORDER BY p.power_id
-    </select>
-    <select id="selectPermsByStaffId" resultType="java.lang.String">
-        select DISTINCT p.power_perms from role_power rp
-                                               LEFT JOIN power p ON rp.POWER_ID=p.POWER_ID
-                                               LEFT JOIN role r ON rp.role_id=r.role_id
-                                               LEFT JOIN staffRole sr ON sr.ROlE_ID=r.ROLE_ID
-        WHERE
-            STAFF_ID=#{id}
-          AND	rp.DELETED=0
-          AND sr.DELETED=0
-          AND r.ROLE_STATE=0
-          AND	r.DELETED=0
-          AND	p.POWER_STATE=0
-          AND	p.DELETED=0
-    </select>
 
 </mapper>
