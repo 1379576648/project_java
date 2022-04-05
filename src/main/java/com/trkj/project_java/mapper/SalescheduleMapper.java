@@ -31,5 +31,4 @@ public interface SalescheduleMapper extends BaseMapper<Saleschedule2Vo> {
 
 
 
-
 }
