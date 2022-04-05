@@ -24,10 +24,5 @@ import org.springframework.stereotype.Service;
 public class PurchaseServiceImpl extends ServiceImpl<PurchaseMapper, Purchase> implements IPurchaseService {
 @Autowired
 private  PurchaseMapper  purchaseMapper;
-    @Override
-    public int tovoid(Purchase purchase) {
-        Purchase purchase1=purchaseMapper.selectById(1);
-        purchase1.setDeleted(2);
-        return purchaseMapper.updateById(purchase1);
-    }
+
 }
