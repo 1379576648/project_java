@@ -87,4 +87,21 @@ public class UtilController {
         return AjaxResponse.success(map);
     }
 
+    /**
+     * 获取付款流水号
+     * @return
+     */
+    @GetMapping("/obtainReturnGoodsNumber")
+    public AjaxResponse obtainReturnGoodsNumber() {
+        Map<String, Object> map = new HashMap<>(2);
+        try {
+            map.put("state", 200);
+            map.put("info", utilService.obtainCopeNumber());
+        } catch (Exception e) {
+            map.put("state", 400);
+            map.put("info", e.getMessage());
+        }
+        return AjaxResponse.success(map);
+    }
+
 }

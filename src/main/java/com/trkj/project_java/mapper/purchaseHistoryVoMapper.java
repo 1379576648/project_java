@@ -13,30 +13,12 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 
 public interface purchaseHistoryVoMapper extends BaseMapper<purchaseHistoryVoMapper> {
-        @Select(  //多表查询进货历史(已入库、已作废)
+        @Select(  //多表查询进货历史
             "select * from PURCHASE  p left join STAFF s on p.STAFF_ID=s.STAFF_ID left join PURCHASEDETAILS u on u.PURL_ID=p.PURCHASE_ID left join \n" +
                     " COMMODITY c on c.COMMODITY_ID=u.COMM_ID left join SUPPLIER l  on l.SUPPLIER_ID=p.SUPPLIER_ID left join STOCK k on k.STOCK_ID=p.STOCK_ID\n" +
-                    "where k.stock_name like '%${scss}%' and p.purchase_state=2 and p.deleted=2 or c.commodity_name like '%${scss}%' and p.purchase_state=2 and p.deleted=2 or s.staff_name like '%${scss}%' and p.purchase_state=2 and p.deleted=2 or l.supplier_name like '%${scss}%' and p.purchase_state=2 and p.deleted=2 "
+                    "where k.stock_name like '%${scss}%' or c.commodity_name like '%${scss}%' or s.staff_name like '%${scss}%' or l.supplier_name like '%${scss}%' "
     )
-        IPage<purchaseHistoryVo> selectPurchasehistory22 (Page<purchaseHistoryVo> page,@Param("scss") String scss);
-    @Select(  //多表查询进货历史(未入库、已作废)
-            "select * from PURCHASE  p left join STAFF s on p.STAFF_ID=s.STAFF_ID left join PURCHASEDETAILS u on u.PURL_ID=p.PURCHASE_ID left join \n" +
-                    " COMMODITY c on c.COMMODITY_ID=u.COMM_ID left join SUPPLIER l  on l.SUPPLIER_ID=p.SUPPLIER_ID left join STOCK k on k.STOCK_ID=p.STOCK_ID\n" +
-                    "where k.stock_name like '%${scss}%' and p.purchase_state=1 and p.deleted=2 or c.commodity_name like '%${scss}%' and p.purchase_state=1 and p.deleted=2 or s.staff_name like '%${scss}%' and p.purchase_state=1 and p.deleted=2 or l.supplier_name like '%${scss}%' and p.purchase_state=1 and p.deleted=2"
-    )
-    IPage<purchaseHistoryVo> selectPurchasehistory12 (Page<purchaseHistoryVo> page,@Param("scss") String scss);
-    @Select(  //多表查询进货历史(已入库、未作废)
-            "select * from PURCHASE  p left join STAFF s on p.STAFF_ID=s.STAFF_ID left join PURCHASEDETAILS u on u.PURL_ID=p.PURCHASE_ID left join \n" +
-                    " COMMODITY c on c.COMMODITY_ID=u.COMM_ID left join SUPPLIER l  on l.SUPPLIER_ID=p.SUPPLIER_ID left join STOCK k on k.STOCK_ID=p.STOCK_ID\n" +
-                    "where k.stock_name like '%${scss}%' and p.purchase_state=2 and p.deleted=0  or c.commodity_name like '%${scss}%' and p.purchase_state=2 and p.deleted=0  or s.staff_name like '%${scss}%' and p.purchase_state=2 and p.deleted=0  or l.supplier_name like '%${scss}%' and p.purchase_state=2 and p.deleted=0 "
-    )
-    IPage<purchaseHistoryVo> selectPurchasehistory20 (Page<purchaseHistoryVo> page,@Param("scss") String scss);
-    @Select(  //多表查询进货历史(未入库、未作废)
-            "select * from PURCHASE  p left join STAFF s on p.STAFF_ID=s.STAFF_ID left join PURCHASEDETAILS u on u.PURL_ID=p.PURCHASE_ID left join \n" +
-                    " COMMODITY c on c.COMMODITY_ID=u.COMM_ID left join SUPPLIER l  on l.SUPPLIER_ID=p.SUPPLIER_ID left join STOCK k on k.STOCK_ID=p.STOCK_ID\n" +
-                    "where k.stock_name like '%${scss}%' and p.purchase_state=1 and p.deleted=0 or c.commodity_name like '%${scss}%' and p.purchase_state=1 and p.deleted=0 or s.staff_name like '%${scss}%' and p.purchase_state=1 and p.deleted=0 or l.supplier_name like '%${scss}%' and p.purchase_state=1 and p.deleted=0"
-    )
-    IPage<purchaseHistoryVo> selectPurchasehistory10 (Page<purchaseHistoryVo> page,@Param("scss") String scss);
+        IPage<purchaseHistoryVo> selectPurchasehistory (Page<purchaseHistoryVo> page,@Param("scss") String scss);
     @Select(  //多表查询进货历史(详细查询)
             "select * from PURCHASE  p left join STAFF s on p.STAFF_ID=s.STAFF_ID left join PURCHASEDETAILS u on u.PURL_ID=p.PURCHASE_ID left join \n" +
                     " COMMODITY c on c.COMMODITY_ID=u.COMM_ID left join SUPPLIER l  on l.SUPPLIER_ID=p.SUPPLIER_ID left join STOCK k on k.STOCK_ID=p.STOCK_ID"+ " ${ew.customSqlSegment}"

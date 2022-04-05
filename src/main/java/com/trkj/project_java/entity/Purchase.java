@@ -36,11 +36,14 @@ public class Purchase implements Serializable {
     @TableField("SUPPLIER_ID")
     private Integer supplierId;
 
+    @TableField("STAFF_ID")
+    private int staffId;
+
     @TableField("STOCK_ID")
     private Integer stockId;
 
     @TableField("BILL_ID")
-    private String billId;
+    private Integer billId;
 
     @TableField("PURCHASE_TIME")
     private Date purchaseTime;
@@ -60,7 +63,7 @@ public class Purchase implements Serializable {
     @TableField("PURCHASE_STATE")
     private Integer purchaseState;
 
-//    @TableField("DELETED")
+    @TableField("DELETED")
     private Integer deleted;
 
 
