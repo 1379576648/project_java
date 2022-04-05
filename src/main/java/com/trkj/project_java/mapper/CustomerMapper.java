@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.trkj.project_java.entity.Customer;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.trkj.project_java.entity.Receivable;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -21,4 +22,6 @@ public interface CustomerMapper extends BaseMapper<Customer> {
 
     @Select("select * from (select * from customer order by created_time desc) ${ew.customSqlSegment}")
     Customer selectRecently(@Param(Constants.WRAPPER) QueryWrapper<Customer> customerQueryWrapperOne);
+
+
 }

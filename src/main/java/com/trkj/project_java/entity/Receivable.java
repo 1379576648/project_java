@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.Date;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -51,6 +53,27 @@ public class Receivable implements Serializable {
 
     @TableField("DELETED")
     private Integer deleted;
+
+    @TableField("RECEIVABLE_SERIAL")
+    private String receivableSerial;
+
+    @TableField("CREATED_TIME")
+    private Date createdTime;
+
+    @TableField("UPDATED_TIME")
+    private Date updatedTime;
+
+    @TableField(exist = false)
+    private Integer staffId;
+
+    @TableField(exist = false)
+    private String settlement;
+
+    @TableField(exist = false)
+    private Date tabTime;
+
+    @TableField(exist = false)
+    private String remarks;
 
 
 }
