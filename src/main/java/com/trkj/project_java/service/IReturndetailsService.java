@@ -1,5 +1,6 @@
 package com.trkj.project_java.service;
 
+import com.trkj.project_java.config.Result;
 import com.trkj.project_java.entity.Returndetails;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -12,5 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2022-03-30
  */
 public interface IReturndetailsService extends IService<Returndetails> {
+    //添加退货明细表
+    Result insertReturnDetails(Returndetails returndetails);
 
 }

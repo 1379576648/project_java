@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,12 +62,21 @@ public class CommodityController {
     public Result selectCommodityAdd(@RequestBody Commodity commodity){
        return iCommodityService.addCommodity(commodity);
     }
+
+    /**
+     *查询所有商品数据-xho
+     */
+    @PostMapping("/selectIPages")
+    public Result selectIPages(@RequestBody Commodity commodity ){
+        return Result.success(iCommodityService.selectIPages(commodity));
+    }
+
     /*
     * 分页查询商品表
     * */
-    @GetMapping("/selectPageC")
-    public AjaxResponse select(@RequestParam("currentPage") int currentPage, @RequestParam("pageSize") int pageSize,@RequestParam("input") String commodityName){
-        Page<Commodity> page = new Page<>(currentPage, pageSize);
+ @GetMapping("selectPageC")
+    public AjaxResponse select(@RequestParam("currentPage") int currenPage, @RequestParam("pagesize") int pagesize,@RequestParam("input") String commodityName){
+        Page<Commodity> page = new Page<>(currenPage, pagesize);
         return AjaxResponse.success(iCommodityService.selectPage(page,commodityName));
     }
     /*

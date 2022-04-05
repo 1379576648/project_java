@@ -71,16 +71,10 @@ public class SalescheduleController {
         return map;
     }
 
-    //销售明细 已出库
-    @GetMapping("/saleschedule3/{currentPage}/{pageSize}")
-    public AjaxResponse saleschedule3(@PathVariable("currentPage") int currentPage, @PathVariable("pageSize") int pageSize){
+    //销售明细
+    @PostMapping("/saleschedule3/{currentPage}/{pageSize}")
+    public AjaxResponse saleschedule3(@PathVariable("currentPage") int currentPage, @PathVariable("pagesSize") int pageSize){
         Page<Saleschedule2Vo> page = new Page<>(currentPage, pageSize);
         return AjaxResponse.success(iSalescheduleService.Salechedule2Page(page));
-    }
-    //销售明细 未出库
-    @GetMapping("/saleschedule4/{currentPage}/{pageSize}")
-    public AjaxResponse saleschedule4(@PathVariable("currentPage") int currentPage, @PathVariable("pageSize") int pageSize){
-        Page<Saleschedule2Vo> page = new Page<>(currentPage, pageSize);
-        return AjaxResponse.success(iSalescheduleService.Salechedule3Page(page));
     }
 }

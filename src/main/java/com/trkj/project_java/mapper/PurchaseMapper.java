@@ -25,5 +25,9 @@ public interface PurchaseMapper extends BaseMapper<Purchase> {
      @Update(
              "update purchase set deleted=2 where purchase_id=#{id}"
      )
-    int tovoid(int id);
+    int tovoid(int id);  //作废操作
+    @Update(
+            "update purchase set purchase_state=1 where purchase_id=#{id}"
+    )
+    int entry(int id);  //进库操作
 }

@@ -2,39 +2,39 @@ package com.trkj.project_java.pojovo;
 
 import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@KeySequence(value = "saleschedule_seq")
 public class Saleschedule2Vo {
-    //销售明细编号
-    @TableField(value = "SALESCHEDULE_ID")
+    @TableId(value = "SALESCHEDULE_ID",type = IdType.INPUT)
     private Integer salescheduleId;
-    //采购表编号
+
     @TableField("SALE_ID")
     private Integer saleId;
-    //商品数量
+
+
     @TableField("SALESCHEDULE_NUMBER")
     private Integer salescheduleNumber;
-    //商品价格
+
     @TableField("SALESCHEDULE_PRICE")
     private Integer saleschedulePrice;
-    //商品总价
+
     @TableField("SALESCHEDULE_TOTAL")
     private Integer salescheduleTotal;
-    //状态（1：已出库2：未出库）
+
     @TableField("SALESCHEDULE_STATE")
     private Integer salescheduleState;
-    //逻辑删除列（0:可用，1：不可用）
+
     @TableField("DELETED")
     private Integer deleted;
 
-    //商品分类
-    @TableField("CATEGORY_NAME")
-    private String categoryName;
-
-
 
     //商品编号
-    @TableField(value = "COMMODITY_ID")
+    @TableId(value = "COMMODITY_ID",type = IdType.INPUT)
     private Integer commodityId;
 
     //商品名字
@@ -85,4 +85,6 @@ public class Saleschedule2Vo {
     private  String classifys;
 
 
+    @TableField(exist = false)
+    private String categoryName;
 }

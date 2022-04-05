@@ -21,25 +21,13 @@ import org.apache.ibatis.annotations.Select;
  */
 @Mapper
 public interface SalescheduleMapper extends BaseMapper<Saleschedule2Vo> {
-    //已出库
     @Select("select * from saleSchedule  s\n" +
             "LEFT JOIN commodity  c \n" +
             "on s.commodity_id=c.commodity_id \n" +
-            "LEFT JOIN category ca \n" +
-            "on c.category_id=ca.category_id\n" +
             "where s.saleSchedule_state=1")
     IPage<Saleschedule2Vo>Salechedule2Page(Page<Saleschedule2Vo>page);
 
 
-
-    //未出库
-    @Select("select * from saleSchedule  s\n" +
-            "LEFT JOIN commodity  c \n" +
-            "on s.commodity_id=c.commodity_id \n" +
-            "LEFT JOIN category ca \n" +
-            "on c.category_id=ca.category_id\n" +
-            "where s.saleSchedule_state=0")
-    IPage<Saleschedule2Vo>Salechedule3Page(Page<Saleschedule2Vo>page);
 
 
 
