@@ -44,7 +44,7 @@ public interface SalescheduleVoMapper extends BaseMapper<SalescheduleVo> {
      * @param queryWrapper
      * @return
      */
-    @Select("select s1.sale_id,s1.bill_id,s1.sale_time,s1.sale_money,s1.sale_remarks,s1.sale_state, " +
+    @Select("select s1.stock_id,s1.sale_id,s1.bill_id,s1.sale_time,s1.sale_money,s1.sale_remarks,s1.sale_state, " +
             "s2.saleSchedule_id,s2.saleSchedule_number,s2.saleSchedule_price,s2.saleSchedule_total,s2.saleSchedule_state, " +
             "s3.staff_name,c1.customer_name,s4.stock_name,c2.commodity_name " +
             "from saleSchedule s2  " +

@@ -82,6 +82,31 @@ public class SalescheduleVo implements Serializable {
     @TableField("SALESCHEDULE_STATE")
     private Integer salescheduleState;
 
+
+    private Integer repertoryId;
+
+    @TableField("STAYLNSTOCK")
+    private Integer staylnstock;
+
+    @TableField("STAYOUTSTOCK")
+    private Integer stayoutstock;
+
+    @TableField("INSTOCK")
+    private Integer instock;
+
+    @TableField("OUTSTOCK")
+    private Integer outstock;
+
+    @TableField("ACTUALSTOCK")
+    private Integer actualstock;
+
+    @TableField("AVAILABLESTOCK")
+    private Integer availablestock;
+
+    @TableField("TOTALPRICE")
+    private Integer totalprice;
+
+
     @ApiModelProperty(value = "当前页")
     @TableField(exist = false)
     private Integer currentPage;
