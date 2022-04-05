@@ -19,4 +19,5 @@ public interface IStockService extends IService<Stock> {
     int addStock(Stock stock);
     int deleteStock(Integer id);
     int updateStock(Stock stock);
+  List<Stock> selectStockCK();
 }

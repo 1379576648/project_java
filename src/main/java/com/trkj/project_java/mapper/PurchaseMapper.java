@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.trkj.project_java.entity.Commodity;
+import com.trkj.project_java.entity.Cope;
 import com.trkj.project_java.entity.Purchase;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.trkj.project_java.pojovo.purchaseHistoryVo;
@@ -21,5 +23,10 @@ import org.apache.ibatis.annotations.Select;
  */
 @Mapper
 public interface PurchaseMapper extends BaseMapper<Purchase> {
+    @Select("select * from (select * from purchase order by purchase_time desc) ${ew.customSqlSegment}")
+    Purchase selectPurchaseKey(@Param(Constants.WRAPPER) QueryWrapper<Purchase> copeQueryWrapper);
+
+    @Select("select max(purchase_id) from purchase")
+     int selectMaxId();
 
 }

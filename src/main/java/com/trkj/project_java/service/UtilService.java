@@ -19,4 +19,10 @@ public interface UtilService {
      * @return
      */
     String obtainCopeNumber();
+
+    /**
+     * 获取单据编号
+     * @return
+     */
+    String obtainPurchaseNumber();
 }

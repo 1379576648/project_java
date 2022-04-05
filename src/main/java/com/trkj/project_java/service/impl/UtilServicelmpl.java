@@ -3,9 +3,11 @@ package com.trkj.project_java.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.trkj.project_java.entity.Cope;
 import com.trkj.project_java.entity.Customer;
+import com.trkj.project_java.entity.Purchase;
 import com.trkj.project_java.entity.Supplier;
 import com.trkj.project_java.mapper.CopeMapper;
 import com.trkj.project_java.mapper.CustomerMapper;
+import com.trkj.project_java.mapper.PurchaseMapper;
 import com.trkj.project_java.mapper.SupplierMapper;
 import com.trkj.project_java.service.UtilService;
 import com.trkj.project_java.utils.DateUtils;
@@ -29,9 +31,13 @@ public class UtilServicelmpl implements UtilService {
     @Autowired
     private CopeMapper copeMapper;
 
+    @Autowired
+    private PurchaseMapper purchaseMapper;
+
     private final static String PRE_CODE = "YH";
     private final static String PRE_GYS = "GYS";
     private final static String PRE_FK = "FK";
+    private final static String PRE_CG = "CG";
 
     @Override
     public String obtainSerialNumber() {
@@ -102,6 +108,30 @@ public class UtilServicelmpl implements UtilService {
             Integer substring = Integer.valueOf(cope.getCopeSerial().substring(10));
             String Two = SerialNumberUtils.getSerialNumberOne(substring);
             return PRE_FK + Two;
+        }
+    }
+
+    @Override
+    public String obtainPurchaseNumber() {
+        // 拿当天日期去查询当天的客户流水号
+        QueryWrapper<Purchase> queryWrapper = new QueryWrapper<>();
+        val dateByString = DateUtils.getDateByString();
+        queryWrapper.apply("to_char(purchase_time,'yyyy-MM-dd') like {0}", dateByString);
+        List<Purchase> copeList = purchaseMapper.selectList(queryWrapper);
+        // 如果等于0,当天没有数据,则调用生成第一条的方法
+        if (copeList.size() == 0) {
+            String One = SerialNumberUtils.getSerialNumber();
+            return PRE_CG + One;
+        } else {
+            //如果不等于0，当天有数据，则调用加一的方法
+            // 查询最近的一条数据
+            QueryWrapper<Purchase> copeQueryWrapper = new QueryWrapper<>();
+            copeQueryWrapper.eq("rownum", 1);
+            final var cope = purchaseMapper.selectPurchaseKey(copeQueryWrapper);
+            // 拿最新一条数据截取 KH202203310001
+            Integer substring = Integer.valueOf(cope.getBillId().substring(10));
+            String Two = SerialNumberUtils.getSerialNumberOne(substring);
+            return PRE_CG + Two;
         }
     }
 }

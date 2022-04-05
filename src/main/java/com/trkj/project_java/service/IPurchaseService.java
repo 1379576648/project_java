@@ -1,6 +1,7 @@
 package com.trkj.project_java.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.trkj.project_java.entity.Commodity;
 import com.trkj.project_java.entity.Purchase;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.trkj.project_java.pojovo.purchaseHistoryVo;
@@ -17,5 +18,6 @@ import java.util.List;
  * @since 2022-03-30
  */
 public interface IPurchaseService extends IService<Purchase> {
+    int addPurchase(Purchase purchase);
 
 }

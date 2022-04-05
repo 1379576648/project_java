@@ -2,6 +2,7 @@ package com.trkj.project_java.controller;
 
 
 import com.trkj.project_java.config.Result;
+import com.trkj.project_java.entity.Commodity;
 import com.trkj.project_java.service.IStockService;
 import com.trkj.project_java.service.IStockvoService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -80,4 +82,10 @@ public class StockController {
              return AjaxResponse.success("系统异常");
         }
     }
+
+    @GetMapping("/selectStockCK")
+    List<Stock> selectStockCK(){
+        return iStockService.selectStockCK();
+    }
+
 }
