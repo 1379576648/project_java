@@ -83,14 +83,5 @@ public class Commodity implements Serializable {
 
     @TableField(exist = false)
     private String categoryName;
-    //仓库实际库存
-    @TableField(exist = false)
-    private int actualStock;
-
-    //分页
-    @TableField(exist = false)
-    private int currentPage;
-    @TableField(exist = false)
-    private int pagesize;
 
 }

@@ -22,5 +22,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class PurchaseServiceImpl extends ServiceImpl<PurchaseMapper, Purchase> implements IPurchaseService {
+@Autowired
+private  PurchaseMapper  purchaseMapper;
 
 }

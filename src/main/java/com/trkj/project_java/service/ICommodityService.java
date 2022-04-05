@@ -30,10 +30,7 @@ public interface ICommodityService {
       */
      Result addCommodity(Commodity commodity);
 
-     /**
-      *查询所有商品数据-xho
-      */
-     IPage<Commodity> selectIPages(Commodity commodity);
+
 
      //查询
      List<Commodity> cx(String goodsName);
