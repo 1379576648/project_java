@@ -20,14 +20,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private JwtAuthentionTokenFilter jwtAuthentionTokenFilter;
-
-    @Autowired
-    private AuthenticationEntryPoint authenticationEntryPoint;
-
-    @Autowired
-    private AccessDeniedHandler accessDeniedHandler;
+//    @Autowired
+//    private JwtAuthentionTokenFilter jwtAuthentionTokenFilter;
+//
+//    @Autowired
+//    private AuthenticationEntryPoint authenticationEntryPoint;
+//
+//    @Autowired
+//    private AccessDeniedHandler accessDeniedHandler;
 
 
 
@@ -47,14 +47,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .anyRequest().authenticated();
 
 //                 把token效验过滤器添加到过滤器链中
-        http.addFilterBefore(jwtAuthentionTokenFilter, UsernamePasswordAuthenticationFilter.class);
-
-//        配置异常处理器
-        http.exceptionHandling()
-//                认证失败的处理
-                .authenticationEntryPoint(authenticationEntryPoint)
-//                权限不足的处理
-                .accessDeniedHandler(accessDeniedHandler);
+//        http.addFilterBefore(jwtAuthentionTokenFilter, UsernamePasswordAuthenticationFilter.class);
+//
+////        配置异常处理器
+//        http.exceptionHandling()
+////                认证失败的处理
+//                .authenticationEntryPoint(authenticationEntryPoint)
+////                权限不足的处理
+//                .accessDeniedHandler(accessDeniedHandler);
         //允许跨越
         http.cors();
     }
