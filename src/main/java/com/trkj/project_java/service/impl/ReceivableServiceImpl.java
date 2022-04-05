@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -59,8 +60,8 @@ public class ReceivableServiceImpl extends ServiceImpl<ReceivableMapper, Receiva
      * @return
      */
     @Override
-    public String addDocuments(Receivable receivabler) {
-        System.out.println("前台数据："+receivabler);
+    @Transactional(rollbackFor = Exception.class)
+    public String addDocuments(Receivable receivabler) throws ArithmeticException {
         // 修改应收欠款表 1、先根据客户编号查询其所有应收欠款数据并根据总计进行分组
         QueryWrapper<Receivable> receivableQueryWrapper = new QueryWrapper<>();
         receivableQueryWrapper.eq("CUSTOMER_ID", receivabler.getCustomerId());
@@ -69,33 +70,24 @@ public class ReceivableServiceImpl extends ServiceImpl<ReceivableMapper, Receiva
         List<Receivable> list = receivableMapper.selectList(receivableQueryWrapper);
         // 实际付款金额
         int money = receivabler.getAggregate();
-        System.out.println("111111111111111111111===" + list);
-        int balance = 0;
-
+        int balance;
         int i = 0;
+        int j = 0;
         for (Receivable r : list) {
             Tab tab = new Tab();
             if (money <= r.getAggregate()) {
                 balance = r.getAggregate();
                 r.setAggregate(r.getAggregate() - money);
                 tab.setTabMoney(money);
-
                 money = money - balance;
-
-                System.out.println("111111111111111111111===" + money);
-                // 金额
-
             } else {
                 tab.setTabMoney(r.getAggregate());
                 money = money - r.getAggregate();
                 // 金额
-
                 r.setAggregate(0);
-                System.out.println("22222222222222222222222===" + money);
             }
             //把r传过去修改
             i = receivableMapper.updateById(r);
-
             // 操作时间
             tab.setTabTime(new Date());
             // 应收欠款编号
@@ -108,14 +100,16 @@ public class ReceivableServiceImpl extends ServiceImpl<ReceivableMapper, Receiva
             tab.setSettlement(receivabler.getSettlement());
             // 备注
             tab.setRemarks(receivabler.getRemarks());
-
-            int j = tabMapper.insert(tab);
-
-            System.out.println("超级终要" + money);
+            j = tabMapper.insert(tab);
             if (money <= 0) {
                 break;
             }
         }
-        return null;
+        if (i == 1 && j == 1) {
+            return "成功";
+        } else {
+            return "失败";
+        }
+
     }
 }
