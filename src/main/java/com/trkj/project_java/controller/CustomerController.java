@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.ResultSet;
 import java.util.Date;
@@ -27,7 +28,7 @@ import java.util.HashMap;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author 沈杨卓
@@ -132,4 +133,25 @@ public class CustomerController {
     }
 
 
+
+    /**
+     * 查询所有客户
+     *
+     * @param
+     * @return
+     */
+    @GetMapping("/queryAllCustomer/{currentPage}/{pagesSize}/{customerName}")
+    private AjaxResponse queryAllCustomer(@PathVariable("currentPage") Integer currentPage,
+                                          @PathVariable("pagesSize") Integer pagesSize,
+                                          @PathVariable("customerName") String customerName) {
+        Map<String, Object> map = new HashMap<>(2);
+        try {
+            map.put("state", 200);
+            map.put("info", iCustomerService.queryAllCustomer(currentPage, pagesSize,customerName));
+        } catch (Exception e) {
+            map.put("state", 400);
+            map.put("info", e.getMessage());
+        }
+        return AjaxResponse.success(map);
+    }
 }

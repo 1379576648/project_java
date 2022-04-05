@@ -32,4 +32,14 @@ private  StaffMapper staffMapper;
         QueryWrapper<Staff> queryWrapper = new QueryWrapper<Staff>();
         return staffMapper.selectList(queryWrapper);
     }
+
+    /**
+     * 查询所有用户
+     *
+     * @return
+     */
+    @Override
+    public List<Staff> selectAllStaff() {
+        return  staffMapper.selectList(null);
+    }
 }

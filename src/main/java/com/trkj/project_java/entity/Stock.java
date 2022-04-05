@@ -46,8 +46,8 @@ public class Stock implements Serializable {
     @TableField("DELETED")
     private Integer deleted;
 
-//    @TableField("STOCK_DEFAULT")
-//    private Integer stockDefault;
+    @TableField("STOCK_DEFAULT")
+    private Integer stockDefault;
 
     //仓库总数量
     @TableField(exist = false)
