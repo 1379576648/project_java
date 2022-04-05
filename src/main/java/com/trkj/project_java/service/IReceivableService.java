@@ -13,4 +13,19 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IReceivableService extends IService<Receivable> {
 
+    /**
+     * 根据客户编号去查询其欠款总计
+     *
+     * @param customerId
+     * @return
+     */
+    Integer selectByCustomerIdAllMoney(Integer customerId);
+
+    /**
+     * 保存单据
+     *
+     * @param receivabler
+     * @return
+     */
+    String addDocuments(Receivable receivabler);
 }

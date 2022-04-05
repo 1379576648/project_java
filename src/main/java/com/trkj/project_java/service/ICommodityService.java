@@ -1,10 +1,14 @@
 package com.trkj.project_java.service;
 
+import com.trkj.project_java.config.Result;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.trkj.project_java.entity.Commodity;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+
+
 
 import java.util.List;
 import java.util.Map;
@@ -17,9 +21,16 @@ import java.util.Map;
  * @author 沈杨卓
  * @since 2022-03-30
  */
-public interface ICommodityService extends IService<Commodity> {
+public interface ICommodityService {
      //添加
      int appcommod (Commodity commodity);
+
+     /**
+      * 商品添加-xho
+      */
+     Result addCommodity(Commodity commodity);
+
+
 
      //查询
      List<Commodity> cx(String goodsName);

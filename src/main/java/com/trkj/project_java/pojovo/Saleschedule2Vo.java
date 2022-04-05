@@ -1,30 +1,37 @@
-package com.trkj.project_java.entity;
+package com.trkj.project_java.pojovo;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author 沈杨卓
- * @since 2022-03-30
- */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Commodity对象", description="")
-@KeySequence(value = "commodity_seq")
-public class Commodity implements Serializable {
+@KeySequence(value = "saleschedule_seq")
+public class Saleschedule2Vo {
+    @TableId(value = "SALESCHEDULE_ID",type = IdType.INPUT)
+    private Integer salescheduleId;
 
-    private static final long serialVersionUID = 1L;
+    @TableField("SALE_ID")
+    private Integer saleId;
+
+
+    @TableField("SALESCHEDULE_NUMBER")
+    private Integer salescheduleNumber;
+
+    @TableField("SALESCHEDULE_PRICE")
+    private Integer saleschedulePrice;
+
+    @TableField("SALESCHEDULE_TOTAL")
+    private Integer salescheduleTotal;
+
+    @TableField("SALESCHEDULE_STATE")
+    private Integer salescheduleState;
+
+    @TableField("DELETED")
+    private Integer deleted;
+
 
     //商品编号
     @TableId(value = "COMMODITY_ID",type = IdType.INPUT)
@@ -66,9 +73,6 @@ public class Commodity implements Serializable {
     @TableField("REMARK ")
     private String remark ;
 
-    @TableField("DELETED")
-    @TableLogic
-    private Integer deleted;
     //最低售价
     @TableField(exist = false)
     private Double goodsPriceMinPrice;
@@ -83,5 +87,4 @@ public class Commodity implements Serializable {
 
     @TableField(exist = false)
     private String categoryName;
-
 }

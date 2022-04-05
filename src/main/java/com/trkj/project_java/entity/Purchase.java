@@ -66,7 +66,7 @@ public class Purchase implements Serializable {
     @TableField("PURCHASE_STATE")
     private Integer purchaseState;
 
-    @TableField("DELETED")
+//    @TableField("DELETED")
     private Integer deleted;
 
 

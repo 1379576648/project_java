@@ -2,7 +2,6 @@ package com.trkj.project_java.controller;
 
 
 import com.trkj.project_java.config.Result;
-import com.trkj.project_java.entity.Commodity;
 import com.trkj.project_java.service.IStockService;
 import com.trkj.project_java.service.IStockvoService;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +44,16 @@ public class StockController {
         return AjaxResponse.success(iStockvoService.selectStockPage(stockvo));
     }
 
+
+
+    /**
+     * 查询所有的仓库-xho
+     */
+    @GetMapping("/selectStocks")
+    public AjaxResponse selectStocks(){
+        return AjaxResponse.success(iStockService.selectStocks());
+    }
+
     @PostMapping("/addStock")
     public String addStock(@RequestBody Stock stock) {
         System.out.println(stock);
@@ -58,6 +67,18 @@ public class StockController {
             return "出现错误";
         }
     }
+
+
+
+    /**
+     * 分组查询仓库数据-xho
+     */
+    @GetMapping("/selectStockData/{stockId}")
+    public Result selectStockData(@PathVariable("stockId") Integer stockId){
+        return Result.success(iStockService.selectStockData(stockId));
+    }
+
+
 
     @PostMapping("/deleteStock")
     public AjaxResponse deleteStock(@RequestBody ArrayList<Integer> id) {

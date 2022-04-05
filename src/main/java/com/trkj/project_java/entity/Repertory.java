@@ -31,12 +31,6 @@ public class Repertory implements Serializable {
     @TableId(value = "REPERTORY_ID",type = IdType.INPUT)
     private Integer repertoryId;
 
-    @TableField("COMMODITY_ID")
-    private Integer commodityId;
-
-    @TableField("STOCK_ID")
-    private Integer stockId;
-
     @TableField("STAYLNSTOCK")
     private Integer staylnstock;
 
@@ -60,6 +54,25 @@ public class Repertory implements Serializable {
 
     @TableField("DELETED")
     private Integer deleted;
+
+    //最高预警
+    @TableField(exist = false)
+    private Integer maxNumber;
+    //商品名称
+    @TableField(exist = false)
+    private String commodityName;
+    //商品规格
+    @TableField(exist = false)
+    private String commoditySpecifications;
+    //商品单位
+    @TableField(exist = false)
+    private String commodityCompany;
+
+    @TableField(exist = false)
+    private int currentPage;
+
+    @TableField(exist = false)
+    private int pagesize;
 
 
 }
