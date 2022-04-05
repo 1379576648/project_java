@@ -47,4 +47,9 @@ public class SalescheduleServiceImpl implements ISalescheduleService {
     public IPage<Saleschedule2Vo> Salechedule2Page(Page<Saleschedule2Vo> page) {
         return salescheduleMapper.Salechedule2Page(page);
     }
+
+    @Override
+    public IPage<Saleschedule2Vo> Salechedule3Page(Page<Saleschedule2Vo> page) {
+        return null;
+    }
 }
