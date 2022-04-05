@@ -9,6 +9,12 @@ public interface UtilService {
     String obtainSerialNumber();
 
     /**
+     * 获取客户流水号
+     * @return
+     */
+    String obtainCollectionSerialNumber();
+
+    /**
      * 获取供应商编号
      * @return
      */

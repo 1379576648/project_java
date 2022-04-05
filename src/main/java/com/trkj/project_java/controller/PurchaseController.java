@@ -53,7 +53,7 @@ public class PurchaseController {
      }else {
          return Result.success(purchaseHistoryVoMapper.selectPurchasehistory20(page1, scss));
 
-     }
+    }
 }
 @GetMapping("/AdvancedqueryPurchasehistory")     //详细查询进货历史
     public Result AdvancedqueryPurchasehistory(@RequestParam("currentPage") int page, @RequestParam("pagesize") int size,@RequestParam("supplierName") String  supplierName,@RequestParam("commodityName") String  commodityName,@RequestParam("billId") String  billId,@RequestParam("staffName") String staffName,@RequestParam("stockName") String stockName,@RequestParam("activeNum") int activeNum,@RequestParam("checked1")String checked1,@RequestParam("Startdate") String startdate,@RequestParam("Enddate") String enddate) throws ParseException {
