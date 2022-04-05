@@ -17,9 +17,11 @@ import java.util.List;
 
 
 public interface IStockService  {
+    List<Stock> selectStock();
     int addStock(Stock stock);
     int deleteStock(Integer id);
     int updateStock(Stock stock);
+
     /**
      * 查询所有的仓库-xho
      */
