@@ -20,7 +20,7 @@ import org.apache.ibatis.annotations.Select;
  * @since 2022-03-30
  */
 @Mapper
-public interface SalescheduleMapper extends BaseMapper<Saleschedule2Vo> {
+public interface SalescheduleMapper extends BaseMapper<Saleschedule> {
     @Select("select * from saleSchedule  s\n" +
             "LEFT JOIN commodity  c \n" +
             "on s.commodity_id=c.commodity_id \n" +
