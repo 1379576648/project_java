@@ -1,6 +1,7 @@
 package com.trkj.project_java.controller;
 
 
+import com.trkj.project_java.entity.Sale;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.trkj.project_java.pojovo.Saleschedule2Vo;
 import com.trkj.project_java.service.ISalescheduleService;
@@ -67,6 +68,18 @@ public class SalescheduleController {
         map.put("state",200);
         map.put("succeed",iSalescheduleVoService.invalid(salescheduleVo));
         return map;
+    }
+
+    @PostMapping("/outbound")
+    public AjaxResponse outbound(@RequestBody Sale sale){
+        Map<String, Object> map =  new HashMap<>();
+        map.put("state",200);
+        try {
+            map.put("succeed",iSalescheduleVoService.outbound(sale));
+        }catch (ArithmeticException e){
+            map.put("info", e.getMessage());
+        }
+        return AjaxResponse.success(map);
     }
 
     //销售明细

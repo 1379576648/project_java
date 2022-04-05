@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 /**
  * <p>
  *  服务类
@@ -28,6 +30,15 @@ public interface ICustomerService extends IService<Customer> {
      * @return
      */
     Integer addCustomer(Customer customer);
+
+    /**
+     * 查询所有客户
+     * @param
+     * @return
+     */
+    IPage<Customer>queryAllCustomer(Integer currentPage,Integer pagesSize,String customerName);
+
+
     //添加客户
     int insertCustomer(Customer customer);
 
