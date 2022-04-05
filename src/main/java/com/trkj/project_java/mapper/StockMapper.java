@@ -8,6 +8,10 @@ import com.trkj.project_java.entity.Stockvo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -31,4 +35,6 @@ public interface StockMapper extends BaseMapper<Stock> {
             "group by t1.STOCK_NAME")
     Stock selectStockData(@Param(Constants.WRAPPER) QueryWrapper<Stock> queryWrapper);
 
+    @Select("select * from STOCK ${ew.customSqlSegment}")
+    List<Stock> selectStockCK(@Param(Constants.WRAPPER) QueryWrapper<Stock> queryWrapper);
 }

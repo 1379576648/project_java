@@ -88,15 +88,15 @@ public class UtilController {
     }
 
     /**
-     * 获取付款流水号
+     * 获取单据编号
      * @return
      */
-    @GetMapping("/obtainReturnGoodsNumber")
-    public AjaxResponse obtainReturnGoodsNumber() {
+    @GetMapping("/obtainPurchaseNumber")
+    public AjaxResponse obtainPurchaseNumber() {
         Map<String, Object> map = new HashMap<>(2);
         try {
             map.put("state", 200);
-            map.put("info", utilService.obtainCopeNumber());
+            map.put("info", utilService.obtainPurchaseNumber());
         } catch (Exception e) {
             map.put("state", 400);
             map.put("info", e.getMessage());

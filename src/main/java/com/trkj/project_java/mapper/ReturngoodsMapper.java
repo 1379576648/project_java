@@ -3,7 +3,6 @@ package com.trkj.project_java.mapper;
 import com.trkj.project_java.entity.Returngoods;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
@@ -15,8 +14,5 @@ import org.apache.ibatis.annotations.Select;
  */
 @Mapper
 public interface ReturngoodsMapper extends BaseMapper<Returngoods> {
-    @Select("select MAX(returnGoods_id) from RETURNGOODS")
-    int selectMaxId();
-
 
 }
