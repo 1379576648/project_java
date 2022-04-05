@@ -19,8 +19,11 @@ import org.springframework.stereotype.Service;
  */
 public interface ISalescheduleService {
 
-    //查询明细
+    //已出库
     IPage<Saleschedule2Vo>Salechedule2Page(Page<Saleschedule2Vo> page);
+
+    //未出库
+    IPage<Saleschedule2Vo>Salechedule3Page(Page<Saleschedule2Vo> page);
 
 
 
