@@ -56,7 +56,7 @@ public class SalescheduleVoServiceImpl implements ISalescheduleVoService {
         queryWrapper.eq("S1.SALE_STATE",2);
         queryWrapper.eq("S1.DELETED",0);
         queryWrapper.eq("S2.DELETED",0);
-        if (salescheduleVo.getBillId() != null) {
+        if (salescheduleVo.getBillId() != null && salescheduleVo.getBillId()+"" != "") {
             queryWrapper.like("s1.bill_id",salescheduleVo.getBillId());
         }
         return salescheduleVoMapper.selectPageSal2(page,queryWrapper);
