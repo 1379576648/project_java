@@ -44,12 +44,15 @@ public class Customer implements Serializable {
     @TableField("CUSTOMER_PHONE")
     private String customerPhone;
 
+
     @TableField("CUSTOMER_REMARKS")
     private String customerRemarks;
 
     @TableField("CUSTOMER_STATE")
     private Integer customerState;
 
+    @TableLogic // 逻辑删除注解
+    @ApiModelProperty(value = "逻辑删除 0:未删 1:已删 ")
     @TableField("DELETED")
     private Integer deleted;
 
