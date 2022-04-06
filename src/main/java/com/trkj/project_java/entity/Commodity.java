@@ -44,7 +44,7 @@ public class Commodity implements Serializable {
 
     //批发价
     @TableField("TRADE_PRICE")
-    private Integer tradePrice;
+    private Double tradePrice;
 
     //商品分类
     @TableField("CATEGORY_ID")
@@ -52,7 +52,7 @@ public class Commodity implements Serializable {
 
     //零售价
     @TableField("RETAIL_PRICE")
-    private Integer retailPrice;
+    private Double retailPrice;
 
     //最低库存
     @TableField("MINNUMBER")
@@ -62,9 +62,26 @@ public class Commodity implements Serializable {
     @TableField("MAXNUMBER ")
     private Integer maxNumber ;
 
+    //商品备注
+    @TableField("REMARK ")
+    private String remark ;
+
     @TableField("DELETED")
     @TableLogic
     private Integer deleted;
+    //最低售价
+    @TableField(exist = false)
+    private Double goodsPriceMinPrice;
+    //进货价
+    @TableField(exist = false)
+    private Double goodsPricePurchase;
 
+    //分类名称
+    @TableField(exist = false)
+    private  String classifys;
+
+
+    @TableField(exist = false)
+    private String categoryName;
 
 }

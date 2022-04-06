@@ -16,6 +16,12 @@ import java.util.List;
 public interface IStaffService extends IService<Staff> {
 
     /**
+     * 查询所有用户
+     *
+     * @return
+     */
+    List<Staff> selectAllStaff();
+    /**
      * 查询所有用户名称
      * @return
      */

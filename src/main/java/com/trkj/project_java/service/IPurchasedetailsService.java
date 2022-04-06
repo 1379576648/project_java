@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IPurchasedetailsService extends IService<Purchasedetails> {
 
+    int addPurchasedetails(Purchasedetails purchasedetails);
 }

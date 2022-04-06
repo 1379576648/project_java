@@ -1,6 +1,7 @@
 package com.trkj.project_java.controller;
 
 
+import com.trkj.project_java.config.Result;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.trkj.project_java.entity.Commodity;
@@ -8,9 +9,19 @@ import com.trkj.project_java.service.ICommodityService;
 import com.trkj.project_java.vo.AjaxResponse;
 import org.aspectj.weaver.loadtime.Aj;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.security.core.parameters.P;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -42,12 +53,20 @@ public class CommodityController {
         System.out.println("失败");
         return "失败";
     }
+
+    /**
+     * 商品添加-xho
+     */
+    @PostMapping("/goodsToAdd")
+    public Result selectCommodityAdd(@RequestBody Commodity commodity){
+       return iCommodityService.addCommodity(commodity);
+    }
     /*
     * 分页查询商品表
     * */
     @GetMapping("/selectPageC")
-    public AjaxResponse select(@RequestParam("currentPage") int currenPage, @RequestParam("pagesize") int pagesize,@RequestParam("input") String commodityName){
-        Page<Commodity> page = new Page<>(currenPage, pagesize);
+    public AjaxResponse select(@RequestParam("currentPage") int currenPage, @RequestParam("pageSize") int pageSize,@RequestParam("input") String commodityName){
+        Page<Commodity> page = new Page<>(currenPage, pageSize);
         return AjaxResponse.success(iCommodityService.selectPage(page,commodityName));
     }
     /*
@@ -80,5 +99,10 @@ public class CommodityController {
         return iCommodityService.deleteById(id);
     }
 
+    // 查询所有商品
+    @GetMapping("/selectCommodity")
+    List<Commodity> selectCommodity(){
+        return iCommodityService.selectCommodity();
+    }
 
 }
