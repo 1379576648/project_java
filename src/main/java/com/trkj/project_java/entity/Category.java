@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -39,6 +41,10 @@ public class Category implements Serializable {
 
     @TableField("DELETED")
     private Integer deleted;
+
+    // 子类分类
+    @TableField(exist = false)
+    private List<Category> children;
 
 
 }
