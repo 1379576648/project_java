@@ -21,25 +21,30 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Result login(Staff staff) {
-        Staff user = staffMapper.selectOne(new LambdaQueryWrapper<Staff>().eq(Staff::getStaffName, staff.getStaffName()).and(i -> i.eq(Staff::getStaffPass, staff.getStaffPass())));
+        Staff user = staffMapper.selectOne(new LambdaQueryWrapper<Staff>().eq(Staff::getStaffName, staff.getStaffName())
+                .and(i -> i.eq(Staff::getStaffPass, staff.getStaffPass())));
         Map<String,Object> map=new HashMap<>();
-        if (!Objects.isNull(user)) {
-            List<Power> powers=powerMapper.findByStaffId(user.getStaffId());
+       if (!Objects.isNull(user)) {
+           if(user.getStaffState()!= 0){
+               return Result.error("-1","该账户已被停用");
+           }
+           List<Power> powers=powerMapper.findByStaffId(user.getStaffId());
             List<Power> powerList=new ArrayList<>();
-            powers.forEach(item->{
-                powers.forEach(e->{
-                    if (item.getPowerId().equals(e.getPowerPid())){
-                        item.getPowers().add(e);
-                    }
-                });
-                if(item.getPowerPid().equals(0)){
-                    powerList.add(item);
-                }
-            });
-            map.put("user",user);
+               powers.forEach(item->{
+                   powers.forEach(e->{
+                       if (item.getPowerId().equals(e.getPowerPid())){
+                           item.getPowers().add(e);
+                       }
+                   });
+                   if(item.getPowerPid().equals(0)) {
+                       powerList.add(item);
+                   }
+               });
+
+           map.put("user",user);
             map.put("menus",powerList);
            return Result.success(map);
         }
-        return  null;
+        return Result.error("-1","账户名或密码错误！！！");
     }
 }

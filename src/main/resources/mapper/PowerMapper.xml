@@ -37,6 +37,7 @@
           AND	r.DELETED=0
           AND	p.POWER_STATE=0
           AND	p.DELETED=0
+          and   p.power_type in (0,1)
           ORDER BY p.power_id
     </select>
     <select id="selectPermsByStaffId" resultType="java.lang.String">

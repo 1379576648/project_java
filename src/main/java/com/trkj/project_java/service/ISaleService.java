@@ -1,14 +1,14 @@
 package com.trkj.project_java.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.trkj.project_java.entity.*;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.trkj.project_java.mapper.SaleMapper;
+import com.trkj.project_java.entity.Customer;
+import com.trkj.project_java.entity.Sale;
+import com.trkj.project_java.entity.Saleschedule;
+import com.trkj.project_java.entity.Stock;
 import com.trkj.project_java.pojovo.SaleVo;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -40,10 +40,18 @@ public interface ISaleService extends IService<Sale> {
     int addsales(Sale sale, List<Saleschedule> salescheduleslist);
 
     /**
-     * 查询所有待出库商品数量
+     * 成本价格
      */
+    Double querycbzs();
 
     /**
-     * 修改库存：待出库数量
+     * 收入
      */
+    Double querysrs();
+
+    /**
+     * 工作台：销售总价（库存）
+     */
+    Double queryxssum();
+
 }

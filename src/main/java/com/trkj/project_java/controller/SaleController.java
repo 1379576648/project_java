@@ -58,18 +58,43 @@ public class SaleController {
         return Result.success(service.findBysalevos(saleVo));
     }
 
-
     /**
      * 销售单添加
      */
     // 新增其他出库单
     @PostMapping("/insertsale")
-    Result insertOtheroutstock(@RequestBody Map map){
+    public Result insertOtheroutstock(@RequestBody Map map){
         Sale sale = JSON.parseObject(JSON.toJSONString(map.get("Sale")), Sale.class);
         List<Saleschedule> salescheduleList = JSON.parseArray(JSON.toJSONString(map.get("Saleschedule")),Saleschedule.class);
         return Result.success( service.addsales(sale,salescheduleList));
     }
 
+    /**
+     * 工作台：成本价格计算
+     * @return
+     */
+    @PostMapping("/workcbj")
+    public Result findbycbj(){
+        return Result.success(service.querycbzs());
+    }
+
+    /**
+     * 工作台：收入
+     * @return
+     */
+    @PostMapping("/worksr")
+    public Result findbysr(){
+        return Result.success(service.querysrs());
+    }
+
+    /**
+     * 工作台：销售总价（库存）
+     * @return
+     */
+    @PostMapping("/workxssum")
+    public Result findbyxssum(){
+        return Result.success(service.queryxssum());
+    }
 
 
 

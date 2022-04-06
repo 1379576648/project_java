@@ -3,17 +3,17 @@ package com.trkj.project_java.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trkj.project_java.entity.*;
 import com.trkj.project_java.mapper.*;
 import com.trkj.project_java.pojovo.SaleVo;
 import com.trkj.project_java.service.ISaleService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -24,6 +24,7 @@ import java.util.Map;
  * @since 2022-03-30
  */
 @Service
+@Transactional
 public class SaleServiceImpl extends ServiceImpl<SaleMapper, Sale> implements ISaleService {
 
     //销售表mapper
@@ -49,8 +50,6 @@ public class SaleServiceImpl extends ServiceImpl<SaleMapper, Sale> implements IS
     //库存mapper
     @Autowired
     private RepertoryMapper repertoryMapper;
-
-
 
 
     /**
@@ -91,7 +90,6 @@ public class SaleServiceImpl extends ServiceImpl<SaleMapper, Sale> implements IS
     }
 
 
-
     /**
      * 销售单添加
      */
@@ -113,11 +111,12 @@ public class SaleServiceImpl extends ServiceImpl<SaleMapper, Sale> implements IS
                 //修改库存：某商品待出库数量
                 Repertory repertory1 = new Repertory();
                 repertory1.setRepertoryId(repertory.getRepertoryId());
-                repertory1.setStayoutstock(saleschedule.getSalescheduleNumber());
+                //待出库数量
+                repertory1.setStayoutstock(saleschedule.getSalescheduleNumber()+repertory.getStayoutstock());
                 //实际库存-可用库存
-                repertory1.setActualstock(repertory.getActualstock()-saleschedule.getSalescheduleNumber());
-                repertory1.setAvailablestock(repertory.getActualstock()-saleschedule.getSalescheduleNumber());
-                repertory1.setTotalprice((repertory.getActualstock()-saleschedule.getSalescheduleNumber())*saleschedule.getSaleschedulePrice());
+//                repertory1.setActualstock(repertory.getActualstock()-saleschedule.getSalescheduleNumber());
+//                repertory1.setAvailablestock(repertory.getActualstock()-saleschedule.getSalescheduleNumber());
+//                repertory1.setTotalprice((repertory.getActualstock()-saleschedule.getSalescheduleNumber())*saleschedule.getSaleschedulePrice());
                 repertoryMapper.updateById(repertory1);
             }
             return 1;
@@ -128,6 +127,31 @@ public class SaleServiceImpl extends ServiceImpl<SaleMapper, Sale> implements IS
         return 0;
     }
 
+    /**
+     * 工作台：成本价格计算
+     * @return
+     */
+    @Override
+    public Double querycbzs() {
+        return salemapper.querycbz();
+    }
 
+    /**
+     * 工作台：收入
+     * @return
+     */
+    @Override
+    public Double querysrs() {
+        return salemapper.querysr();
+    }
+
+    /**
+     * 工作台：销售总价（库存）
+     * @return
+     */
+    @Override
+    public Double queryxssum() {
+        return salemapper.queryxssum();
+    }
 
 }
