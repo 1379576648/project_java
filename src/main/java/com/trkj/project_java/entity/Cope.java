@@ -40,6 +40,9 @@ public class Cope implements Serializable {
     @TableField("COPE_RECEIPTS")
     private Integer copeReceipts;
 
+    @TableField(".OPE_SERIAL")
+    private String copeSerial;
+
     @TableField("COUPON")
     private Integer coupon;
 

@@ -97,6 +97,7 @@
             <artifactId>orai18n</artifactId>
             <version>12.1.0.2.0</version>
         </dependency>
+
         <!-- Map转实体类 -->
         <dependency>
             <groupId>com.alibaba</groupId>

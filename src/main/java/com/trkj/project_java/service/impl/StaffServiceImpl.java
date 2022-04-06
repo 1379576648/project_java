@@ -1,10 +1,14 @@
 package com.trkj.project_java.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.trkj.project_java.entity.Staff;
 import com.trkj.project_java.mapper.StaffMapper;
 import com.trkj.project_java.service.IStaffService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,5 +20,13 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements IStaffService {
+    @Autowired
+    private StaffMapper mapper;
 
+    @Override
+    public List<Staff> selectlist() {
+        QueryWrapper<Staff> wrapper=new QueryWrapper<>();
+        List<Staff> list=mapper.selectList(wrapper);
+        return list;
+    }
 }
