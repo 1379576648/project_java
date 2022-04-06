@@ -12,11 +12,45 @@
         <result column="SETTLEMENT" property="settlement" />
         <result column="REMARKS" property="remarks" />
         <result column="DELETED" property="deleted" />
+        <result column="PAYMENTTAB_BALANCE" property="paymenttabBalance" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        PAYMENTTAB_ID, PAYMENTTAB_TIME, COPE_ID, MONEY, STAFF_ID, SETTLEMENT, REMARKS, DELETED
+        PAYMENTTAB_ID, PAYMENTTAB_TIME, COPE_ID, MONEY, STAFF_ID, SETTLEMENT, REMARKS, DELETED, PAYMENTTAB_BALANCE
     </sql>
 
+    <select id="selectDJBH" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select bill_id from purchase p
+        LEFT JOIN cope c on p.purchase_id=c.purchase_id
+        LEFT JOIN paymentTab pay on c.cope_id=pay.cope_id
+        where pay.cope_id=#{id}
+    </select>
+
+    <select id="selectName" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select supplier_name from supplier s
+        LEFT JOIN cope c on s.SUPPLIER_ID=c.SUPPLIER_ID
+        LEFT JOIN paymentTab p on c.COPE_ID=p.COPE_ID
+        where p.PAYMENTTAB_ID=#{id}
+    </select>
+
+    <select id="selectLikeName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select pay.* from paymentTab pay
+        RIGHT JOIN cope c on pay.COPE_ID=c.COPE_ID
+        RIGHT JOIN purchase p on c.PURCHASE_ID=p.PURCHASE_ID
+        RIGHT JOIN supplier s on c.SUPPLIER_ID=s.SUPPLIER_ID
+        where pay.settlement in(#{method})
+        and regexp_like(s.supplier_name,#{name},'i')
+        or regexp_like(p.BILL_ID,#{name},'i')
+    </select>
+
+    <select id="selectLikeName2" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select pay.* from paymentTab pay
+                              RIGHT JOIN cope c on pay.COPE_ID=c.COPE_ID
+                              RIGHT JOIN purchase p on c.PURCHASE_ID=p.PURCHASE_ID
+                              RIGHT JOIN supplier s on c.SUPPLIER_ID=s.SUPPLIER_ID
+        where pay.settlement in(${method})
+            and regexp_like(s.supplier_name,#{name},'i')
+           or regexp_like(p.BILL_ID,#{name},'i')
+    </select>
 </mapper>
