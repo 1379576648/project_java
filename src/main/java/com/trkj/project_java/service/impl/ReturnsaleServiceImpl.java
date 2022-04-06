@@ -58,7 +58,6 @@ public class ReturnsaleServiceImpl extends ServiceImpl<ReturnsaleMapper, Returns
     //修改退货表和库存表
     @Override
     public int updateReturnSale(Repertory repertory, Returnsale returnsale) {
-//        ReturnSaleVo returnSaleVo = returnsaleMapper.BeforeSelect(page,like);
 
         return 0;
     }
