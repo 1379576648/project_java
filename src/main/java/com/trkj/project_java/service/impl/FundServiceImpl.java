@@ -11,6 +11,7 @@ import com.trkj.project_java.service.IFundService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,6 +27,7 @@ import java.util.List;
  * @since 2022-03-30
  */
 @Service
+@Transactional
 public class FundServiceImpl extends ServiceImpl<FundMapper, Fund> implements IFundService {
 
     @Autowired
