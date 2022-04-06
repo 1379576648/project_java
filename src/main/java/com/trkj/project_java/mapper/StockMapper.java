@@ -12,6 +12,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -37,4 +40,6 @@ public interface StockMapper extends BaseMapper<Stock> {
 
     @Select("select * from STOCK ${ew.customSqlSegment}")
     List<Stock> selectStockCK(@Param(Constants.WRAPPER) QueryWrapper<Stock> queryWrapper);
+      @Select("select * from Stock")
+    List<Stock> selectStockList();
 }

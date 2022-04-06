@@ -27,4 +27,6 @@ public interface ICategoryService extends IService<Category> {
 
     //查询所有商品分类
     List<Map<Object,Object>> classify ();
+
+    List<Category> selectCategoryList(); //查询商品分类
 }

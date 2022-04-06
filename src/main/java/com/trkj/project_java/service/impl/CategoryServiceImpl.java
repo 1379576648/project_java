@@ -76,4 +76,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         wrapper.select("CATEGORY_ID","CATEGORY_NAME");
         return categoryMapper.selectMaps(wrapper);
     }
+
+    @Override
+    public List<Category> selectCategoryList() {
+        return categoryMapper.selectCategoryList();
+    }
 }

@@ -131,4 +131,5 @@ public class CommodityServiceImpl  implements ICommodityService {
         return Result.error("-1","该商品已存在！！！");
     }
 
+
 }
