@@ -45,7 +45,7 @@ public class CdCustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
 
     //销售明细Vo
     @Autowired
-    private SaleScheduleVoMapper saleScheduleVoMapper;
+    private SalescheduleVoMapper saleScheduleVoMapper;
 
     //销售明细表
     @Autowired

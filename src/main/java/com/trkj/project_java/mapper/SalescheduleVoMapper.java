@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.trkj.project_java.cd.Vo.saleScheduleVo;
 import com.trkj.project_java.pojovo.SalescheduleVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,6 +18,11 @@ import java.util.List;
  */
 @Mapper
 public interface SalescheduleVoMapper extends BaseMapper<SalescheduleVo> {
+
+
+    //查询销售明细
+    @Select("select * from saleSchedule  ss LEFT JOIN COMMODITY  c on ss.COMMODITY_ID=c.COMMODITY_ID where ss.SALE_ID=#{id}")
+    List<saleScheduleVo> selectSalescheduleVo(int saleId);
 
     /**
      * 销售历史已出库查询
