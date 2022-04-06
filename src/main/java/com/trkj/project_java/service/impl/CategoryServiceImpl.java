@@ -43,4 +43,9 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
         return categoryMapper.deleteById(id);
     }
+
+    @Override
+    public List<Category> selectCategoryList() {
+        return categoryMapper.selectCategoryList(); //查询商品分类
+    }
 }

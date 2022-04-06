@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -36,6 +38,11 @@ private  StockMapper stockMapper;
     @Override
     public int updateStock(Stock stock) {
         return stockMapper.updateById(stock);
+    }
+
+    @Override
+    public List<Stock> selectStock() {
+        return stockMapper.selectStockList();
     }
 
 

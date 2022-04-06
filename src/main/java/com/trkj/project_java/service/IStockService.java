@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.trkj.project_java.entity.Stock;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -16,4 +18,5 @@ public interface IStockService extends IService<Stock> {
     int addStock(Stock stock);
     int deleteStock(Integer id);
     int updateStock(Stock stock);
+    List<Stock> selectStock();
 }
