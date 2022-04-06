@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-03-30
  */
 public interface ISalescheduleService {
-
     //已出库
     IPage<Saleschedule2Vo>Salechedule2Page(Page<Saleschedule2Vo> page);
 

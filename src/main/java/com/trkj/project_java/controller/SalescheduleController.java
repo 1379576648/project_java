@@ -84,14 +84,14 @@ public class SalescheduleController {
     }
 
     //销售明细
-    @PostMapping("/saleschedule3/{currentPage}/{pageSize}")
+    @GetMapping("/saleschedule3/{currentPage}/{pagesSize}")
     public AjaxResponse saleschedule3(@PathVariable("currentPage") int currentPage, @PathVariable("pagesSize") int pageSize){
         Page<Saleschedule2Vo> page = new Page<>(currentPage, pageSize);
         return AjaxResponse.success(iSalescheduleService.Salechedule2Page(page));
     }
 
     //销售明细
-    @PostMapping("/saleschedule4/{currentPage}/{pageSize}")
+    @GetMapping("/saleschedule4/{currentPage}/{pagesSize}")
     public AjaxResponse saleschedule4(@PathVariable("currentPage") int currentPage, @PathVariable("pagesSize") int pageSize){
         Page<Saleschedule2Vo> page = new Page<>(currentPage, pageSize);
         return AjaxResponse.success(iSalescheduleService.Salechedule3Page(page));

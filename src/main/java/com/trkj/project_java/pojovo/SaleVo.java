@@ -1,6 +1,7 @@
 package com.trkj.project_java.pojovo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
@@ -25,4 +26,7 @@ public class SaleVo {
     //零售价
     @TableField("RETAIL_PRICE")
     private Integer retailPrice;
+
+
+
 }

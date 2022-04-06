@@ -1,6 +1,7 @@
 package com.trkj.project_java.pojovo;
 
 import com.baomidou.mybatisplus.annotation.*;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -87,4 +88,12 @@ public class Saleschedule2Vo {
 
     @TableField(exist = false)
     private String categoryName;
+
+    @ApiModelProperty(value = "当前页")
+    @TableField(exist = false)
+    private Integer currentPage;
+
+    @ApiModelProperty(value = "页大小")
+    @TableField(exist = false)
+    private Integer pageSize;
 }
