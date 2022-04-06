@@ -64,5 +64,13 @@ public class Otheroutstock implements Serializable {
     @TableField("STAFF_NAME")
     private String staffName;
 
+    // 出库类型
+    @TableField("OUTINSTOCKTYPE_NAME")
+    private String outinstocktypeName;
+
+    // 仓库名称
+    @TableField("STOCK_NAME")
+    private String stockName;
+
 
 }

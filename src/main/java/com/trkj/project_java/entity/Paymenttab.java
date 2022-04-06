@@ -54,6 +54,9 @@ public class Paymenttab implements Serializable {
     @TableField("REMARKS")
     private String remarks;
 
+    @TableField("PAYMENTTAB_BALANCE")
+    private Integer paymenttabBalance;
+
     @TableField("DELETED")
     private Integer deleted;
 

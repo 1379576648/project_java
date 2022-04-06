@@ -30,25 +30,25 @@ public class Goodsprice implements Serializable {
 
     @TableId(value = "GOODSPRICE_ID",type = IdType.INPUT)
     private Integer goodspriceId;
-
+    //零售价
     @TableField("GOODSPRICE_RETAIL")
-    private Integer goodspriceRetail;
-
+    private Double goodspriceRetail;
+    //商品编号
     @TableField("COMMODITY_ID")
     private Integer commodityId;
-
+    //批发价
     @TableField("GOODSPRICE_WHOLESALE")
-    private Integer goodspriceWholesale;
-
+    private Double goodspriceWholesale;
+    //最底售价
     @TableField("GOODSPRICE_MINPRICE")
-    private Integer goodspriceMinprice;
-
+    private Double goodspriceMinprice;
+    //进货价
     @TableField("GOODSPRICE_PURCHASE")
-    private Integer goodspricePurchase;
-
+    private Double goodspricePurchase;
+    //成本价
     @TableField("GOODSPRICE_COST")
-    private Integer goodspriceCost;
-
+    private Double goodspriceCost;
+    //逻辑删除列
     @TableField("DELETED")
     private Integer deleted;
 

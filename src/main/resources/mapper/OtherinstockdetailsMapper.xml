@@ -13,9 +13,58 @@
         <result column="DELETED" property="deleted" />
     </resultMap>
 
+    <resultMap id="BaseResultTwo" type="com.trkj.project_java.tydo.receipthistoryDo">
+        <result column="otherInStockDetails_id" property="otherInStockDetailsId"/>
+        <result column="commodity_name" property="commodityName"/>
+        <result column="otherInStockDetails_total" property="otherInStockDetailsTotal"/>
+        <result column="remark" property="remark"/>
+        <result column="time" property="time"/>
+        <result column="staff_id" property="staffId"/>
+        <result column="staff_name" property="staffName"/>
+        <result column="stock_name" property="stockName"/>
+        <result column="outInStockType_name" property="outInStockTypeName"/>
+        <result column="bill_id" property="billId"/>
+        <result column="deleted" property="deleted"/>
+    </resultMap>
+    <resultMap id="BaseResultThree" type="com.trkj.project_java.tydo.detailsDo">
+        <result column="otherInStockDetails_id" property="otherInStockDetailsId"/>
+        <result column="otherInStock_id" property="otherInStockId"/>
+        <result column="commodity_name" property="commodityName"/>
+        <result column="otherInStockDetails_number" property="otherInStockDetailsNumber"/>
+        <result column="otherInStockDetails_total" property="otherInStockDetailsTotal"/>
+        <result column="otherInStockDetails_price" property="otherInStockDetailsPrice"/>
+        <result column="commodity_specifications" property="commoditySpecifications"/>
+        <result column="commodity_company" property="commodityCompany"/>
+        <result column="bill_id" property="billId"/>
+        <result column="stock_name" property="stockName"/>
+        <result column="outInStockType_name" property="outInStockTypeName"/>
+        <result column="staff_name" property="staffName"/>
+        <result column="time" property="time"/>
+        <result column="remark" property="remark"/>
+    </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         OTHERINSTOCKDETAILS_ID, OTHERINSTOCK_ID, COMMODITY_ID, OTHERINSTOCKDETAILS_NUMBER, OTHERINSTOCKDETAILS_PRICE, OTHERINSTOCKDETAILS_TOTAL, DELETED
     </sql>
+        <select id="selectHistory" resultType="com.trkj.project_java.tydo.receipthistoryDo">
+            SELECT rk.otherInStockDetails_id,c.commodity_name,rk.otherInStockDetails_total,so.remark,so.time,so.staff_id,sa.staff_name,s.stock_name,st.outInStockType_name,so.bill_id,rk.deleted
+            FROM otherInStockDetails rk
+                     INNER JOIN otherInStock so on rk.otherInStock_id=so.otherInStock_id
+                     INNER JOIN stock s on so.stock_id=s.stock_id
+                     INNER JOIN outInStockType st on st.outInStockType_id=so.outInStockType_id
+                     INNER JOIN commodity c on c.commodity_id=rk.commodity_id
+                     INNER JOIN staff sa on sa.STAFF_ID=so.STAFF_ID
+                ${ew.customSqlsegment}
+
+    </select>
+    <select id="selectDetails" resultMap="BaseResultThree">
+        SELECT sd.otherInStockDetails_id,sd.otherInStock_id,c.commodity_name,sd.otherInStockDetails_number,sd.otherInStockDetails_total,sd.otherInStockDetails_price,c.commodity_specifications,c.commodity_company,so.bill_id,s.stock_name,ck.outInStockType_name,fa.staff_name,so.time,so.remark FROM otherInStockDetails sd
+                                                INNER JOIN otherInStock so on sd.otherInStock_id=so.otherInStock_id
+                                                INNER JOIN stock s on s.stock_id=so.stock_id
+                                                INNER JOIN outInStockType ck on ck.outInStockType_id=so.outInStockType_id
+                                                INNER JOIN staff fa on fa.staff_id=so.staff_id
+                                                INNER JOIN commodity c on c.commodity_id=sd.commodity_id
+                                                where sd.otherInStockDetails_id=#{id}
+    </select>
 
 </mapper>

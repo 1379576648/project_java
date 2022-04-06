@@ -36,6 +36,24 @@ public class UtilController {
     }
 
     /**
+     * 获取收款单流水号
+     *
+     * @return
+     */
+    @GetMapping("/obtainCollectionSerialNumber")
+    public AjaxResponse obtainCollectionSerialNumber() {
+        Map<String, Object> map = new HashMap<>(2);
+        try {
+            map.put("state", 200);
+            map.put("info", utilService.obtainCollectionSerialNumber());
+        } catch (Exception e) {
+            map.put("state", 400);
+            map.put("info", e.getMessage());
+        }
+        return AjaxResponse.success(map);
+    }
+
+    /**
      * 获取供应商流水号
      * @return
      */
@@ -62,6 +80,23 @@ public class UtilController {
         try {
             map.put("state", 200);
             map.put("info", utilService.obtainCopeNumber());
+        } catch (Exception e) {
+            map.put("state", 400);
+            map.put("info", e.getMessage());
+        }
+        return AjaxResponse.success(map);
+    }
+
+    /**
+     * 获取单据编号
+     * @return
+     */
+    @GetMapping("/obtainPurchaseNumber")
+    public AjaxResponse obtainPurchaseNumber() {
+        Map<String, Object> map = new HashMap<>(2);
+        try {
+            map.put("state", 200);
+            map.put("info", utilService.obtainPurchaseNumber());
         } catch (Exception e) {
             map.put("state", 400);
             map.put("info", e.getMessage());
