@@ -19,4 +19,11 @@
         TAB_ID, TAB_TIME, RECEIVABLE_ID, TAB_MONEY, STAFF_ID, SETTLEMENT, REMARKS, DELETED
     </sql>
 
+    <select id="selectDJBH" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select bill_id from sale s
+        LEFT JOIN receivable r on s.sale_id=r.sale_id
+        LEFT JOIN tab t on r.receivable_id=t.receivable_id
+        where t.receivable_id=1
+    </select>
+
 </mapper>

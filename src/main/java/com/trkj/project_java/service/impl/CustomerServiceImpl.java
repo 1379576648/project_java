@@ -15,13 +15,15 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author 沈杨卓
@@ -33,6 +35,19 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     //客户表
     @Autowired
     private CustomerMapper customerMapper;
+
+    //仓库表
+    @Autowired
+    private StockMapper stockMapper;
+
+    //销售表
+    @Autowired
+    private SaleMapper saleMapper;
+
+    //销售明细
+    @Autowired
+    private SalescheduleMapper salescheduleMapper;
+
     /**
      * 添加客户
      *
@@ -58,18 +73,25 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
         return customerMapper.insert(customerOne);
     }
 
+    /**
+     * 查询所有客户
+     *
+     * @param currentPage
+     * @param pagesSize
+     * @return
+     */
+    @Override
+    public IPage<Customer> queryAllCustomer(Integer currentPage, Integer pagesSize,String customerName) {
+        // 分页查询
+        Page<Customer> page = new Page<>(currentPage, pagesSize);
+        QueryWrapper<Customer> query = new QueryWrapper<>();
+        if (!Objects.equals(customerName, "*****1*****1*****1")){
+            query.like("CUSTOMER_NAME",customerName);
+        }
+        return customerMapper.selectPage(page, query);
+    }
 
-    //仓库表
-    @Autowired
-    private StockMapper stockMapper;
 
-    //销售表
-    @Autowired
-    private SaleMapper saleMapper;
-
-    //销售明细
-    @Autowired
-    private SalescheduleMapper salescheduleMapper;
 
     //添加客户
     @Override
