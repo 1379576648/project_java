@@ -2,16 +2,16 @@ package com.trkj.project_java.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.KeySequence;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
-import java.util.List;
-
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -45,6 +45,9 @@ public class Category implements Serializable {
     // 子类分类
     @TableField(exist = false)
     private List<Category> children;
+
+    @TableField(exist = false)
+    private List<Category> Categorys = new ArrayList<>();
 
 
 }

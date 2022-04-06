@@ -20,30 +20,30 @@ import java.util.List;
 public interface IStaffService extends IService<Staff> {
 
     /**
-    * 创建方法者：沈杨卓
-    * 创建时间： 2022/3/31 14:19
-    * 方法所需参数：
-    * 方法用途：  分页查询所有用户
-    * 返回值：
-    */
+     * 创建方法者：沈杨卓
+     * 创建时间： 2022/3/31 14:19
+     * 方法所需参数：
+     * 方法用途：  分页查询所有用户
+     * 返回值：
+     */
     Result paging(Paging paging);
 
     /**
-    * 创建方法者：沈杨卓
-    * 创建时间： 2022/3/31 16:15
-    * 方法所需参数：
-    * 方法用途：  根据账户编号查询账户及账户拥有的角色
-    * 返回值：
-    */
+     * 创建方法者：沈杨卓
+     * 创建时间： 2022/3/31 16:15
+     * 方法所需参数：
+     * 方法用途：  根据账户编号查询账户及账户拥有的角色
+     * 返回值：
+     */
     Result findByStaffIdLoad(Integer id);
 
     /**
-    * 创建方法者：沈杨卓
-    * 创建时间： 2022/3/31 14:19
-    * 方法所需参数：
-    * 方法用途：  分配角色
-    * 返回值：
-    */
+     * 创建方法者：沈杨卓
+     * 创建时间： 2022/3/31 14:19
+     * 方法所需参数：
+     * 方法用途：  分配角色
+     * 返回值：
+     */
     Result perm(Map<String, Object> map);
 
     /**
@@ -63,6 +63,13 @@ public interface IStaffService extends IService<Staff> {
      * 返回值：
      */
     Result resetpassword(int id);
+    /**
+     * 查询所有用户
+     *
+     * @return
+     */
+    List<Staff> selectAllStaff();
+
     /**
      * 查询所有用户名称
      * @return

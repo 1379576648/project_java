@@ -1,6 +1,5 @@
 package com.trkj.project_java.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -17,15 +16,11 @@ import com.trkj.project_java.mapper.StaffMapper;
 import com.trkj.project_java.mapper.StaffroleMapper;
 import com.trkj.project_java.service.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.transaction.Transactional;
 import java.util.*;
-
-import java.util.List;
 
 /**
  * <p>
@@ -196,5 +191,9 @@ private  StaffMapper staffMapper;
     public List<Staff> selectStaff() {
         QueryWrapper<Staff> queryWrapper = new QueryWrapper<Staff>();
         return staffMapper.selectList(queryWrapper);
+    }
+
+    public List<Staff> selectAllStaff() {
+        return  staffMapper.selectList(null);
     }
 }
