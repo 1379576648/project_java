@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.util.Date;
+
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
@@ -88,6 +90,41 @@ public class Saleschedule2Vo {
 
     @TableField(exist = false)
     private String categoryName;
+
+
+    @TableField("STAFF_ID")
+    private Integer staffId;
+
+    @TableField("STAFF_NAME")
+    private String staffName;
+
+    @TableField("CUSTOMER_ID")
+    private Integer customerId;
+
+    @TableField("CUSTOMER_NAME")
+    private String customerName;
+
+    @TableField("STOCK_ID")
+    private Integer stockId;
+
+    @TableField("STOCK_NAME")
+    private String stockName;
+
+    @TableField("BILL_ID")
+    private Integer billId;
+
+    @TableField("SALE_TIME")
+    private Date saleTime;
+
+    @TableField("SALE_MONEY")
+    private Integer saleMoney;
+
+    @TableField("SALE_REMARKS")
+    private String saleRemarks;
+
+    @TableField("SALE_STATE")
+    private Integer saleState;
+
 
     @ApiModelProperty(value = "当前页")
     @TableField(exist = false)

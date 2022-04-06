@@ -91,6 +91,14 @@ public class SalescheduleController {
         return AjaxResponse.success(map);
     }
 
+    //详情
+    @PostMapping("/details1")
+    public AjaxResponse details1(@RequestBody Saleschedule2Vo saleschedule2Vo){
+        Map<String, Object> map =  new HashMap<>();
+        map.put("state",200);
+        map.put("succeed",iSalescheduleService.details1(saleschedule2Vo));
+        return AjaxResponse.success(map);
+    }
 
     //销售明细
     @GetMapping("/saleschedule3/{currentPage}/{pagesSize}")
