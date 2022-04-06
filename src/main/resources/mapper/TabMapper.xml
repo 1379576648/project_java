@@ -12,11 +12,46 @@
         <result column="SETTLEMENT" property="settlement" />
         <result column="REMARKS" property="remarks" />
         <result column="DELETED" property="deleted" />
+        <result column="TAB_BALANCE" property="tabBalance" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        TAB_ID, TAB_TIME, RECEIVABLE_ID, TAB_MONEY, STAFF_ID, SETTLEMENT, REMARKS, DELETED
+        TAB_ID, TAB_TIME, RECEIVABLE_ID, TAB_MONEY, STAFF_ID, SETTLEMENT, REMARKS, DELETED, TAB_BALANCE
     </sql>
+
+    <select id="selectDJBH" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select bill_id from sale s
+        LEFT JOIN receivable r on s.sale_id=r.sale_id
+        LEFT JOIN tab t on r.receivable_id=t.receivable_id
+        where t.tab_id=#{id}
+    </select>
+
+    <select id="selectName" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select customer_name from customer c
+        LEFT JOIN receivable r on c.CUSTOMER_ID=r.CUSTOMER_ID
+        LEFT JOIN tab t on r.RECEIVABLE_ID=t.RECEIVABLE_ID
+        where t.tab_ID=#{id}
+    </select>
+
+    <select id="selectLikeName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select t.* from tab t
+        RIGHT JOIN receivable r on t.RECEIVABLE_ID=r.RECEIVABLE_ID
+        RIGHT JOIN sale s on r.SALE_ID=s.SALE_ID
+        RIGHT JOIN customer c on r.CUSTOMER_ID=c.CUSTOMER_ID
+        where t.settlement in(#{method})
+        and regexp_like(c.CUSTOMER_NAME,#{name},'i')
+        or regexp_like(s.bill_id,#{name},'i')
+    </select>
+
+    <select id="selectLikeName2" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select t.* from tab t
+                            RIGHT JOIN receivable r on t.RECEIVABLE_ID=r.RECEIVABLE_ID
+                            RIGHT JOIN sale s on r.SALE_ID=s.SALE_ID
+                            RIGHT JOIN customer c on r.CUSTOMER_ID=c.CUSTOMER_ID
+        where t.settlement in(${method})
+            and regexp_like(c.CUSTOMER_NAME,#{name},'i')
+           or regexp_like(s.bill_id,#{name},'i')
+    </select>
 
 </mapper>

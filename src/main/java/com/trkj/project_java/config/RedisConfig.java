@@ -1,5 +1,6 @@
 package com.trkj.project_java.config;
 
+
 import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

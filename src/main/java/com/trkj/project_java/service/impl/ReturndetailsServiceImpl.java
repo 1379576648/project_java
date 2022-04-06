@@ -4,7 +4,11 @@ import com.trkj.project_java.entity.Returndetails;
 import com.trkj.project_java.mapper.ReturndetailsMapper;
 import com.trkj.project_java.service.IReturndetailsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.trkj.project_java.vo.saleDetailsVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +21,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReturndetailsServiceImpl extends ServiceImpl<ReturndetailsMapper, Returndetails> implements IReturndetailsService {
 
+    @Autowired
+    private ReturndetailsMapper returndetailsMapper;
+
+    @Override
+    public List<saleDetailsVo> xq(Integer id) {
+        return returndetailsMapper.xq(id);
+    }
 }

@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.trkj.project_java.entity.Commodity;
+import com.trkj.project_java.entity.Cope;
 import com.trkj.project_java.entity.Purchase;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.trkj.project_java.pojovo.purchaseHistoryVo;
@@ -25,5 +27,15 @@ public interface PurchaseMapper extends BaseMapper<Purchase> {
      @Update(
              "update purchase set deleted=2 where purchase_id=#{id}"
      )
-    int tovoid(int id);
+    int tovoid(int id);  //作废操作
+    @Update(
+            "update purchase set purchase_state=1 where purchase_id=#{id}"
+    )
+    int entry(int id);  //进库操作
+    @Select("select * from (select * from purchase order by purchase_time desc) ${ew.customSqlSegment}")
+    Purchase selectPurchaseKey(@Param(Constants.WRAPPER) QueryWrapper<Purchase> copeQueryWrapper);
+
+    @Select("select max(purchase_id) from purchase")
+     int selectMaxId();
+
 }

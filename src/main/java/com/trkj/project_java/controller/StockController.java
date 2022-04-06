@@ -2,7 +2,6 @@ package com.trkj.project_java.controller;
 
 
 import com.trkj.project_java.config.Result;
-import com.trkj.project_java.config.Result;
 import com.trkj.project_java.service.IStockService;
 import com.trkj.project_java.service.IStockvoService;
 import lombok.extern.slf4j.Slf4j;
@@ -15,13 +14,9 @@ import com.trkj.project_java.service.IStockService;
 import com.trkj.project_java.vo.AjaxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.trkj.project_java.service.IStockService;
-import com.trkj.project_java.vo.AjaxResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -35,11 +30,9 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/stock")
 public class StockController {
-
-    @Autowired
+@Autowired
     private IStockService iStockService;
-
-    @GetMapping("/selectStock")
+@GetMapping("/selectStock")
     public Result selectStock(){
     return  Result.success(iStockService.selectStock());
 }
@@ -110,4 +103,10 @@ public class StockController {
              return AjaxResponse.success("系统异常");
         }
     }
+
+    @GetMapping("/selectStockCK")
+    List<Stock> selectStockCK(){
+        return iStockService.selectStockCK();
+    }
+
 }

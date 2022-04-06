@@ -31,12 +31,6 @@ public class Repertory implements Serializable {
     @TableId(value = "REPERTORY_ID",type = IdType.INPUT)
     private Integer repertoryId;
 
-    @TableField("COMMODITY_ID")
-    private Integer commodityId;
-
-    @TableField("STOCK_ID")
-    private Integer stockId;
-
     @TableField("STAYLNSTOCK")
     private Integer staylnstock;
 

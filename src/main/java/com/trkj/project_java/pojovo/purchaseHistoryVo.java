@@ -46,7 +46,7 @@ public class purchaseHistoryVo {
 
     //总金额
     @TableField("PURCHASEDETAILS_TOTAL")
-    private int purchaseDetailsTotal;
+    private double purchaseDetailsTotal;
 
     //状态（已入库，未入库）
     @TableField("PURCHASE_STATE")

@@ -1,6 +1,9 @@
 package com.trkj.project_java.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.trkj.project_java.entity.Commodity;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import com.trkj.project_java.entity.Stock;
 
@@ -12,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 /**
  * <p>
  *  服务实现类
@@ -72,6 +73,19 @@ public class StockServiceImpl implements IStockService {
     @Override
     public int updateStock(Stock stock) {
         return stockMapper.updateById(stock);
+    }
+
+    @Override
+    public List<Stock> selectStockCK() {
+        QueryWrapper<Stock> queryWrapper = new QueryWrapper<Stock>();
+        //逻辑删除 未删除
+        queryWrapper.eq("DELETED", 0);
+        return stockMapper.selectStockCK(queryWrapper);
+    }
+
+    @Override
+    public List<Stock> selectStock1() {
+        return stockMapper.selectStockList();
     }
 
 
