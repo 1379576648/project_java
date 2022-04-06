@@ -15,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-
 /**
  * <p>
  *  服务实现类
@@ -83,6 +81,11 @@ public class StockServiceImpl implements IStockService {
         //逻辑删除 未删除
         queryWrapper.eq("DELETED", 0);
         return stockMapper.selectStockCK(queryWrapper);
+    }
+
+    @Override
+    public List<Stock> selectStock1() {
+        return stockMapper.selectStockList();
     }
 
 

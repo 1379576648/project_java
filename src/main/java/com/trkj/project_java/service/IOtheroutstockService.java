@@ -2,6 +2,7 @@ package com.trkj.project_java.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.trkj.project_java.entity.Category;
 import com.trkj.project_java.entity.Otheroutstock;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.trkj.project_java.entity.Otheroutstockdetails;
@@ -20,6 +21,9 @@ import java.util.Map;
  */
 public interface IOtheroutstockService extends IService<Otheroutstock> {
 
+    // 查询商品分类
+    List<Category> selectAllCategory();
+
     // 查询所有仓库
     List<Map> selectAllStock();
 
@@ -36,7 +40,7 @@ public interface IOtheroutstockService extends IService<Otheroutstock> {
     int insertOtheroutstock(Otheroutstock otheroutstock, List<Otheroutstockdetails> otheroutstockdetails);
 
     // 分页查询历史出库
-    IPage<Otheroutstock> selectOtheroutstockPage(Page page, String parameter);
+    IPage<Otheroutstock> selectOtheroutstockPage(Page page, String parameter, String outInStockTypeId);
 
 
 

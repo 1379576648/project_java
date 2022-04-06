@@ -22,6 +22,10 @@ public class GoodsRepertoryVo {
     @TableField("COMMODITY_SPECIFICATIONS")
     private String commoditySpecifications;
 
+    // 实际库存
+    @TableField("ACTUALSTOCK")
+    private Integer actualStock;
+
     //可用库存
     @TableField("AVAILABLESTOCK")
     private Integer availablestock;
