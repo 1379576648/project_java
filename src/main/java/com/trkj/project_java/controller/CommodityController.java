@@ -65,8 +65,8 @@ public class CommodityController {
     * 分页查询商品表
     * */
     @GetMapping("/selectPageC")
-    public AjaxResponse select(@RequestParam("currentPage") int currenPage, @RequestParam("pagesize") int pagesize,@RequestParam("input") String commodityName){
-        Page<Commodity> page = new Page<>(currenPage, pagesize);
+    public AjaxResponse select(@RequestParam("currentPage") int currenPage, @RequestParam("pageSize") int pageSize,@RequestParam("input") String commodityName){
+        Page<Commodity> page = new Page<>(currenPage, pageSize);
         return AjaxResponse.success(iCommodityService.selectPage(page,commodityName));
     }
     /*
