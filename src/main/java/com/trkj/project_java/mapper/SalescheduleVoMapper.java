@@ -10,6 +10,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 /**
  * @author TanWei
  */
@@ -81,5 +83,27 @@ public interface SalescheduleVoMapper extends BaseMapper<SalescheduleVo> {
             "left join commodity c2 " +
             "on s2.commodity_id=c2.commodity_id ${ew.customSqlSegment}")
     IPage<SalescheduleVo> invalid(Page<SalescheduleVo> page, @Param(Constants.WRAPPER) QueryWrapper<SalescheduleVo> queryWrapper);
+
+    /**
+     * 详情查询
+     * @param
+     * @param
+     * @return
+     */
+    @Select("select s1.sale_id,s1.bill_id,s1.sale_time,s1.sale_money,s1.sale_remarks,s1.sale_state, " +
+            "s2.saleSchedule_id,s2.saleSchedule_number,s2.saleSchedule_price,s2.saleSchedule_total,s2.saleSchedule_state, " +
+            "s3.staff_name,c1.customer_name,s4.stock_name,c2.commodity_name,c2.commodity_company,c2.commodity_specifications " +
+            "from saleSchedule s2  " +
+            "left join sale s1 " +
+            "on s1.sale_id=s2.sale_id " +
+            "left join staff s3 " +
+            "on s1.staff_id=s3.staff_id " +
+            "left join customer c1 " +
+            "on s1.customer_id=c1.customer_id " +
+            "left join stock s4 " +
+            "on s1.stock_id=s4.stock_id " +
+            "left join commodity c2 " +
+            "on s2.commodity_id=c2.commodity_id ${ew.customSqlSegment}")
+            List<SalescheduleVo> details(@Param(Constants.WRAPPER) QueryWrapper<SalescheduleVo> queryWrapper);
 
 }

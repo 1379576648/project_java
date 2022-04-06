@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.trkj.project_java.entity.Sale;
 import com.trkj.project_java.pojovo.SalescheduleVo;
 
+import java.util.List;
+
 /**
  * @author TanWei
  */
@@ -21,4 +23,6 @@ public interface ISalescheduleVoService{
         IPage<SalescheduleVo> invalid(SalescheduleVo salescheduleVo);
 
         int outbound(Sale sale);
+
+        List<SalescheduleVo> details(SalescheduleVo salescheduleVo);
 }
