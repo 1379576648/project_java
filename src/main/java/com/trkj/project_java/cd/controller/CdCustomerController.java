@@ -1,49 +1,45 @@
-package com.trkj.project_java.controller;
+package com.trkj.project_java.cd.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.trkj.project_java.cd.service.CdCustomerService;
 import com.trkj.project_java.config.Result;
 import com.trkj.project_java.entity.Customer;
+import com.trkj.project_java.entity.Returnsale;
 import com.trkj.project_java.entity.Sale;
+import com.trkj.project_java.entity.Saledetails;
 import com.trkj.project_java.service.ICustomerService;
-import lombok.extern.slf4j.Slf4j;
 import com.trkj.project_java.vo.AjaxResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.ResultSet;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 
 
 /**
  * <p>
- * 前端控制器
+ *  前端控制器
  * </p>
  *
- * @author 沈杨卓
+ * @author 林落
  * @since 2022-03-30
  */
 @Slf4j
 @RestController
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/cdcustomer")
+public class CdCustomerController {
 
     @Autowired
-    private ICustomerService customerService;
+    private CdCustomerService customerService;
 
-    @Autowired
-    private ICustomerService iCustomerService;
 
     //添加客户
     @PostMapping("/insertCustomer")
@@ -76,7 +72,7 @@ public class CustomerController {
     }
 
     //删除客户
-    @DeleteMapping("/deleteCustomer/{id}")
+    @PostMapping("/deleteCustomer/{id}")
     public Result deleteCustomer(@PathVariable("id") int id){
         return Result.success(customerService.deleteCustomerId(id));
     }
@@ -86,24 +82,6 @@ public class CustomerController {
     public Result selectDeptName() {
         List<Map> list = customerService.selectStockName();
         return Result.success(list);
-    }
-    /**
-     * 添加客户
-     *
-     * @param customer
-     * @return
-     */
-    @PostMapping("/addCustomer")
-    private AjaxResponse addCustomer(@RequestBody Customer customer) {
-        Map<String, Object> map = new HashMap<>(2);
-        try {
-            map.put("state", 200);
-            map.put("info", iCustomerService.addCustomer(customer));
-        } catch (Exception e) {
-            map.put("state", 400);
-            map.put("info", e.getMessage());
-        }
-        return AjaxResponse.success(map);
     }
 
     //查询销售
@@ -129,29 +107,37 @@ public class CustomerController {
     @GetMapping("/selectSaleschedule/{saleId}")
     public Result selectSaleschedule(@PathVariable("saleId") int saleId){
 
-        return Result.success(customerService.selectSaleschedule(saleId));
+        log.debug("11111111111111111:"+saleId);
+
+        return Result.success(customerService.selectSalescheduleVo(saleId));
     }
 
+    //添加退货表和退表明细表
+    @PostMapping("/insertReturnsale")
+    private AjaxResponse insertReturnsale(@RequestBody Map<Object, Object> map) {
 
+        Returnsale returnsale = JSON.parseObject(JSON.toJSONString(map.get("Returnsale")), Returnsale.class); // 取map中的 员工表数据 转换为实体类
+        List<Saledetails> saledetails = JSON.parseArray(JSON.toJSONString(map.get("Saledetails")), Saledetails.class);
+        int stockId=JSON.parseObject(JSON.toJSONString(map.get("stockId")), Integer.class);
+        int saleState=JSON.parseObject(JSON.toJSONString(map.get("saleState")), Integer.class);
 
-    /**
-     * 查询所有客户
-     *
-     * @param
-     * @return
-     */
-    @GetMapping("/queryAllCustomer/{currentPage}/{pagesSize}/{customerName}")
-    private AjaxResponse queryAllCustomer(@PathVariable("currentPage") Integer currentPage,
-                                          @PathVariable("pagesSize") Integer pagesSize,
-                                          @PathVariable("customerName") String customerName) {
-        Map<String, Object> map = new HashMap<>(2);
-        try {
-            map.put("state", 200);
-            map.put("info", iCustomerService.queryAllCustomer(currentPage, pagesSize,customerName));
-        } catch (Exception e) {
-            map.put("state", 400);
-            map.put("info", e.getMessage());
-        }
-        return AjaxResponse.success(map);
+        System.out.println("==============================:"+stockId);
+        log.debug("12345676543212345678654321");
+        log.debug(returnsale.toString());
+        log.debug(saledetails.toString());
+
+        //调用入职方法，
+        return AjaxResponse.success(customerService.insertReturnsale(returnsale,saledetails,stockId,saleState));
     }
+
+//    //根据商品id和仓库id去查询库存id
+//    @GetMapping("/selectOne/{goodsId}/{stockId}")
+//    public Result selectOne(@PathVariable("goodsId") int goodsId,@PathVariable("stockId") int stockId){
+//
+//
+//        return Result.success(customerService.selectOne(goodsId,stockId));
+//    }
+
+
+
 }
