@@ -8,8 +8,8 @@ import com.trkj.project_java.entity.Sale;
 import com.trkj.project_java.entity.Saleschedule;
 import com.trkj.project_java.mapper.RepertoryMapper;
 import com.trkj.project_java.mapper.SaleMapper;
+import com.trkj.project_java.mapper.SaleScheduleVoMapper;
 import com.trkj.project_java.mapper.SalescheduleMapper;
-import com.trkj.project_java.mapper.SalescheduleVoMapper;
 import com.trkj.project_java.pojovo.SalescheduleVo;
 import com.trkj.project_java.service.ISalescheduleVoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import java.util.List;
 public class SalescheduleVoServiceImpl implements ISalescheduleVoService {
 
     @Autowired
-    private SalescheduleVoMapper salescheduleVoMapper;
+    private SaleScheduleVoMapper salescheduleVoMapper;
 
     @Autowired
     private SaleMapper saleMapper;
