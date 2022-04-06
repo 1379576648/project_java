@@ -56,7 +56,7 @@ public class JwtUtil {
     }
 
     public static JwtBuilder getJwtBuilder(String subject,Long ttlMillis,String uuid){
-        SignatureAlgorithm signatureAlgorithm=SignatureAlgorithm.HS256;
+        SignatureAlgorithm signatureAlgorithm= SignatureAlgorithm.HS256;
         SecretKey secretKey=generaIKey();
         long nowMillis=System.currentTimeMillis();
         Date now=new Date(nowMillis);

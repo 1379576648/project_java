@@ -43,6 +43,9 @@ public class Purchasedetails implements Serializable {
     @TableField("PURCHASEDETAILS_PRICE")
     private Integer purchasedetailsPrice;
 
+    @TableField("PURCHASEDETAILS_TOTAL")
+    private Integer purchaseDetailsTotal;
+
     @TableField("PURCHASEDETAILS_STATE")
     private Integer purchasedetailsState;
 

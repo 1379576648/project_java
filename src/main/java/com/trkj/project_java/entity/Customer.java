@@ -1,15 +1,15 @@
 package com.trkj.project_java.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.KeySequence;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -43,14 +43,23 @@ public class Customer implements Serializable {
     @TableField("CUSTOMER_PHONE")
     private String customerPhone;
 
+
     @TableField("CUSTOMER_REMARKS")
     private String customerRemarks;
 
     @TableField("CUSTOMER_STATE")
     private Integer customerState;
 
+    @TableLogic // 逻辑删除注解
+    @ApiModelProperty(value = "逻辑删除 0:未删 1:已删 ")
     @TableField("DELETED")
     private Integer deleted;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(fill = FieldFill.INSERT)
+    private Date createdTime;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updatedTime;
 }

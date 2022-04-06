@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -33,6 +35,7 @@ public class Paymenttab implements Serializable {
     @TableId(value = "PAYMENTTAB_ID",type = IdType.INPUT)
     private Integer paymenttabId;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @TableField("PAYMENTTAB_TIME")
     private Date paymenttabTime;
 
@@ -50,6 +53,9 @@ public class Paymenttab implements Serializable {
 
     @TableField("REMARKS")
     private String remarks;
+
+    @TableField("PAYMENTTAB_BALANCE")
+    private Integer paymenttabBalance;
 
     @TableField("DELETED")
     private Integer deleted;
