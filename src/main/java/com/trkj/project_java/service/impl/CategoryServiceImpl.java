@@ -47,4 +47,19 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
 
         return categoryMapper.deleteById(id);
     }
+
+    @Override
+    public List<Category> selectAllCategory() {
+        return null;
+    }
+
+    @Override
+    public List<Map<Object, Object>> classify() {
+        return null;
+    }
+
+    @Override
+    public List<Category> selectCategoryList() {
+        return categoryMapper.selectCategoryList();
+    }
 }

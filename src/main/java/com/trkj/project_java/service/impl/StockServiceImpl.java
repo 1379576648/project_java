@@ -84,7 +84,7 @@ public class StockServiceImpl implements IStockService {
     }
 
     @Override
-    public List<Stock> selectStock() {
+    public List<Stock> selectStock1() {
         return stockMapper.selectStockList();
     }
 

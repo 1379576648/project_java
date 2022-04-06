@@ -17,7 +17,7 @@ import java.util.List;
 
 
 public interface IStockService  {
-    List<Stock> selectStock();
+    List<Stock> selectStock1();
     int addStock(Stock stock);
     int deleteStock(Integer id);
     int updateStock(Stock stock);
