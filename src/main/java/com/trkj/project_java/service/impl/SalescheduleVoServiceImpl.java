@@ -150,4 +150,13 @@ public class SalescheduleVoServiceImpl implements ISalescheduleVoService {
         }
 
     }
+
+
+    @Override
+    public List<SalescheduleVo> details(SalescheduleVo salescheduleVo) {
+        QueryWrapper<SalescheduleVo> queryWrapper = new QueryWrapper<>();
+        System.out.println("555555555555555"+salescheduleVo.getSaleId());
+        queryWrapper.eq("S1.SALE_ID",salescheduleVo.getSaleId());
+        return salescheduleVoMapper.details(queryWrapper);
+    }
 }

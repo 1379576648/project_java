@@ -83,6 +83,15 @@ public class SalescheduleController {
         return AjaxResponse.success(map);
     }
 
+    @PostMapping("/details")
+    public AjaxResponse details(@RequestBody SalescheduleVo salescheduleVo){
+        Map<String, Object> map =  new HashMap<>();
+        map.put("state",200);
+        map.put("succeed",iSalescheduleVoService.details(salescheduleVo));
+        return AjaxResponse.success(map);
+    }
+
+
     //销售明细
     @PostMapping("/saleschedule3/{currentPage}/{pageSize}")
     public AjaxResponse saleschedule3(@PathVariable("currentPage") int currentPage, @PathVariable("pagesSize") int pageSize){
