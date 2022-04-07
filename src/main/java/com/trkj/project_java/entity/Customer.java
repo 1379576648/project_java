@@ -1,10 +1,6 @@
 package com.trkj.project_java.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -12,9 +8,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * <p>
- * 
+ * 客户表
  * </p>
  *
  * @author 沈杨卓
@@ -44,12 +43,15 @@ public class Customer implements Serializable {
     @TableField("CUSTOMER_PHONE")
     private String customerPhone;
 
+
     @TableField("CUSTOMER_REMARKS")
     private String customerRemarks;
 
     @TableField("CUSTOMER_STATE")
     private Integer customerState;
 
+    @TableLogic // 逻辑删除注解
+    @ApiModelProperty(value = "逻辑删除 0:未删 1:已删 ")
     @TableField("DELETED")
     private Integer deleted;
 

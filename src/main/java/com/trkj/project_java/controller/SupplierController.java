@@ -2,15 +2,12 @@ package com.trkj.project_java.controller;
 
 
 import com.trkj.project_java.entity.Supplier;
+import com.trkj.project_java.entity.SupplierCategory;
 import com.trkj.project_java.pojovo.CopeVo;
 import com.trkj.project_java.service.ISupplierService;
 import com.trkj.project_java.vo.AjaxResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -58,7 +55,7 @@ public class SupplierController {
             map.put("state",200);
             map.put("info",iSupplierService.insertSupplier(supplier));
         }catch (Exception e){
-            map.put("state",400);
+            map.put("state",500);
             map.put("info",e.getMessage());
         }
         return AjaxResponse.success(map);
@@ -94,6 +91,7 @@ public class SupplierController {
 ////        return map;
 ////    }
 
+
     /**
      * 根据供应商查询欠款信息
      * @param copeVo
@@ -108,5 +106,50 @@ public class SupplierController {
         map.put("info",iSupplierService.selectSupplierAll(copeVo));
         return map;
     }
+
+    /**
+    *  查询所有供应商分类 （递归）
+    */
+    @GetMapping("/selectAllSupplierCategory")
+    Map<String,Object> selectAllSupplierCategory() {
+
+        Map<String,Object> map = new HashMap<>(3);
+        //返回的数据
+        map.put("state",200);
+        map.put("msg","查询成功");
+        map.put("info",iSupplierService.selectAllSupplierCategory());
+        return map;
+
+    }
+
+    //修改供应商
+    @PostMapping("updataSupplier")
+    public AjaxResponse updataSupplier(@RequestBody Supplier supplier){
+        Map<String, Object> map= new HashMap<>(2);
+        try{
+            map.put("state",200);
+            map.put("info",iSupplierService.updataSupplier(supplier));
+        }catch (Exception e){
+            map.put("state",500);
+            map.put("info",e.getMessage());
+        }
+        return AjaxResponse.success(map);
+    }
+
+    //删除供应商
+    @PostMapping("deletedSupplier")
+    public AjaxResponse deletedSupplier(@RequestBody Supplier supplier){
+        System.out.println("========="+supplier);
+        Map<String, Object> map= new HashMap<>(2);
+        try{
+            map.put("state",200);
+            map.put("info",iSupplierService.deletedSupplier(supplier));
+        }catch (Exception e){
+            map.put("state",500);
+            map.put("info",e.getMessage());
+        }
+        return AjaxResponse.success(map);
+    }
+
 
 }

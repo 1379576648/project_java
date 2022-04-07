@@ -70,6 +70,12 @@ public class SalescheduleVo implements Serializable {
     @TableField("COMMODITY_NAME")
     private String commodityName;
 
+    @TableField("commodity_company")
+    private String commodityCompany;
+
+    @TableField("commodity_specifications")
+    private String commoditySpecifications;
+
     @TableField("SALESCHEDULE_NUMBER")
     private Integer salescheduleNumber;
 

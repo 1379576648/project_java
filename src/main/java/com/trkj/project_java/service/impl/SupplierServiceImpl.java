@@ -4,14 +4,19 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.trkj.project_java.entity.Cope;
 import com.trkj.project_java.entity.Supplier;
+import com.trkj.project_java.entity.SupplierCategory;
 import com.trkj.project_java.mapper.CopeMapper;
+import com.trkj.project_java.mapper.SupplierCategoryMapper;
 import com.trkj.project_java.mapper.SupplierMapper;
 import com.trkj.project_java.pojovo.CopeVo;
 import com.trkj.project_java.service.ISupplierService;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,6 +29,9 @@ import java.util.List;
  */
 @Service
 public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> implements ISupplierService {
+
+    @Autowired
+    private SupplierCategoryMapper supplierCategoryMapper;
 
     @Autowired
     private SupplierMapper supplierMapper;
@@ -48,7 +56,24 @@ public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> i
      */
     @Override
     public Integer insertSupplier(Supplier supplier) {
-        return supplierMapper.insert(supplier);
+        Supplier supplier1=new Supplier();
+        supplier1.setSupplierName(supplier.getSupplierName());
+        supplier1.setSupplierAddress(supplier.getSupplierAddress());
+        supplier1.setSupplierPhone(supplier.getSupplierPhone());
+        supplier1.setCategoryId(supplier.getCategoryId());
+        supplier1.setSupplierRemark(supplier.getSupplierRemark());
+        var i=supplierMapper.insert(supplier1);
+        if(i>0){
+            Cope cope=new Cope();
+            cope.setSupplierId(supplier1.getSupplierId());
+            cope.setCopeMoney(supplier.getCopeMoney());
+            var x=copeMapper.insert(cope);
+            if (x>0){
+                return 200;
+            }
+        }
+
+        return 500;
     }
 
     /**
@@ -89,7 +114,7 @@ public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> i
 
     @Override
     public IPage<Supplier> selectSupplierByLike(Supplier supplier) {
-        System.out.println("selectSupplierByLike:   "+supplier);
+
         Page<Supplier> page = new Page<>(supplier.getCurrentPage(),supplier.getPageSize());
         QueryWrapper<Supplier> queryWrapper = new QueryWrapper<>();
         if (supplier.getSupplierId() !=null){
@@ -104,7 +129,61 @@ public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> i
         if (supplier.getSupplierAddress()!=null){
             queryWrapper.like("s.SUPPLIER_ADDRESS",supplier.getSupplierAddress());
         }
-        System.out.println("-------------"+supplierMapper.SupplierByLike(page,queryWrapper));
+        if (supplier.getDeleted()!=null){
+            queryWrapper.eq("s.DELETED",supplier.getDeleted());
+        }
         return supplierMapper.SupplierByLike(page,queryWrapper);
     }
+
+//    查询供应商分类 （递归）
+    @Override
+    public List<SupplierCategory> selectAllSupplierCategory() {
+
+        // 一个空的list集合
+        List<SupplierCategory> newCategories = new ArrayList<>();
+
+        // 查询所有分类
+        List<SupplierCategory> categories = supplierCategoryMapper.selectList(null);
+
+        if(categories.size()<1) return null;// 无分类返回null
+
+        // 循环所有分类
+        categories.forEach(item->{
+            // new 一个子类集合
+            List<SupplierCategory> children = new ArrayList<>();
+
+            // 再次循环所有分类 做比较
+            categories.forEach(item1->{
+                // 如果当前份分类id 为其他分类的父id
+                if(item.getCategoryId()==item1.getCategoryPid()){
+                    children.add(item1);// 加入子类集合中
+                }
+
+            });
+            // 写入当前 分类的子类
+            item.setChildren(children);
+
+            // 如果当前分类父id为0 则为最上级
+            if(item.getCategoryPid()==0){
+                newCategories.add(item);// 加入新list中
+            }
+
+        });
+
+        return newCategories;
+
+    }
+
+    //修改供应商
+    @Override
+    public Integer updataSupplier(Supplier supplier) {
+        return supplierMapper.updateById(supplier);
+    }
+
+    //删除供应商
+    @Override
+    public Integer deletedSupplier(Supplier supplier) {
+        return supplierMapper.deleteById(supplier);
+    }
+
 }

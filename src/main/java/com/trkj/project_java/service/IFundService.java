@@ -14,6 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IFundService extends IService<Fund> {
 
-    public Result selectFundAll(int page,int size);
+    public Result selectFundAll(int page,int size,String like,String type,String method);
 
 }

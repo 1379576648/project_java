@@ -1,14 +1,11 @@
 package com.trkj.project_java.Filter;
 
+
 import com.trkj.project_java.utils.JwtUtil;
 import com.trkj.project_java.utils.RedisCache;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.lang.Strings;
 import lombok.SneakyThrows;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -16,7 +13,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Enumeration;
 import java.util.Objects;
 
 @Component
@@ -65,8 +61,8 @@ public class JwtAuthentionTokenFilter extends OncePerRequestFilter {
         //存入SecurityContextHolder
         String loginUser="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJjMjIwZTcyMWM2NjI0ZTdmYjg5M2Y0NGIxOWZlMGFlZiIsInN1YiI6IjEiLCJpc3MiOiJzeXoiLCJpYXQiOjE2NDg2MjE0NzcsImV4cCI6MTY0ODYyNTA3N30.jLaQinRP17-JTJxnPqrS285eWjSynPp8ARJ_3pUwTE0";
         //TODO 获取权限信息封装到Authentication中
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, null);
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, null);
+//        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
         //放行
         filterChain.doFilter(request, response);
     }

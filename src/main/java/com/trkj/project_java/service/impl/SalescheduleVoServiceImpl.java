@@ -8,8 +8,8 @@ import com.trkj.project_java.entity.Sale;
 import com.trkj.project_java.entity.Saleschedule;
 import com.trkj.project_java.mapper.RepertoryMapper;
 import com.trkj.project_java.mapper.SaleMapper;
+import com.trkj.project_java.mapper.SaleScheduleVoMapper;
 import com.trkj.project_java.mapper.SalescheduleMapper;
-import com.trkj.project_java.mapper.SalescheduleVoMapper;
 import com.trkj.project_java.pojovo.SalescheduleVo;
 import com.trkj.project_java.service.ISalescheduleVoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import java.util.List;
 public class SalescheduleVoServiceImpl implements ISalescheduleVoService {
 
     @Autowired
-    private SalescheduleVoMapper salescheduleVoMapper;
+    private SaleScheduleVoMapper salescheduleVoMapper;
 
     @Autowired
     private SaleMapper saleMapper;
@@ -56,7 +56,7 @@ public class SalescheduleVoServiceImpl implements ISalescheduleVoService {
         queryWrapper.eq("S1.SALE_STATE",2);
         queryWrapper.eq("S1.DELETED",0);
         queryWrapper.eq("S2.DELETED",0);
-        if (salescheduleVo.getBillId() != null) {
+        if (salescheduleVo.getBillId() != null && salescheduleVo.getBillId()+"" != "") {
             queryWrapper.like("s1.bill_id",salescheduleVo.getBillId());
         }
         return salescheduleVoMapper.selectPageSal2(page,queryWrapper);
@@ -149,5 +149,14 @@ public class SalescheduleVoServiceImpl implements ISalescheduleVoService {
             throw new ArithmeticException("失败");
         }
 
+    }
+
+
+    @Override
+    public List<SalescheduleVo> details(SalescheduleVo salescheduleVo) {
+        QueryWrapper<SalescheduleVo> queryWrapper = new QueryWrapper<>();
+        System.out.println("555555555555555"+salescheduleVo.getSaleId());
+        queryWrapper.eq("S1.SALE_ID",salescheduleVo.getSaleId());
+        return salescheduleVoMapper.details(queryWrapper);
     }
 }

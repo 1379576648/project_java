@@ -83,15 +83,32 @@ public class SalescheduleController {
         return AjaxResponse.success(map);
     }
 
+    @PostMapping("/details")
+    public AjaxResponse details(@RequestBody SalescheduleVo salescheduleVo){
+        Map<String, Object> map =  new HashMap<>();
+        map.put("state",200);
+        map.put("succeed",iSalescheduleVoService.details(salescheduleVo));
+        return AjaxResponse.success(map);
+    }
+
+    //详情
+    @PostMapping("/details1")
+    public AjaxResponse details1(@RequestBody Saleschedule2Vo saleschedule2Vo){
+        Map<String, Object> map =  new HashMap<>();
+        map.put("state",200);
+        map.put("succeed",iSalescheduleService.details1(saleschedule2Vo));
+        return AjaxResponse.success(map);
+    }
+
     //销售明细
-    @PostMapping("/saleschedule3/{currentPage}/{pageSize}")
+    @GetMapping("/saleschedule3/{currentPage}/{pagesSize}")
     public AjaxResponse saleschedule3(@PathVariable("currentPage") int currentPage, @PathVariable("pagesSize") int pageSize){
         Page<Saleschedule2Vo> page = new Page<>(currentPage, pageSize);
         return AjaxResponse.success(iSalescheduleService.Salechedule2Page(page));
     }
 
     //销售明细
-    @PostMapping("/saleschedule4/{currentPage}/{pageSize}")
+    @GetMapping("/saleschedule4/{currentPage}/{pagesSize}")
     public AjaxResponse saleschedule4(@PathVariable("currentPage") int currentPage, @PathVariable("pagesSize") int pageSize){
         Page<Saleschedule2Vo> page = new Page<>(currentPage, pageSize);
         return AjaxResponse.success(iSalescheduleService.Salechedule3Page(page));

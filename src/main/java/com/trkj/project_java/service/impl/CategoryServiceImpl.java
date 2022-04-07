@@ -48,14 +48,33 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         return categoryMapper.deleteById(id);
     }
 
+    /**
+     * 查询所有分类数据-xho
+     * @return
+     */
     @Override
     public List<Category> selectAllCategory() {
-        return null;
+        List<Category> categories = categoryMapper.selectList(null);
+        List<Category> categoryList=new ArrayList<>();
+        categories.forEach(item->{
+            categories.forEach(e->{
+                if (item.getCategoryId()==e.getCategoryPid()){
+                    item.getCategorys().add(e);
+
+                }
+            });
+            if (item.getCategoryPid()==0) {
+                categoryList.add(item);
+            }
+        });
+        return categoryList;
     }
 
     @Override
     public List<Map<Object, Object>> classify() {
-        return null;
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.select("CATEGORY_ID","CATEGORY_NAME");
+        return categoryMapper.selectMaps(wrapper);
     }
 
     @Override

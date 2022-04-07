@@ -76,7 +76,7 @@ public class CustomerController {
     }
 
     //删除客户
-    @PostMapping("/deleteCustomer/{id}")
+    @DeleteMapping("/deleteCustomer/{id}")
     public Result deleteCustomer(@PathVariable("id") int id){
         return Result.success(customerService.deleteCustomerId(id));
     }

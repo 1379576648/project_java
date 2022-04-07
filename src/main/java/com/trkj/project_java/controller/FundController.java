@@ -25,9 +25,10 @@ public class FundController {
     @Autowired
     private IFundService service;
 
+    //分页查询输入框模糊查询公用方法
     @GetMapping("/selectFundAll")
-    public Result selectFundAll(@RequestParam("page") int page,@RequestParam("size") int size){
-        return service.selectFundAll(page,size);
+    public Result selectFundAll(@RequestParam("page") int page,@RequestParam("size") int size,@RequestParam("like") String like,
+                                @RequestParam("type") String type,@RequestParam("method") String method){
+        return service.selectFundAll(page,size,like,type,method);
     }
-
 }
