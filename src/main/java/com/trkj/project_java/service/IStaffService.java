@@ -76,4 +76,6 @@ public interface IStaffService extends IService<Staff> {
      */
     List<Staff> selectStaff();
 
+    List<Staff> selectlist();
+
 }

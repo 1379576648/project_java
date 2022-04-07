@@ -33,8 +33,8 @@ import java.util.*;
 @Transactional
 @Service
 public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements IStaffService {
-@Autowired
-private  StaffMapper staffMapper;
+    @Autowired
+    private  StaffMapper staffMapper;
 
     @Autowired
     private StaffMapper mapper;
@@ -42,23 +42,23 @@ private  StaffMapper staffMapper;
     private RoleMapper roleMapper;
     @Autowired
     private StaffroleMapper staffroleMapper;
-        /**
-        * 创建方法者：沈杨卓
-        * 创建时间： 2022/3/31 14:20
-        * 方法所需参数： 分页查询所有用户
-        * 方法用途：
-        * 返回值：
-        */
-        @Override
-        public Result paging(Paging paging){
-            IPage<Staff> iPage= mapper.selectPage(new Page<>(paging.getCurrentPage(),paging.getPageSize()),new LambdaQueryWrapper<Staff>().like(Staff::getStaffName,paging.getSearch()));
+    /**
+     * 创建方法者：沈杨卓
+     * 创建时间： 2022/3/31 14:20
+     * 方法所需参数： 分页查询所有用户
+     * 方法用途：
+     * 返回值：
+     */
+    @Override
+    public Result paging(Paging paging){
+        IPage<Staff> iPage= mapper.selectPage(new Page<>(paging.getCurrentPage(),paging.getPageSize()),new LambdaQueryWrapper<Staff>().like(Staff::getStaffName,paging.getSearch()));
 
-            for (int i=0;i<iPage.getRecords().size();i++){
-                List<Role> position = staffroleMapper.selectBystaffid(iPage.getRecords().get(i).getStaffId());
-                iPage.getRecords().get(i).setRoles(position);
-            }
-            return Result.success(iPage);
+        for (int i=0;i<iPage.getRecords().size();i++){
+            List<Role> position = staffroleMapper.selectBystaffid(iPage.getRecords().get(i).getStaffId());
+            iPage.getRecords().get(i).setRoles(position);
         }
+        return Result.success(iPage);
+    }
 
     /**
      * 创建方法者：沈杨卓
@@ -78,12 +78,12 @@ private  StaffMapper staffMapper;
     }
 
     /**
-        * 创建方法者：沈杨卓
-        * 创建时间： 2022/3/31 14:20
-        * 方法所需参数：
-        * 方法用途：  给用户分配角色
-        * 返回值：
-        */
+     * 创建方法者：沈杨卓
+     * 创建时间： 2022/3/31 14:20
+     * 方法所需参数：
+     * 方法用途：  给用户分配角色
+     * 返回值：
+     */
     @Override
     public Result perm(Map<String,Object> map) {
         Integer[] roleIds = JSON.parseObject(JSON.toJSONString(map.get("roleIds")), Integer[].class);
@@ -134,7 +134,7 @@ private  StaffMapper staffMapper;
                     });
                     return Result.success("200","添加成功！！！",null);
                 }
-                    return Result.error("-1","该账户已存在！！！");
+                return Result.error("-1","该账户已存在！！！");
             }catch (Exception e){
                 TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
                 return Result.error("-1","添加失败！！！");
@@ -195,5 +195,12 @@ private  StaffMapper staffMapper;
 
     public List<Staff> selectAllStaff() {
         return  staffMapper.selectList(null);
+    }
+
+    @Override
+    public List<Staff> selectlist() {
+        QueryWrapper<Staff> wrapper=new QueryWrapper<>();
+        List<Staff> list=staffMapper.selectList(wrapper);
+        return list;
     }
 }

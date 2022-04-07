@@ -75,8 +75,14 @@ public class StaffController {
 
 
 
- @GetMapping("/sselectStaff")
+    @GetMapping("/sselectStaff")
     public Result sselectStaff(){
-     return Result.success(iStaffService.selectStaff());
- }
+        return Result.success(iStaffService.selectStaff());
+    }
+
+    @GetMapping("/selectstaff")
+    public List<Staff> selectlist(){
+        List<Staff> list=iStaffService.selectlist();
+        return list;
+    }
 }
