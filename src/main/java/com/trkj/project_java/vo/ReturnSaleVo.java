@@ -53,7 +53,7 @@ public class ReturnSaleVo {
     private Integer customerId;
 
     @TableField("BILL_ID")
-    private Integer billId;
+    private String billId;
 
     @JsonFormat(pattern = "yyyy-MM-dd" )
     @TableField("SALE_TIME")

@@ -5,11 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.trkj.project_java.cd.Vo.saleScheduleVo;
-
 import com.trkj.project_java.cd.service.CdCustomerService;
 import com.trkj.project_java.entity.*;
 import com.trkj.project_java.mapper.*;
-import com.trkj.project_java.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,7 +64,33 @@ public class CdCustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer>
     //添加客户
     @Override
     public int insertCustomer(Customer customer) {
+        customer.setCustomerSerial(this.codeId());
         return customerMapper.insert(customer);
+    }
+
+    // 单据编号生成器
+    String codeId() {
+
+        // 单据编号
+        String codeId = "";
+        // 当前时间
+        Date date = new Date();
+
+        // 年
+        String year = date.getYear()+"";
+        // 月
+        String month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1+"";
+        // 日
+        String day = date.getDate() + 1 < 10 ? "0" + (date.getDate()) : date.getDate()+"";
+        // 时
+        String hours = date.getHours() + 1 < 10 ? "0" + (date.getHours()) : date.getHours()+"";
+        // 分
+        String minutes = date.getMinutes() + 1 < 10 ? "0" + (date.getMinutes()) : date.getMinutes()+"";
+        // 秒
+        String seconds = date.getSeconds() + 1 < 10 ? "0" + (date.getSeconds()) : date.getSeconds()+"";
+
+        return "YH" + year + month + day + hours + minutes + seconds;
+
     }
 
     //分页查询客户

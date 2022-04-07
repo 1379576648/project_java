@@ -96,10 +96,14 @@ public class SaleServiceImpl extends ServiceImpl<SaleMapper, Sale> implements IS
     @Override
     public int addsales(Sale sale, List<Saleschedule> salescheduleslist) {
         if(salemapper.insert(sale)>0){
+            System.out.println("11111111111111111111111111");
+            System.out.println(salescheduleslist);
+            System.out.println("11111111111111111111111111");
             for (Saleschedule saleschedule : salescheduleslist){
                 saleschedule.setSaleId(sale.getSaleId());
                 saleschedule.setSalescheduleState(2);
                 saleschedule.setSalescheduleTotal(saleschedule.getSaleschedulePrice() * saleschedule.getSalescheduleNumber());
+
                 if(salescheduleMapper.insert(saleschedule)<1){
                     // 如果小于1，就是添加失败，则回滚，前台会提示添加失败
                     // 手动回滚

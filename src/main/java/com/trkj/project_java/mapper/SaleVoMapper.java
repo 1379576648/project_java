@@ -5,7 +5,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.trkj.project_java.entity.Balance;
 import com.trkj.project_java.pojovo.SaleVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,7 +21,7 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface SaleVoMapper extends BaseMapper<SaleVo> {
 
-    @Select("select r.availableStock,r.stayOutStock as salescheduleNumber,c.commodity_id,\n" +
+    @Select("select r.availableStock,c.commodity_id,\n" +
             "c.commodity_name,c.commodity_company,c.commodity_specifications,c.retail_price as saleschedulePrice \n" +
             "from repertory r LEFT JOIN stock s on r.stock_id = s.stock_id \n" +
             "LEFT JOIN commodity c on r.commodity_id = c.commodity_id \n" +
