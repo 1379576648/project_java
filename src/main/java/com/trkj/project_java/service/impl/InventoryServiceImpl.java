@@ -11,6 +11,7 @@ import com.trkj.project_java.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class InventoryServiceImpl extends ServiceImpl<InventoryMapper, Inventory
     private InventoryMapper inventoryMapper;
     @Autowired
     StockMapper stockMapper;
-
+@Transactional
     @Override
     public IPage<InventoryVo> selectInventory(InventoryVo inventoryVo) {
         Page<InventoryVo> page = new Page<>(inventoryVo.getCurrentPage(), inventoryVo.getPageSize());
