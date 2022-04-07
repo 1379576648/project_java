@@ -2,7 +2,6 @@ package com.trkj.project_java.controller;
 
 
 import com.trkj.project_java.entity.Supplier;
-import com.trkj.project_java.entity.SupplierCategory;
 import com.trkj.project_java.pojovo.CopeVo;
 import com.trkj.project_java.service.ISupplierService;
 import com.trkj.project_java.vo.AjaxResponse;
@@ -98,16 +97,16 @@ public class SupplierController {
      * @param supplier
      * @return
      */
-//    @PostMapping("/selectSupplierByLike")
-////    public Map<String,Object> selectSupplierByLike(@RequestBody Supplier supplier){
-////
-////        Map<String,Object> map = new HashMap<>(3);
-////        //返回的数据
-////        map.put("state",200);
-////        map.put("msg","查询成功");
-////        map.put("info",iSupplierService.selectSupplierByLike(supplier));
-////        return map;
-////    }
+    @PostMapping("/selectSupplierByLike")
+    public Map<String,Object> selectSupplierByLike(@RequestBody Supplier supplier){
+
+        Map<String,Object> map = new HashMap<>(3);
+        //返回的数据
+        map.put("state",200);
+        map.put("msg","查询成功");
+        map.put("info",iSupplierService.selectSupplierByLike(supplier));
+        return map;
+    }
 
 
     /**
