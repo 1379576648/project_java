@@ -59,7 +59,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
         // 添加客户表
         Customer customerOne = new Customer();
         // 添加客户编号
-//        customerOne.setCustomerSerial(customer.getCustomerSerial());
+        customerOne.setCustomerSerial(customer.getCustomerSerial());
         // 添加客户名称
         customerOne.setCustomerName(customer.getCustomerName());
         // 添加客户联系电话
