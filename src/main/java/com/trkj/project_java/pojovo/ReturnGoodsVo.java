@@ -7,18 +7,6 @@ import java.util.Date;
 
 @Data
 public class ReturnGoodsVo {
-    //商品编号
-    @TableField("COMMODITY_ID")
-    private int commodityId;
-
-    //采购编号
-    @TableField("PURCHASE_ID")
-    private int purchaseId;
-
-    //采购详情编号
-    @TableField("PURCHASEDETAILS_ID")
-    private int purchaseDetailsId;
-
     //仓库名字
     @TableField("STOCK_NAME")
     private String stockName;
@@ -50,9 +38,6 @@ public class ReturnGoodsVo {
     //单位
     @TableField("COMMODITY_COMPANY")
     private String commodityCompany;
-
-    @TableField("PURCHASEDETAILS_PRICER")
-    private int purchaseDetailsPrice;
 
     //数量
     @TableField("PURCHASEDETAILS_NUMBER")

@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Select;
 public interface GoodsRepertoryVoMapper extends BaseMapper<GoodsRepertoryVo> {
 
     // 查询商品库存 (按仓库id，商品分类，商品名称，分页)
-    @Select("select b.commodity_id,b.commodity_name,b.commodity_company,b.commodity_Specifications,a.availablestock,c.category_id,c.category_name from repertory a left join commodity b on a.commodity_id=b.commodity_id left join category c on b.category_id=c.category_id ${ew.customSqlSegment}")
+    @Select("select b.commodity_id,b.commodity_name,b.commodity_company,b.commodity_Specifications,a.actualStock,a.availablestock,c.category_id,c.category_name from repertory a left join commodity b on a.commodity_id=b.commodity_id left join category c on b.category_id=c.category_id ${ew.customSqlSegment}")
     IPage<GoodsRepertoryVo> selectGoodsRepertoryPage(Page page, @Param(Constants.WRAPPER) QueryWrapper queryWrapper);
 
 }

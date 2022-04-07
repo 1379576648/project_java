@@ -9,6 +9,7 @@ import com.trkj.project_java.entity.Otheroutstock;
 import com.trkj.project_java.entity.Otheroutstockdetails;
 import com.trkj.project_java.pojovo.GoodsRepertoryVo;
 import com.trkj.project_java.service.IOtheroutstockService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,7 @@ import java.util.Map;
  * @author 沈杨卓
  * @since 2022-03-30
  */
+@Slf4j
 @RestController
 @RequestMapping("/otheroutstock")
 public class OtheroutstockController {
@@ -34,6 +36,12 @@ public class OtheroutstockController {
     @GetMapping("/hello")
     public String hello(){
         return "Hello";
+    }
+
+    // 查询所有商品分类
+    @GetMapping("/selectAllCategory")
+    Result selectAllCategory(){
+        return Result.success( otheroutstockService.selectAllCategory() );
     }
 
     // 查询所有仓库
@@ -64,9 +72,15 @@ public class OtheroutstockController {
         // 仓库id
         int stockId = JSON.parseObject(JSON.toJSONString(map.get("stockId")), Integer.class);
         // 商品分类id list
-        List<Integer> categoryId = JSON.parseArray(JSON.toJSONString(map.get("categoryId")),Integer.class);
+        List<Integer> categoryId = JSON.parseObject(JSON.toJSONString(map.get("categoryId")),List.class);
         // 商品名称
         String commodityName = JSON.parseObject(JSON.toJSONString(map.get("commodityName")), String.class);
+
+        log.debug("当前页："+currentPage);
+        log.debug("页大小："+pageSize);
+        log.debug("仓库id："+stockId);
+        log.debug("商品分类id list："+categoryId);
+        log.debug("商品名称："+commodityName);
 
         Page page = new Page<>(currentPage,pageSize);
 
@@ -78,14 +92,24 @@ public class OtheroutstockController {
     Result insertOtheroutstock(@RequestBody Map map){
         Otheroutstock otheroutstock = JSON.parseObject(JSON.toJSONString(map.get("Otheroutstock")), Otheroutstock.class);
         List<Otheroutstockdetails> otheroutstockdetails = JSON.parseArray(JSON.toJSONString(map.get("Otheroutstockdetails")),Otheroutstockdetails.class);
+
+        log.debug("新增其他出库单11111111111111");
+        log.debug("其他出库单："+ otheroutstock.toString());
+        log.debug("其他出库单详情："+otheroutstockdetails);
+
         return Result.success( otheroutstockService.insertOtheroutstock(otheroutstock,otheroutstockdetails) );
     }
 
     // 分页查询历史出库
     @GetMapping("/selectOtheroutstockPage")
-    Result selectOtheroutstockPage(@RequestParam("currentPage") int currentPage,@RequestParam("pageSize") int pageSize,@RequestParam("parameter") String parameter){
+    Result selectOtheroutstockPage(@RequestParam("currentPage") int currentPage,@RequestParam("pageSize") int pageSize,@RequestParam("parameter") String parameter,@RequestParam("outInStockTypeId") String outInStockTypeId){
+
+        log.debug("分页查询历史出库11111111111111");
+        log.debug("parameter："+ parameter);
+        log.debug("outInStockTypeId："+ outInStockTypeId);
+
         Page page = new Page<>(currentPage,pageSize);
-        return Result.success( otheroutstockService.selectOtheroutstockPage(page,parameter) );
+        return Result.success( otheroutstockService.selectOtheroutstockPage(page,parameter,outInStockTypeId) );
     }
 
 }

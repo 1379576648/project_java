@@ -7,6 +7,8 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -36,16 +38,17 @@ public class Purchase implements Serializable {
     @TableField("SUPPLIER_ID")
     private Integer supplierId;
 
-    @TableField("STAFF_ID")
-    private int staffId;
-
     @TableField("STOCK_ID")
     private Integer stockId;
 
+    @TableField("STAFF_ID")
+    private Integer staffId;
+
     @TableField("BILL_ID")
-    private Integer billId;
+    private String billId;
 
     @TableField("PURCHASE_TIME")
+    @JsonFormat(pattern = "YYYY-MM-DD")
     private Date purchaseTime;
 
     @TableField("PURCHASE_TOTAL")
@@ -63,7 +66,7 @@ public class Purchase implements Serializable {
     @TableField("PURCHASE_STATE")
     private Integer purchaseState;
 
-    @TableField("DELETED")
+//    @TableField("DELETED")
     private Integer deleted;
 
 

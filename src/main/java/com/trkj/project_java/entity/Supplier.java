@@ -53,7 +53,7 @@ public class Supplier implements Serializable {
     private String categoryName;
 
     @TableField(exist = false)
-    private Long copeMoney;
+    private int copeMoney;
 
     @TableField("SUPPLIER_SERIAL")
     private String supplierSerial;

@@ -51,8 +51,25 @@ public class Tab implements Serializable {
     @TableField("REMARKS")
     private String remarks;
 
+    @TableField("TAB_BALANCE")
+    private Integer tabBalance;
+
     @TableField("DELETED")
     private Integer deleted;
 
+    @TableField("COUPON")
+    private Integer coupon;
+
+    @TableField(exist = false)
+    private String staffName;
+
+    @TableField(exist = false)
+    private Integer staffPass;
+
+    @TableField(exist = false)
+    private String customerName;
+
+    @TableField(exist = false)
+    private String receivableSerial;
 
 }

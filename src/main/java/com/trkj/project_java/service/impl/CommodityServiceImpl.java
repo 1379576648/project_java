@@ -131,24 +131,5 @@ public class CommodityServiceImpl  implements ICommodityService {
         return Result.error("-1","该商品已存在！！！");
     }
 
-    /**
-     *查询所有商品数据-xho
-     */
-    @Override
-    public IPage<Commodity> selectIPages(Commodity commodity) {
-        Page<Commodity> page=new Page<>(commodity.getCurrentPage(),commodity.getPagesize());
-        QueryWrapper<Commodity> queryWrapper=new QueryWrapper<>();
-
-        if(commodity.getCommodityName() != null && !commodity.getCommodityName().equals("")){
-            //公告标题模糊查询
-            queryWrapper.eq("t1.COMMODITY_NAME",commodity.getCommodityName());
-        }
-        if(commodity.getCategoryId() != null && !commodity.getCategoryId().equals("")){
-            queryWrapper.like("t1.CATEGORY_ID",commodity.getCategoryId());
-        }
-
-        queryWrapper.eq("t1.DELETED",0);
-        return commodityMapper.selectIPages(page,queryWrapper);
-    }
 
 }
