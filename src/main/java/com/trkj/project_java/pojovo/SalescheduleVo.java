@@ -43,7 +43,7 @@ public class SalescheduleVo implements Serializable {
     private String stockName;
 
     @TableField("BILL_ID")
-    private Integer billId;
+    private String billId;
 
     @TableField("SALE_TIME")
     private Date saleTime;
