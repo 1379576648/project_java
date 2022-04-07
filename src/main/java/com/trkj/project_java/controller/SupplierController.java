@@ -62,6 +62,24 @@ public class SupplierController {
     }
 
     /**
+     * 添加供应商
+     * @param supplier
+     * @return
+     */
+    @PostMapping("addSupplier")
+    public AjaxResponse addSupplier(@RequestBody Supplier supplier){
+        Map<String, Object> map= new HashMap<>(2);
+        try{
+            map.put("state",200);
+            map.put("info",iSupplierService.addSupplier(supplier));
+        }catch (Exception e){
+            map.put("state",500);
+            map.put("info",e.getMessage());
+        }
+        return AjaxResponse.success(map);
+    }
+
+    /**
      * 分页查询供应商
      * @param supplier
      * @return

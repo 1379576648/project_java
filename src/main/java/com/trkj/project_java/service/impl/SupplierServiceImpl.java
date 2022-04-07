@@ -77,6 +77,16 @@ public class SupplierServiceImpl extends ServiceImpl<SupplierMapper, Supplier> i
     }
 
     /**
+     * 添加供应商
+     * @param supplier
+     * @return
+     */
+    @Override
+    public Integer addSupplier(Supplier supplier) {
+        return supplierMapper.insert(supplier);
+    }
+
+    /**
      * 分页查询供应商
      * @param supplier
      * @return

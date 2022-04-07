@@ -22,7 +22,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("ROLE_POWER")
 @ApiModel(value="RolePower对象", description="")
-@KeySequence(value = "rolePower_seq")
+@KeySequence(value = "role_power_seq")
 public class RolePower implements Serializable {
 
     private static final long serialVersionUID = 1L;

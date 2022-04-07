@@ -33,6 +33,13 @@ public interface ISupplierService extends IService<Supplier> {
     Integer insertSupplier(Supplier supplier);
 
     /**
+     * 添加供应商
+     * @param supplier
+     * @return
+     */
+    Integer addSupplier(Supplier supplier);
+
+    /**
      * 分页查询供应商
      * @param supplier
      * @return

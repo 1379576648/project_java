@@ -40,7 +40,7 @@ public class LoginServiceImpl implements LoginService {
                        powerList.add(item);
                    }
                });
-
+           System.err.println("================LoginServiceImpl================="+powers);
            map.put("user",user);
             map.put("menus",powerList);
            return Result.success(map);
