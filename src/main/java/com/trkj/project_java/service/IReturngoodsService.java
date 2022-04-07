@@ -15,4 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface IReturngoodsService extends IService<Returngoods> {
     //修改未出库的状态
     public Result updateReturnGoods(Returngoods returngoods);
+    //添加退货表
+    Result insertReturnGoods(Returngoods returngoods,int id);
 }

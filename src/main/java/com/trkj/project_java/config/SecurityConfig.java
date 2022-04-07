@@ -48,7 +48,7 @@
 //
 ////                 把token效验过滤器添加到过滤器链中
 //        http.addFilterBefore(jwtAuthentionTokenFilter, UsernamePasswordAuthenticationFilter.class);
-//
+////
 ////        配置异常处理器
 //        http.exceptionHandling()
 ////                认证失败的处理
